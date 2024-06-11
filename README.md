@@ -8,4 +8,4 @@ Incluye notas de clase, y algunas tareas del curso. Estas notas tomaron como bas
 
 ## ¿Cómo se ven las notas?
 
-![Black and white](comoseve.png)
+![Black and white](lecture_notes/comoseve.png)
