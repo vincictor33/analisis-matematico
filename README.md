@@ -6,3 +6,4 @@ Notas de clase de Análisis Matemático I del Dr. Fidel Casarrubias Segura de la
 
 Incluye notas de clase, y algunas tareas del curso. Estas notas tomaron como base el preámbulo de las notas de [Gilles Castel](https://github.com/gillescastel/lecture-notes). La bibliografía oficial de este curso es el libro de Análisis Matemático I de Mónica Clapp.
 
+## ¿Cómo se ven las notas?
