@@ -8,4 +8,4 @@ Incluye notas de clase, y algunas tareas del curso. Estas notas tomaron como bas
 
 ## ¿Cómo se ven las notas?
 
-![Black and white](https://user-images.githubusercontent.com/7069691/159117366-87d83ed5-8910-4700-bb59-760aeb0c98a5.png)
+![Black and white](comoseve.png)
