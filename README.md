@@ -4,5 +4,5 @@ Notas de clase de Análisis Matemático I del Dr. Fidel Casarrubias Segura de la
 
 ## Contenido
 
-Incluye notas de clase, y algunas tareas del curso
+Incluye notas de clase, y algunas tareas del curso. Estas notas tomaron como base el preámbulo de las notas de [Gilles Castel](https://github.com/gillescastel/lecture-notes)
 
