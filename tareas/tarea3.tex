@@ -1,0 +1,138 @@
+\documentclass[12pt]{article}
+
+\addtolength{\hoffset}{-2.25cm}
+\addtolength{\textwidth}{4.5cm}
+\addtolength{\voffset}{-2.5cm}
+\addtolength{\textheight}{5cm}
+\setlength{\parskip}{0pt}
+\setlength{\parindent}{15pt}
+
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage[colorlinks = true, linkcolor = blue, citecolor = blue, final]{hyperref}
+
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{ marvosym }
+\usepackage{wasysym}
+\usepackage{tikz}
+\usepackage{xcolor} 
+\usepackage{CJKutf8}
+\usepackage{tabularx}
+\usepackage{float}
+\usepackage{pgfplots}
+\usepackage{fancyhdr}
+\usepackage{amsfonts}
+\usepackage{physics}
+\usepackage{amsmath}
+\usetikzlibrary{patterns}
+
+\newcommand{\subscript}[2]{$#1 _ #2$}
+\newcommand{\ds}{\displaystyle}
+\newcommand\N{\ensuremath{\mathbb{N}}}
+\newcommand\R{\ensuremath{\mathbb{R}}}
+\newcommand\Z{\ensuremath{\mathbb{Z}}}
+\renewcommand\O{\ensuremath{\emptyset}}
+\newcommand\Q{\ensuremath{\mathbb{Q}}}
+\newcommand\C{\ensuremath{\mathbb{C}}}
+\DeclareMathOperator{\spn}{span}
+
+\pgfplotsset{compat=1.18} 
+\setlength{\parindent}{0in}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\thispagestyle{empty}
+
+{\scshape Análisis $\R$eal} \hfill {\scshape \large Tarea III} \hfill {\scshape Victor Ortega}
+ 
+\smallskip
+
+\hrule
+
+\bigskip
+
+\bigskip
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definición}
+
+\theoremstyle{definition}
+\newtheorem*{dem}{Demostración}
+
+\theoremstyle{definition}
+\newtheorem*{notation}{Notación}
+
+\theoremstyle{definition}
+\newtheorem*{theorem}{Teorema}
+
+\theoremstyle{definition}
+\newtheorem*{lema}{Lema}
+
+\theoremstyle{remark}
+\newtheorem*{observation}{Observación}
+
+\theoremstyle{remark}
+\newtheorem*{example}{Ejemplo}
+
+
+\begin{enumerate}[label=\textbf{\arabic*}.]
+
+\item Da un ejemplo de un espacio métrico $X$, en el cual existan puntos $x$ y $y$ tales que $B(x, r) \subset B(y,\varepsilon)$ con $r > \varepsilon$.
+
+\begin{proof}
+    Considere al espacio métrico $\R^2$ con la norma usual. Considere a la métrica como 
+    
+    $$d (\mathbf{x},\mathbf{y}) := \begin{cases}
+0 & \mathbf{x} = \mathbf{y}\\
+ \norm{x}+\norm{y} & \mathbf{x}\neq \mathbf{y}
+\end{cases}$$
+
+Recuerde que la la bola abierta de centro $x \in X$ y radio $r > 0$ en ($X,d$) es el subconjunto
+
+        $$
+            B_d(x,r) = \{ y \in X \mid d(x,y) < r \}
+        $$
+
+        En este caso, las bolas con centro en $(0,0)$ son las bolas usuales, mientras que las demás son puntos aislados. Es decir $B(x,r) = \{ x\}$ si $r < \norm{x}$. De lo contrario, tenemos al punto unión una bola con centro en el orign cada vez más chica hasta que se hace el punto aislado. 
+
+        Note entonces que $B((0,0), \frac{3}{2})$ es la bola usual con centro en el origen y de radio $ \varepsilon = \frac{3}{2}$. Note que $B((1,0), 2)$ es la bola usual, con radio $r = 2$. Pero por definición de la métrica, note que esta bola es el punto $(1,0) \cup B((0,0),1) \subset B((0,0), \frac{3}{2})$. Hemos encontrado lo requerido. 
+\end{proof}
+
+\item Sea $(X, d)$ un espacio métrico y $A \subseteq X$. La distancia de $A$ a $x \in X $ se define como ${d}^{\prime}(A,x) = \inf \{ d(y,x) \mid y \in A \}$.
+
+\begin{enumerate}
+    \item Demuestra que es Lipschitz continua
+    \item Demuestre que si $A$ es un subconjunto cerrado de $X$, entonces $d^\prime(x, A) = 0$ si y sólo si $x \in A$
+    \item Exhiba un ejemplo de un espacio métrico $X$, un subconjunto no vacío $A$ del mismo y un punto $x \in X$ de manera que $d^\prime
+    (x, A)=0$ y $x \notin A.$
+\end{enumerate}
+
+\begin{proof}
+    \begin{enumerate}
+        \item Por ejercicio 8. de la tarea 2 es trivial. 
+        \item $\Rightarrow $  
+
+        ${d}^{\prime}(A,x) = 0 \Rightarrow \inf \{ d(y,x) \mid y \in A \} = 0$ Pero como es un conjunto cerrado, no puede estar fuera de la cerradura. No hemos definido este concepto. 
+        
+        Note entonces que $\forall \: n \in \N \: \exists \: a_n \in A$ tal que
+
+        $$d(x,a_n) < d^\prime(x,A) + \frac{1}{n} = \frac{1}{n}$$
+
+        Esta es la definición de convergencia de sucesiones, por lo que $a_n$ converge a $x \Rightarrow x \in \text{der}(A)$ y como $A$ es cerrado $\Rightarrow \text{der}(A) = A$ 
+        
+        $\Leftarrow$
+
+        Como es cerrado, si $x \in A \Rightarrow {d}^{\prime}(A,x) = \inf \{ d(y,x) \mid y \in A \} \leqslant d(x,x) = 0$ por lo que si $x \in A \Rightarrow d(x,x) = 0 $
+
+        \item Sea $X = \R$ y considere a $A \subseteq \R = A=\{\frac{1}{n} \mid n\in\mathbb{Z}^+\}$. Defina a la métrica usual como el valor absoluto. Tomemos $x = 0$. Claramente $x \notin A$. Sin embargo, sabemos por Cálculo 1 que la cota inferior de $A$ es 0, y que se trata de una sucesión que converge a ese punto, sin que ese punto pertenezca a $A$. Note entonces que ${d}^{\prime}(A,x) = \inf \{ d(y,x) \mid y \in A \} = 0$, ya que es la ínfima distancia entre 0 y todo $y \in A$. Vease que se puede entonces reescribir el ejercicio como $d^\prime(x, A) = 0 \Leftrightarrow x \in \text{der}(A)$
+    \end{enumerate}
+\end{proof}
+
+\item 
+\end{enumerate}
+\end{document}

@@ -1,0 +1,872 @@
+\documentclass[12pt]{article}
+
+\addtolength{\hoffset}{-2.25cm}
+\addtolength{\textwidth}{4.5cm}
+\addtolength{\voffset}{-2.5cm}
+\addtolength{\textheight}{5cm}
+\setlength{\parskip}{0pt}
+\setlength{\parindent}{15pt}
+
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage[colorlinks = true, linkcolor = blue, citecolor = blue, final]{hyperref}
+
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{ marvosym }
+\usepackage{wasysym}
+\usepackage{tikz}
+\usepackage{xcolor} 
+\usepackage{CJKutf8}
+\usepackage{tabularx}
+\usepackage{float}
+\usepackage{pgfplots}
+\usepackage{fancyhdr}
+\usepackage{amsfonts}
+\usepackage{physics}
+\usepackage{amsmath}
+\usetikzlibrary{patterns}
+
+\newcommand{\subscript}[2]{$#1 _ #2$}
+\newcommand{\ds}{\displaystyle}
+\newcommand\N{\ensuremath{\mathbb{N}}}
+\newcommand\R{\ensuremath{\mathbb{R}}}
+\newcommand\Z{\ensuremath{\mathbb{Z}}}
+\renewcommand\O{\ensuremath{\emptyset}}
+\newcommand\Q{\ensuremath{\mathbb{Q}}}
+\newcommand\C{\ensuremath{\mathbb{C}}}
+\DeclareMathOperator{\spn}{span}
+
+\pgfplotsset{compat=1.18} 
+\setlength{\parindent}{0in}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\thispagestyle{empty}
+
+{\scshape Análisis $\R$eal} \hfill {\scshape \large Tarea I} \hfill {\scshape Victor Ortega}
+ 
+\smallskip
+
+\hrule
+
+\bigskip
+
+\bigskip
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definición}
+
+\theoremstyle{definition}
+\newtheorem*{dem}{Demostración}
+
+\theoremstyle{definition}
+\newtheorem*{notation}{Notación}
+
+\theoremstyle{definition}
+\newtheorem*{theorem}{Teorema}
+
+\theoremstyle{definition}
+\newtheorem*{lema}{Lema}
+
+\theoremstyle{remark}
+\newtheorem*{observation}{Observación}
+
+\theoremstyle{remark}
+\newtheorem*{example}{Ejemplo}
+
+
+\begin{enumerate}[label=\textbf{\arabic*}.]
+
+\item Sea $\rho$ una métrica en un conjunto $X$. Demostrar que las siguientes funciones también son métricas:
+
+\begin{enumerate}[label=\alph*)]
+    \item ${\rho}_{1}(x,y)=\frac{\rho(x,y)}{1+\rho(x,y)}$
+    \item ${\rho}_{3}(x,y)=\min(\{1,\rho(x,y))\})$
+\end{enumerate}
+
+\begin{proof}
+    
+
+\begin{enumerate}[label=(\subscript{D}{{\arabic*}})]
+\item  Sean $x,y \in \mathbb{R}^{n}$ P.D. ${\rho}_{1}(x,y) \geqslant 0$. 
+        
+Notemos que, ${\rho}(x,y) \geqslant 0$
+
+\begin{equation*}
+     \Rightarrow 1+{\rho}(x,y) \geqslant 0
+\end{equation*}
+
+
+Si $a\geqslant0$ y $b\geqslant0$ $\Rightarrow \frac{a}{b} \geqslant 0$
+
+\begin{equation*}
+    \Rightarrow \frac{{\rho}(x,y)}{1+{\rho}(x,y)} \geqslant 0    \Rightarrow {\rho}_{1}(x,y) \geqslant 0
+\end{equation*}
+
+\item  Sean $x,y \in \mathbb{R}^{n}$ P.D. ${\rho}_{1}(x,y)=0 \Leftrightarrow x=y$
+
+\begin{equation*}
+    {\rho}_{1}(x,y)=0 \Leftrightarrow \frac{{\rho}(x,y)}{1+{\rho}(x,y)} = 0
+\end{equation*}
+
+    Si $b \neq 0$ $\Rightarrow \frac{a}{b}=0 \Leftrightarrow a = 0$
+
+\begin{equation*}
+    \frac{{\rho}(x,y)}{1+{\rho}(x,y)} = 0 \Leftrightarrow {\rho}(x,y) = 0 \Leftrightarrow x = y
+\end{equation*}
+
+\item  Sean $x,y \in \mathbb{R}^{n}$ P.D. ${\rho}_{1}(x,y)={\rho}_{1}(y,x)$
+
+\begin{equation*}
+    {\rho}_{1}(x,y)= \frac{{\rho}(x,y)}{1+{\rho}(x,y)}=\frac{{\rho}(y,x)}{1+{\rho}(y,x)}= {\rho}_{1}(y,x)
+\end{equation*}
+
+\item  Sean $x,y \in \mathbb{R}^{n}$ P.D. ${\rho}_{1}(x,z) \leqslant {\rho}_{1}(x,y) +{\rho}_{1}(y,z)$
+
+\begin{equation*}
+    {\rho}_{1}(x,z) =\frac{{\rho}(x,z)}{1+{\rho}(x,z)} = \frac{1+{\rho}(x,z)-1}{1+{\rho}(x,z)}
+\end{equation*}
+
+\begin{equation*}
+    = \frac{1+{\rho}(x,z)}{1+{\rho}(x,z)}-\frac{1}{1+{\rho}(x,z)}=1-\frac{1}{1+{\rho}(x,z)}
+\end{equation*}
+
+\begin{equation*}
+    \leqslant 1-\frac{1}{1+{\rho}(x,y)+{\rho}(y,z)}=\frac{1+{\rho}(x,y)+{\rho}(y,z)-1}{1+{\rho}(x,y)+{\rho}(y,z)}
+\end{equation*}
+
+\begin{equation*}
+    =\frac{{\rho}(x,y)+{\rho}(y,z)}{1+{\rho}(x,y)+{\rho}(y,z)}=\frac{{\rho}(x,y)}{1+{\rho}(x,y)+{\rho}(y,z)}+\frac{{\rho}(y,z)}{1+{\rho}(x,y)+{\rho}(y,z)}
+\end{equation*}
+
+\begin{equation*}
+    \leqslant \frac{{\rho}(x,y)}{1+{\rho}(x,y)}+\frac{{\rho}(y,z)}{1+{\rho}(y,z)}={\rho}_{1}(x,y)+{\rho}_{1}(y,z) 
+\end{equation*}
+
+\begin{equation*}
+    \Rightarrow {\rho}_{1}(x,z) \leqslant {\rho}_{1}(x,y)+{\rho}_{1}(y,z)
+\end{equation*}
+\end{enumerate}
+
+$\therefore {\rho}_{1}(x,y)$ es una métrica en $\mathbb{R}^{n}$.
+\end{proof}
+
+\begin{proof}
+\begin{enumerate}[label=(\subscript{D}{{\arabic*}})]
+\item  Sean $x,y \in \mathbb{R}^{n}$ P.D. ${\rho}_{3}(x,y) \geqslant 0$
+
+Si $\rho(x,y)>1 \Rightarrow {\rho}_{3}(x,y)=1$. Si  $\rho(x,y))\leqslant 1 \Rightarrow {\rho}_{3}(x,y)=\rho(x,y)$. Tenemos los siguientes casos.
+
+\begin{enumerate}[label=\alph*)]
+    
+\item  $\rho(x,y)) > 1 \Rightarrow {\rho}_{3}(x,y)=1 $
+
+\begin{equation*}
+    1 > 0 \Rightarrow {\rho}_{3}(x,y) \geqslant 0
+\end{equation*}
+
+\item $\rho(x,y)) \leqslant 1 \Rightarrow {\rho}_{3}(x,y)=\rho(x,y)) $ Por definición,  $\rho(x,y) \geqslant 0$, $\Rightarrow {\rho}_{3}(x,y)\geqslant 0$
+
+\end{enumerate}
+
+\item Sean $x,y \in \mathbb{R}^{n}$ P.D. ${\rho}_{3}(x,y) = 0 \Leftrightarrow x=y$
+
+ \begin{equation*}
+     {\rho}_{3}(x,y) = 0 \Leftrightarrow \min(\{1,\rho(x,y)\}) = 0 \Leftrightarrow \rho(x,y) = 0 \Leftrightarrow x=y
+ \end{equation*}
+
+\item   Sean $x,y \in \R^{n}$ P.D. ${\rho}_{3}(x,y) ={\rho}_{3}(y,x) $
+
+\begin{equation*}
+     {\rho}_{3}(x,y) = \min(\{1,\rho(x,y)\}) = \min(\{1,\rho(y,x)\}) = {\rho}_{3}(y,x)
+\end{equation*}
+
+\item  Sean $x,y \in \mathbb{R}^{n}$ P.D. ${\rho}_{3}(x,z) \leqslant {\rho}_{3}(x,y) +{\rho}_{3}(y,z)$. Tenemos los siguientes casos.
+
+\begin{enumerate}[label=\alph*)]
+    \item  Si $\rho(x,y)) > 1 \Rightarrow {\rho}_{3}(x,y)=1 $ o ${\rho}(y,z) > 1 \Rightarrow {\rho}_{3}(y,z)=1 $
+
+Notemos que, por definición, ${\rho}_{3}(x,z) \leqslant 1$
+
+\begin{equation*}
+    {\rho}_{3}(x,y) +{\rho}_{3}(y,z) \geqslant 1
+\end{equation*}
+\begin{equation*}
+    {\rho}_{3}(x,z) \leqslant 1 \leqslant {\rho}_{3}(x,y) +{\rho}_{3}(y,z) \Rightarrow {\rho}_{3}(x,z) \leqslant {\rho}_{3}(x,y) +{\rho}_{3}(y,z)
+\end{equation*}
+
+\smallskip
+
+\item Si $\rho(x,y)) < 1 \Rightarrow {\rho}_{3}(x,y)=\rho(x,y)) $ o ${\rho}(y,z) < 1 \Rightarrow {\rho}_{3}(y,z)={\rho}(y,z) $
+
+\begin{equation*}
+    {\rho}_{3}(x,y)+{\rho}_{3}(y,z)= \rho(x,y))+{\rho}(y,z) \geqslant {\rho}(x,z) \geqslant {\rho}_{3}(x,z) \Rightarrow
+\end{equation*}
+\begin{equation*}
+    {\rho}_{3}(x,z) \leqslant {\rho}_{3}(x,y) +{\rho}_{3}(y,z)
+\end{equation*}
+
+\end{enumerate}
+\end{enumerate}
+
+$\therefore {\rho}_{3}(x,y)$ es una métrica en $\mathbb{R}^{n}$
+    
+\end{proof}
+
+\item \begin{enumerate}[label=\alph*)]
+    \item Sea $\rho : X \times X \to \R$ una métrica. Prueba la desigualdad tetrahédrica
+
+    \begin{equation*}
+        \abs{\rho(x,y)-\rho(z,w)} \leqslant \rho(x,z) +\rho(y,w)
+    \end{equation*}
+
+    $\forall \: x,y,z,w \in X$
+    \item Sea $\rho : X \times X \to \R$ una función $\backepsilon$
+    \begin{enumerate}
+        \item $\forall \: x \in X \Rightarrow \rho(x,x) = 0  $
+        \item $\forall \: x \neq y \in X \Rightarrow \rho(x,y) = \rho(y,x) > 0  $
+        \item Satisface la desigualdad tetrahédrica
+    \end{enumerate}
+
+    Pruebe que $\rho$ es una métrica
+    \end{enumerate}
+
+\begin{proof}
+    Sea $x,y,z,w \in X$ arbitrario. Como $\rho$ es una métrica en $X$ s.t.q.
+
+    \begin{equation*}
+        \rho(x,y) \leqslant \rho(x,w) + \rho(w,y) \leqslant (\rho(x,z) + \rho(z,w)) + \rho(y,w) 
+    \end{equation*}
+    \begin{equation*}
+        \Rightarrow \rho(x,y) - \rho(w,z) \leqslant  \rho(x,z)  + \rho(y,w)
+    \end{equation*}
+
+    Además
+
+    \begin{equation*}
+        \rho(z,w) \leqslant \rho(z,y) + \rho(y,w) \leqslant (\rho(z,x) + \rho(x,y)) + \rho(w,y)
+    \end{equation*}
+    \begin{equation*}
+        \Rightarrow \rho(w,z) - \rho(x,y) \leqslant  \rho(x,z)  + \rho(y,w)
+    \end{equation*}
+
+    Tanto $\rho(x,y)-\rho(z,w)$ como $-(\rho(x,y)-\rho(z,w)) \leqslant \rho(x,z) +\rho(y,w) \Rightarrow$ con la función $\abs{\cdot}$ s.t.q.
+
+    \begin{equation*}
+        \abs{\rho(x,y)-\rho(z,w)} \leqslant \rho(x,z) +\rho(y,w)
+    \end{equation*}
+\end{proof}
+
+\begin{proof}
+\begin{enumerate}[label=(\subscript{D}{{\arabic*}})]
+\item Por definición de $\rho$ s.t.q $\forall \: x, y \in X \Rightarrow \rho(x,y) \geq 0 $
+\item Si $x=y$, por el inciso i. $\rho(x,x) = 0 \Rightarrow$ necesariamente $x=y$, porque de lo contrario, por ii. $\rho(x,y) > 0$
+\item Se sigue de i. y ii.
+\item Sean $x,y,z \in X$ elementos arbitrarios
+\begin{equation*}
+    \rho(x,y) = \abs{\rho(x,y)} = \abs{\rho(x,y)+\rho(x,z)-\rho(x,z)}
+\end{equation*}
+\begin{equation*}
+    \leqslant  \abs{\rho(x,z)} +  \abs{\rho(x,y)-\rho(x,z)}
+\end{equation*}
+Por la desigudaldad tetrahédrica s.t.q.
+\begin{equation*}
+    \abs{\rho(x,y)-\rho(x,z)} \leqslant \rho(x,x) +\rho(y,z)
+\end{equation*}
+\begin{equation*}
+    \Rightarrow \rho(x,y) \leqslant \rho(x,z) + \rho(x,x) +\rho(y,z) = \rho(x,z) +\rho(y,z)
+\end{equation*}
+\end{enumerate}
+$\therefore \rho$ es una métrica en $X$
+\end{proof}
+
+\item ¿Qué condiciones debe satisfacer una función continua $f : \R \to \R$ definida sobre $\R$ para que en la recta real se pueda dar una métrica por medio de la igualdad $\rho(x, y) = \abs{f(x) - f(y)}?$
+
+Esta función debe de ser injectiva, es decir $f(x) = f(y) \Leftrightarrow x = y$
+
+\begin{proof}
+\begin{enumerate}[label=(\subscript{D}{{\arabic*}})]
+\item Sea $x,y \in \R \Rightarrow \abs{f(x) - f(y)} \geqslant 0$ por propiedades de $\abs{\cdot}$
+\item Sea $x,y \in \R$ Como $f$ es inyectiva, s.t.q.
+\begin{equation*}
+    \rho(x, y) = 0 \Leftrightarrow \abs{f(x) - f(y)} \Leftrightarrow f(x) = f(y) \Leftrightarrow x = y 
+\end{equation*}
+\item Sea $x,y \in \R$. Por propiedades de $\abs{\cdot}$ s.t.q.
+\begin{equation*}
+     \rho(x, y) = \abs{f(x) - f(y)} = \abs{f(y) - f(x)} = \rho(y,x) 
+\end{equation*}
+\item  Sea $x,y,z \in \R$. Por propiedades de $\abs{\cdot}$ s.t.q.
+\begin{equation*}
+    \rho(x,z) = \abs{f(x)-f(z)} \leqslant \abs{f(x)-f(y)}+\abs{f(y)-f(z)} = \rho(x,y)+\rho(y,z)
+\end{equation*}
+\end{enumerate}
+$\therefore \rho$ es métrica en $\R$
+\end{proof}
+
+\item Suponga que ($X,d$) es un espacio métrico y fije una función $f : [0, \infty] \to  [0, \infty]$ estrictamente creciente $\backepsilon f(0) = 0$. Demuestre que si $f$ es una función subaditiva (es decir, si $\forall \: x,y \in [0,\infty]$ se teiene la desigualdad $f(x+y) \leqslant f(x) + f(y) \Rightarrow f \circ d : X \times X \to [0,\infty]$ es una métrica en $X$.
+
+\begin{proof}
+\begin{enumerate}[label=(\subscript{D}{{\arabic*}})]
+\item Sean $x,y \in X$. Como $d$ es una métrica en $X \Rightarrow d(x,y) \geqslant 0$. Por otra parte, como $f$ es estrictamente creciente $f(t) \geqslant 0 \: \forall \: t\in [0,\infty]$. Por lo cual $(f \circ d) (x,y) = f(d(x,y)) \geqslant 0$
+\item Sean $x,y \in X$. Por hipótesis $f(t) = 0 \Leftrightarrow t = 0 \: \forall \: t\in [0,\infty]$. Usando esto s.t.q.
+\begin{equation*}
+    (f \circ d) (x,y) = 0 \Leftrightarrow  f(d(x,y)) = 0 \Leftrightarrow d(x,y) = 0 \Leftrightarrow x = y
+\end{equation*}
+\item Sean $x,y \in X$. Como $d$ es métrica en $X$, note lo siguiente
+\begin{equation*}
+    (f \circ d) (x,y) =  f(d(x,y)) =  f(d(y,x)) = (f \circ d) (y,x) 
+\end{equation*}
+\item Sean $x,y,x \in X$. Notemos que, como $f$ es estrictamente creciente, y además subaditiva s.t.q
+\begin{equation*}
+    (f \circ d) (x,z) =  f(d(x,z)) \leqslant f(d(x,y)+d(y,z)) \leqslant f(d(x,y)) + f(d(y,z))
+\end{equation*}
+\begin{equation*}
+    = (f \circ d) (x,y) + (f \circ d) (y,z) \Rightarrow (f \circ d) (x,z) \leqslant  (f \circ d) (x,y) + (f \circ d) (y,z) 
+\end{equation*}
+\end{enumerate} 
+$\therefore f \circ d$ es una métrica en $X$
+\end{proof}
+
+\item Sea $X$ un conjunto no vacío y $d : X \times X \to  [0, \infty] $ una función que cumple las siguientes condiciones $\: \forall \: x, y , z \in X$
+\begin{enumerate}
+    \item $d(x,y)=0 \Leftrightarrow x = y$
+    \item $d(x,y) = d(y,x)$
+    \item $d(x, z) \geqslant d(x, y) + d(y, z)$
+\end{enumerate}
+
+Pruebe que bajo estas condiciones X tiene  únicamente un punto
+
+\begin{proof}
+    Supongamos $x, y \in X \backepsilon x \neq y$
+    
+    Por la propiedad (a) s.t.q. $d(x,x)=0$
+
+    Por la desigualdad triangular de la hipótesis s.t.q.
+    \begin{equation*}
+        d(x, x) \geqslant d(x, y) + d(y, x) =  0 \geqslant 2 \cdot d(y, x) = 0 \geqslant d(x,y)
+    \end{equation*}
+    
+    Como $d : X \times X \to  [0, \infty] \Rightarrow  d(x,y) = 0$. Pero por (a) $d(x,y) = 0 \Leftrightarrow x = y \Rightarrow \Leftarrow$ 
+
+    Pero esto es una contradicción, ya que supusimos a $x \neq y  \therefore X$ tiene únicamente un punto
+\end{proof}
+
+\item En el conjunto $\Z^+$ de los enteros positivos tomemos:
+
+\begin{equation*}
+        \rho(n,m) = 
+     \begin{cases}
+              0 & \text{si } m = n\\
+              1+\frac{1}{n+m} & \text{si } m \neq n
+     \end{cases}
+    \end{equation*}
+
+Demuestre que $\rho$ es una métrica.
+
+\begin{proof}
+\begin{enumerate}[label=(\subscript{D}{{\arabic*}})]
+\item Sea $n, m \in \Z^+$ Si $m = n \Rightarrow \rho(n,m) \geqslant 0$. Si $m \neq n \Rightarrow \rho(n,m) \geqslant 0$, ya que 
+\begin{equation*}
+    \rho(n,m) = 1+\frac{1}{n+m} \geqslant 0
+\end{equation*}
+\item Se sigue de la definición de $\rho(n,m)$
+\item Sea $n, m \in \Z^+$
+\begin{equation*}
+        \rho(n,m) = 
+     \begin{cases}
+              0 & \text{si } m = n\\
+              1+\frac{1}{n+m} & \text{si } m \neq n
+     \end{cases} = \begin{cases}
+              0 & \text{si } n = m\\
+              1+\frac{1}{m+n} & \text{si } n \neq m 
+     \end{cases} 
+     = \rho(m,n)
+    \end{equation*}
+\item Sea $n, m, c \in \Z^+$. Veamos que $\rho(n,c) \leqslant \rho(n,m) + \rho(m,c)$. Supongamos que $n \neq c$, ya que ese caso es trivial.
+\begin{equation*}
+    \rho(n,c) =  1+\frac{1}{n+c} \leqslant 2+\frac{1}{n+m}+\frac{1}{m+c} 
+\end{equation*}
+Esto porque $n, m , c \in \Z^+$
+\begin{equation*}
+    = \left(1+\frac{1}{n+m}\right)+ \left(1+\frac{1}{m+c}\right) = \rho(n,m) + \rho(m,c)
+\end{equation*}
+\end{enumerate}
+$\therefore \rho$ es una métrica en $\Z^+$
+\end{proof}
+
+\item Sea $M_{n \times n}$ el espacio de matrices reales de tamaño $n \times n$. Demuestre que este conjunto es un espacio métrico con la función
+
+\begin{equation*}
+    \rho (A, B) = \sum_{j=1}^{n} \left(\sum_{i=1}^{n} \abs{{a}_{ij}-{b}_{ij}}\right)
+\end{equation*}
+
+Donde $A={a}_{ij}$ y $B={b}_{ij}$
+
+\begin{proof}
+\begin{enumerate}[label=(\subscript{D}{{\arabic*}})]
+\item Sea $A, B \in M_{n \times n}$. Por propiedades de $\abs{\cdot}$ s.t.q.
+\begin{equation*}
+    \sum_{i=1}^{n} \abs{{a}_{ij}-{b}_{ij}} \geqslant 0 \Rightarrow \sum_{j=1}^{n} \left(\sum_{i=1}^{n} \abs{{a}_{ij}-{b}_{ij}}\right) \geqslant 0 \Rightarrow \rho (A, B) \geqslant 0 
+\end{equation*}
+\item Sea $A, B \in M_{n \times n}$
+\begin{equation*}
+    \rho (A, B) = 0 \Leftrightarrow \sum_{j=1}^{n} \left(\sum_{i=1}^{n} \abs{{a}_{ij}-{b}_{ij}}\right) = 0 \Leftrightarrow \sum_{i=1}^{n} \abs{{a}_{ij}-{b}_{ij}} 0 \Leftrightarrow \abs{{a}_{ij}-{b}_{ij}} = 0 \Leftrightarrow {a}_{ij} = {b}_{ij}
+\end{equation*}
+\item  Sea $A, B \in M_{n \times n}$
+\begin{equation*}
+    \rho (A, B) = \sum_{j=1}^{n} \left(\sum_{i=1}^{n} \abs{{a}_{ij}-{b}_{ij}}\right) = \sum_{j=1}^{n} \left(\sum_{i=1}^{n} \abs{{b}_{ij}-{a}_{ij}}\right) = \rho(B,A)
+\end{equation*}
+\item Sea $A, B, C \in M_{n \times n}$
+\begin{equation*}
+     \rho (A, B) = \sum_{j=1}^{n} \left(\sum_{i=1}^{n} \abs{{a}_{ij}-{b}_{ij}}\right) = \sum_{j=1}^{n} \left(\sum_{i=1}^{n} \abs{{a}_{ij}-{c}_{ij}+{c}_{ij}-{b}_{ij}}\right)
+\end{equation*}
+\begin{equation*}
+    \leqslant \sum_{j=1}^{n} \left(\sum_{i=1}^{n} \left( \abs{{a}_{ij}-{c}_{ij}}+\abs{{c}_{ij}-{b}_{ij}} \right)\right) = \sum_{j=1}^{n} \left(\sum_{i=1}^{n} \abs{{a}_{ij}-{c}_{ij}}+\sum_{i=1}^{n} \abs{{c}_{ij}-{b}_{ij}}\right)
+\end{equation*}
+\begin{equation*}
+    = \sum_{j=1}^{n} \left(\sum_{i=1}^{n} \abs{{a}_{ij}-{c}_{ij}}\right)+\sum_{j=1}^{n} \left(\sum_{i=1}^{n} \abs{{c}_{ij}-{b}_{ij}}\right) = \rho(A,C) + \rho(C,B)
+\end{equation*}
+\end{enumerate}
+$\therefore \rho (A, B)$ es una métrica en $M_{n \times n}$
+\end{proof}
+
+\item Demuestra que  ${\norm{x}}_{\infty} = \max \{ \abs{{x}_{i}} \mid i = 1,...,n\}$ y ${\norm{x}}_{1} = \sum\limits_{i=1}^{n} \abs{{x}_{i}}$ donde $x=(x_1,...,x_n) \in \R^n$ son normas en $\R^n$
+
+\begin{proof}
+\begin{enumerate}[label=(\subscript{N}{{\arabic*}})]
+\item $\forall \: (x_1,...,x_n) \in \R^n$ arbitrario s.t.q. $\abs{{x}_{i}} \geqslant 0 \: \forall \: i = 1,...,n$
+
+\begin{equation*}
+    \Rightarrow  \max \{ \abs{{x}_{i}} \mid i = 1,...,n\} ={\norm{x}}_{\infty} \geqslant 0
+\end{equation*}
+
+\item 
+
+\begin{equation*}
+    {\norm{x}}_{\infty} = 0 = \max \{ \abs{{x}_{i}} \mid i = 1,...,n\} \Leftrightarrow \abs{{x}_{i}} = 0 \: \forall \: i = 1,...,n \Leftrightarrow {x}_{i} = (0,...,0)
+\end{equation*}
+
+\item Sea $(x_1,...,x_n) \in \R^n$ y $\lambda \in \R$ arbitrarios
+
+\begin{equation*}
+    \Rightarrow {\norm{\lambda x}}_{\infty}  = \max \{ \abs{{\lambda x}_{i}} \mid i = 1,...,n\} = \max \{ \abs{\lambda } \abs{{\lambda x}_{i}} \mid i = 1,...,n\}
+\end{equation*}
+
+\begin{lema}
+    Probaremos que, en general, $\forall \: \varepsilon > 0 $ y $y_1,...,y_n \in \R^n$ s.t.q. $\max \{ \varepsilon \cdot y_i \mid i = 1,...,n\} = \varepsilon \cdot \max \{  y_i \mid i = 1,...,n\}$ 
+\end{lema}
+
+\begin{proof}
+    Supongamos que $\varepsilon \cdot y_j = \max \{ \varepsilon \cdot y_i \mid i = 1,...,n\}$ para algún índice $j \in \{ 1,...,n \} \Rightarrow \: \forall \: i = 1,...,n $ s.t.q.
+
+    \begin{equation*}
+        y_i \leqslant \varepsilon \cdot y_i \leqslant \varepsilon \cdot y_j
+    \end{equation*}
+
+    Como $\varepsilon > 0 \Rightarrow y_i \leqslant y_j \: \forall \:   i = 1,...,n$ , es decir que
+
+    \begin{equation*}
+        y_j = \max \{ y_i \mid i = 1,...,n\}
+    \end{equation*}
+
+    Así que, como $ y_i \leqslant y_j \leqslant \varepsilon \cdot y_i \leqslant \varepsilon \cdot y_j$ , s.t.q.
+
+    \begin{equation*}
+        \varepsilon \cdot \max \{ y_i \mid i = 1,...,n\} \leqslant \max \{ \varepsilon \cdot y_i \mid i = 1,...,n\}
+    \end{equation*}
+
+    Por otra parte, como $y_j = \max \{ y_i \mid i = 1,...,n\} \Rightarrow \: \forall \: i = 1,...,n $ s.t.q.
+    
+    \begin{equation*}
+         \varepsilon \cdot y_i \leqslant \varepsilon \cdot y_j
+    \end{equation*}
+
+    Como $\varepsilon > 0 \Rightarrow$
+
+    \begin{equation*}
+        \max \{ \varepsilon \cdot y_i \mid i = 1,...,n\} \leqslant \varepsilon \cdot y_j 
+    \end{equation*}
+    \begin{equation*}
+        \max \{ \varepsilon \cdot y_i \mid i = 1,...,n\} \leqslant \varepsilon \cdot \max \{ y_i \mid i = 1,...,n\} 
+    \end{equation*}
+    \begin{equation*}
+        \Rightarrow max \{ \varepsilon \cdot y_i \mid i = 1,...,n\} = \varepsilon \cdot \max \{ y_i \mid i = 1,...,n\} 
+    \end{equation*}
+\end{proof}
+
+Para $\lambda \in \R$ tenemos los siguientes casos
+
+\begin{enumerate}
+    \item $\lambda = 0$
+
+    En este caso $\lambda \cdot x = \vec{0}$ y por ($N_2$) s.t.q.
+
+    \begin{equation*}
+        {\norm{\lambda x}}_{\infty} = 0 = 0 \cdot {\norm{ x}}_{\infty}
+    \end{equation*}
+
+    \item $\lambda \neq 0 \Rightarrow \abs{\lambda} > 0$
+
+    Por el \textbf{Lema} anterior s.t.q.
+
+    \begin{equation*}
+        \max \{ \abs{\lambda } \abs{{\lambda x}_{i}} \mid i = 1,...,n\} = \abs{\lambda } \max \{  \abs{{\lambda x}_{i}} \mid i = 1,...,n\} = \abs{\lambda } {\norm{ x}}_{\infty}
+    \end{equation*}
+    
+\end{enumerate}
+
+\item Sean $x=(x_1,...,x_n)$ y $y=(y_1,...,y_n) \in \R^n$ arbitrarios. Por definición de ${\norm{ \cdot}}_{\infty}$ s.t.q.
+
+\begin{equation*}
+    {\norm{ x+y}}_{\infty} = \max \{ \abs{{x}_{i}+{y}_{i}} \mid i = 1,...,n\}
+\end{equation*}
+
+Supongamos que $\abs{x_j + y_j} = \max \{ \abs{{x}_{i}+{y}_{i}} \mid i = 1,...,n\}$
+
+Como $\abs{x_j + y_j} \leqslant \abs{x_j} + \abs{y_j}$
+
+\begin{equation*}
+    \max \{ \abs{{x}_{i}+{y}_{i}} \mid i = 1,...,n\} \leqslant \abs{x_j} + \abs{y_j}
+\end{equation*}
+\begin{align*}
+        \abs{x_j} \leqslant \max \{ \abs{{x}_{i}} \mid i = 1,...,n\} & & \text{y} & & \abs{y_j} \leqslant \max \{ \abs{{y}_{i}} \mid i = 1,...,n\}
+\end{align*}
+
+Por lo cual, por transitividad de $\leqslant$
+
+\begin{equation*}
+    \max \{ \abs{{x}_{i}+{y}_{i}} \mid i = 1,...,n\} \leqslant \max \{ \abs{{x}_{i}} \mid i = 1,...,n\} + \max \{ \abs{{y}_{i}} \mid i = 1,...,n\} 
+\end{equation*}
+\begin{equation*}
+    \Rightarrow {\norm{ x+y}}_{\infty} \leqslant  {\norm{x}}_{\infty} +  {\norm{y}}_{\infty}
+\end{equation*}
+\end{enumerate}    
+$\therefore {\norm{x}}_{\infty} = \max \{ \abs{{x}_{i}} \mid i = 1,...,n\}$ es una norma en $\R^n$
+\end{proof}
+
+\begin{proof}
+\begin{enumerate}[label=(\subscript{N}{{\arabic*}})]
+\item $\forall \: (x_1,...,x_n) \in \R^n$ arbitrario s.t.q. $\abs{{x}_{i}} \geqslant 0 \: \forall \: i = 1,...,n$
+\begin{equation*}
+    {\norm{x}}_{1} = \sum\limits_{i=1}^{n} \abs{{x}_{i}}  \geqslant 0 
+\end{equation*}
+\item 
+\begin{equation*}
+    {\norm{x}}_{1} = 0 \Leftrightarrow  \sum\limits_{i=1}^{n} \abs{{x}_{i}} = 0 \Leftrightarrow {x}_{i} = 0 \: \forall \: i = 1,...n
+\end{equation*}
+\item Sea $x= (x_1,...,x_n) \in \R^n$ y $\lambda \in \R$
+\begin{equation*}
+    {\norm{\lambda x}}_{1} = \sum\limits_{i=1}^{n} \abs{\lambda {x}_{i}} = \sum\limits_{i=1}^{n} \abs{\lambda} \abs{{x}_{i}} = \abs{\lambda} \sum\limits_{i=1}^{n}  \abs{{x}_{i}} = \abs{\lambda}{\norm{ x}}_{1}
+\end{equation*}
+\item  Sea $x= (x_1,...,x_n), y= (y_1,...,y_n) \in \R^n$
+\begin{equation*}
+    {\norm{x+y}}_{1} = \sum\limits_{i=1}^{n}  \abs{{x}_{i}+{y}_{i}} \leqslant \sum\limits_{i=1}^{n}  \left( \abs{{x}_{i}} + \abs{{y}_{i}} \right) = \sum\limits_{i=1}^{n}  \abs{{x}_{i}} + \sum\limits_{i=1}^{n}  \abs{{y}_{i}} = {\norm{x}}_{1} + {\norm{y}}_{1}
+\end{equation*}
+\end{enumerate}
+$\therefore {\norm{x}}_{1}$ es una norma en $\R^n$
+\end{proof}
+
+\item Sea $\sum_{n=1}^{\infty} a_n$ an una serie convergente de números reales positivos. En el conjunto $E$ de todas las sucesiones de números reales $x ={(x_n)}_{n \in \N} $ definimos
+
+\begin{equation*}
+    d(x,y) = \sum_{n=1}^{\infty} a_n \frac{1+ \abs{x_n-y_n}}{\abs{x_n-y_n}}
+\end{equation*}
+
+\begin{enumerate}
+    \item Demostrar que $d$ es una métrica en $E$
+    \item ¿Se puede introducir una norma en el espacio $E$ de tal modo que se cumpla la igualdad $d(x,y) = \norm{x-y}$?
+    \item Dar un ejemplo de una sucesión $({x}_{n}^{1},{x}_{n}^{2},...){x}_{n}^{i} \in \R$ que converja en el espacio $E$, que pertenezca al espacio $\ell_2$ pero que no converja en el espacio $\ell_2$.
+\end{enumerate}
+
+\begin{proof}
+    Primero veamos que $d : E \times E \to \R$ está bien definida, es decr, que $\forall \: x = {(x_n)}_{n \in \N} $, $  y = {(y_n)}_{n \in \N} \in E$ la serie 
+    \begin{equation*}
+        \sum_{n=1}^{\infty} a_n \frac{1+ \abs{x_n-y_n}}{\abs{x_n-y_n}}
+    \end{equation*}
+
+    converge en $\R$
+
+    $\Rightarrow$ supongamos que $x, y \in E$ arbitrarios. Notemos que 
+    \begin{equation*}
+        0 \leqslant \frac{1+ \abs{x_n-y_n}}{\abs{x_n-y_n}} \leqslant 1 \: \: \: \: \: \: \: \: \: \: \: \: \forall \: n \in \N
+    \end{equation*}
+    Así que 
+    \begin{equation*}
+        0 \leqslant a_n \frac{1+ \abs{x_n-y_n}}{\abs{x_n-y_n}} \leqslant a_n \: \: \: \: \: \: \: \: \: \: \: \: \forall \: n \in \N
+    \end{equation*}
+    \begin{equation*}
+        0 \leqslant  \sum_{n=1}^{\infty} a_n \frac{1+ \abs{x_n-y_n}}{\abs{x_n-y_n}} \leqslant  \sum_{n=1}^{\infty} a_n \: \: \: \: \: \: \: \: \: \: \: \: \forall \: n \in \N
+    \end{equation*}
+    $\Rightarrow$ por criterios de convergencia $\sum\limits_{n=1}^{\infty} a_n \frac{1+ \abs{x_n-y_n}}{\abs{x_n-y_n}}$ converge a un número en $\R$
+\begin{enumerate}[label=(\subscript{D}{{\arabic*}})]
+\item En la demostración de que $d$ está bien definida se hace evidente
+\item Supongamos que $x ={(x_n)}_{n \in \N}, y ={(y_n)}_{n \in \N} \in E$
+\begin{equation*}
+    d(x,y) = \sum_{n=1}^{\infty} a_n \frac{1+ \abs{x_n-y_n}}{\abs{x_n-y_n}} = 0 \Leftrightarrow \: \forall \: n \in \N \Rightarrow a_n \frac{1+ \abs{x_n-y_n}}{\abs{x_n-y_n}} = 0
+\end{equation*}
+\begin{equation*}
+    \Leftrightarrow \abs{x_n-y_n} = 0 \Leftrightarrow x_n = y_n \: \forall \: n \in \N \Rightarrow d(x,y) = 0 \Leftrightarrow x = y
+\end{equation*}
+\item Sean  $x ={(x_n)}_{n \in \N}, y ={(y_n)}_{n \in \N} \in E$
+\begin{equation*}
+    d(x,y) = \sum_{n=1}^{\infty} a_n \frac{1+ \abs{x_n-y_n}}{\abs{x_n-y_n}} =  \sum_{n=1}^{\infty} a_n \frac{1+ \abs{y_n-x_n}}{\abs{y_n-x_n}} = d(y,x)
+\end{equation*}
+\item Sean  $x ={(x_n)}_{n \in \N}, y ={(y_n)}_{n \in \N}, z ={(z_n)}_{n \in \N} \in E$
+
+En el ejercicio \textbf{1.} se demostro que $\forall \: n \in \N$ s.t.q.
+\begin{equation*}
+    \frac{1+ \abs{x_n-y_n}}{\abs{x_n-y_n}} \leqslant \frac{1+ \abs{x_n-z_n}}{\abs{x_n-z_n}} + \frac{1+ \abs{z_n-y_n}}{\abs{z_n-y_n}}
+\end{equation*}
+Así que
+\begin{equation*}
+    d(x,y) = \sum_{n=1}^{\infty} a_n \frac{1+ \abs{x_n-y_n}}{\abs{x_n-y_n}}  \leqslant \sum_{n=1}^{\infty} a_n \left( \frac{1+ \abs{x_n-z_n}}{\abs{x_n-z_n}} + \frac{1+ \abs{z_n-y_n}}{\abs{z_n-y_n}} \right)
+\end{equation*}
+\begin{equation*}
+    =\sum_{n=1}^{\infty} \left(  a_n \frac{1+ \abs{x_n-z_n}}{\abs{x_n-z_n}} +  a_n \frac{1+ \abs{z_n-y_n}}{\abs{z_n-y_n}} \right) 
+\end{equation*}
+\begin{equation*}
+      = \sum_{n=1}^{\infty}  a_n \frac{1+ \abs{x_n-z_n}}{\abs{x_n-z_n}} + \sum_{n=1}^{\infty} a_n \frac{1+ \abs{z_n-y_n}}{\abs{z_n-y_n}} = d(x,z) + d(z,y)
+\end{equation*}
+\end{enumerate}
+$\therefore d$ es una métrica en $E$
+\end{proof}
+
+\begin{proof}
+    Para que $d(x,y) = \norm{x-y}$ sea compatible se debe de cumplir $d(\lambda x, \lambda y ) = \abs{\lambda} d(x,y)$
+
+    \begin{equation*}
+        d(\lambda x, \lambda y ) = \sum_{n=1}^{\infty} a_n \frac{1+ \abs{\lambda x_n-\lambda y_n}}{\abs{\lambda x_n- \lambda y_n}} = \sum_{n=1}^{\infty} a_n \frac{1+ \abs{\lambda \cdot (x_n-y_n)}}{\abs{\lambda \cdot (x_n-y_n)}}
+    \end{equation*}
+    \begin{equation*}
+        \sum_{n=1}^{\infty} a_n \frac{1+ \abs{\lambda} \abs{ x_n-y_n}}{\abs{\lambda} \abs{ x_n-y_n}} \neq \abs{\lambda} 
+        \sum_{n=1}^{\infty} a_n \frac{1+  \abs{ x_n-y_n}}{\abs{ x_n-y_n}}
+    \end{equation*}
+\end{proof}
+
+\item Sea $(E, \norm{\cdot})$ un espacio normado cuya norma procede de un producto interior.
+\begin{enumerate}
+    \item Demuestra que la igualdad $\norm{x+y} = \norm{x} + \norm{y}$ implica que los vectores $x$ y $y$ son linealmente dependientes.
+    \item Comprueba la identidad del paralelogramo
+    \item Infiera que la norma infinito y norma uno no provienen de un producto interior
+\end{enumerate}
+
+\begin{proof}
+    Recordemos la desigualdad C-S. Sea ($V, \langle \: , \: \rangle$) un espacio con producto interior, $ \implies  \forall \: x,y \in V$ s.t.q.
+
+    \begin{equation*}
+        \abs{\langle x,y \rangle} \leqslant \sqrt{\langle x,x \rangle} \cdot \sqrt{\langle y,y \rangle}
+    \end{equation*}
+
+    Para probar el inciso a) es sufciente probar el siguiente lema
+
+    \begin{lema}
+        En las condiciones de C-S
+        \begin{equation*}
+            \abs{\langle x,y \rangle} = \sqrt{\langle x,x \rangle} \cdot \sqrt{\langle y,y \rangle} \Leftrightarrow x,y \text{ es linealmente dependiente}
+        \end{equation*}
+    \end{lema}
+    \begin{proof}
+        $\Rightarrow$ Supongamos que $ \abs{\langle x,y \rangle} = \sqrt{\langle x,x \rangle} \cdot \sqrt{\langle y,y \rangle}$
+
+        Supongamos que $x \neq 0 \neq y$, ya que cuando son $x=0$ o $y=0$ trivialmente se cumple que son linealmente dependiente.
+
+        \begin{equation*}
+            \Rightarrow {\langle x,y \rangle}^{2} = \langle x,x \rangle \cdot \langle y,y \rangle
+        \end{equation*}
+
+        Por ello, s.t.q.
+        \begin{equation*}
+            \langle x,x \rangle = \frac{{\langle x,y \rangle}^{2}}{\langle y,y \rangle} \Rightarrow \langle x,x \rangle - \frac{{\langle x,y \rangle}^{2}}{\langle y,y \rangle} = 0 \Rightarrow \langle x,x \rangle - \frac{\langle x,y \rangle }{\langle y,y \rangle } \cdot \langle x,y \rangle 
+        \end{equation*}
+        \begin{equation*}
+            =  \langle x,x \rangle - 2 \cdot \frac{\langle x,y \rangle }{\langle y,y \rangle } \cdot \langle x,y \rangle + \frac{\langle x,y \rangle }{\langle y,y \rangle } \cdot \langle x,y \rangle 
+        \end{equation*}
+        \begin{equation*}
+            = \langle x,x \rangle - 2 \cdot \frac{\langle x,y \rangle }{\langle y,y \rangle } \cdot \langle x,y \rangle + \frac{{\langle x,y \rangle}^{2} }{\langle y,y \rangle } \frac{\langle y,y \rangle}{\langle y,y \rangle} = \langle x,x \rangle - 2 \cdot \frac{\langle x,y \rangle }{\langle y,y \rangle } \cdot \langle x,y \rangle + \frac{{\langle x,y \rangle}^{2} }{{\langle y,y \rangle}^{2}} \langle y,y \rangle
+        \end{equation*}
+
+        Definimos a $\lambda_0 = \frac{\langle x,y \rangle }{\langle y,y \rangle } \in \R \Rightarrow$
+        \begin{equation*}
+            0 = \langle x,x \rangle - 2\lambda_0 \langle x,y \rangle + {\lambda}_{0}^{2} \langle y,y \rangle
+        \end{equation*}
+        \begin{equation*}
+            = \langle x - {\lambda}_{0}y, x - {\lambda}_{0}y \rangle = 0 \Leftrightarrow x - {\lambda}_{0}y = 0 \Rightarrow x = {\lambda}_{0}y  \Leftrightarrow \text{ son l.d.}
+        \end{equation*}
+
+        $\Leftarrow$ Supongamos que son l.d. $\Rightarrow \: \exists \: \alpha, \beta \in \R \backepsilon$ no sn ambos cero y $\alpha x + \beta y = 0$. Supongamos que $\alpha \neq 0 \Rightarrow x = \frac{ - \beta y }{\alpha}$
+
+        Luego
+
+        \begin{equation*}
+            \abs{\langle x,y \rangle} = \abs{\langle \frac{ - \beta y }{\alpha}, y \rangle } = \abs{\frac{ - \beta  }{\alpha} \langle y , y \rangle} = \abs{\frac{ - \beta  }{\alpha}} \abs{\langle y, y \rangle}
+        \end{equation*}
+        Por otra parte 
+        \begin{equation*}
+            \sqrt{\langle x,x \rangle} = \sqrt{\langle  \frac{ - \beta y }{\alpha},  \frac{ - \beta y }{\alpha} \rangle} = \sqrt{{\left( \frac{ - \beta }{\alpha} \right)}^{2}  \langle y , y \rangle } = \abs{\frac{ - \beta  }{\alpha}} \sqrt{\langle y, y \rangle}
+        \end{equation*}
+        \begin{equation*}
+            \Rightarrow \sqrt{\langle x,x \rangle} \cdot \sqrt{\langle y, y \rangle} = \abs{\frac{ - \beta  }{\alpha}} {(\sqrt{\langle y, y \rangle})}^{2} = \abs{\frac{ - \beta  }{\alpha}} \abs{\langle y, y \rangle}
+        \end{equation*}
+        $\Rightarrow \abs{\langle x,y \rangle} = \sqrt{\langle x,x \rangle} \cdot \sqrt{\langle y,y \rangle}$
+    \end{proof}
+
+    Supongamos que $\norm{x+y} = \norm{x} + \norm{y}$. Como $\norm{\cdot}$ viene de un producto interior $\Rightarrow$
+
+    \begin{equation*}
+        \sqrt{\langle x+y, x+y \rangle} = \sqrt{\langle x,x \rangle} + \sqrt{\langle y,y \rangle}
+    \end{equation*}
+
+    Luego 
+
+    \begin{equation*}
+        \Rightarrow \langle x+y, x+y \rangle = \langle x,x \rangle + 2\sqrt{\langle x,x \rangle \cdot \langle y,y \rangle} + \langle y,y \rangle
+    \end{equation*}
+
+    Vamos a expandir el producto interior del lado izquierdo de la ecaución
+
+    \begin{equation*}
+        \langle x+y, x+y \rangle = \langle x, x+y \rangle + \langle y, x+y \rangle = \langle x, x\rangle + \langle x, y\rangle + \langle y, x\rangle  + \langle y,y \rangle 
+    \end{equation*}
+    \begin{equation*}
+        \Rightarrow \langle x, x\rangle + 2 \langle x, y\rangle + \langle y,y \rangle =  \langle x,x \rangle + 2\sqrt{\langle x,x \rangle \cdot \langle y,y \rangle} + \langle y,y \rangle
+    \end{equation*}
+    \begin{equation*}
+        \Rightarrow 2 \langle x, y\rangle  = 2\sqrt{\langle x,x \rangle \cdot \langle y,y \rangle} \Rightarrow  \langle x, y\rangle  = \sqrt{\langle x,x \rangle \cdot \langle y,y \rangle} = \sqrt{\langle x,x \rangle } \sqrt{\langle y,y \rangle}
+    \end{equation*}
+
+    Pero notemos que $\sqrt{\langle x,x \rangle } \sqrt{\langle y,y \rangle} = \norm{x} \norm{y}$, que por ($N_1$)  $\geqslant 0 \Rightarrow \langle x, y\rangle = \abs{\langle x, y\rangle}$
+
+    $\therefore x, y $ son linealmente dependientes por el Lema anterior.
+\end{proof}
+
+\begin{proof}
+    Sea $x, y \in E$. Por definición de $E \Rightarrow$
+
+    \begin{equation*}
+       {\norm{x+y}}^{2} + {\norm{x-y}}^{2} =  {\sqrt{\langle x + y , x + y \rangle}}^{2}+ {\sqrt{\langle x - y , x - y \rangle}}^{2}
+    \end{equation*}
+    \begin{equation*}
+        = \langle x + y , x + y \rangle + \langle x - y , x - y \rangle = \langle x , x + y \rangle + \langle y , x + y \rangle + \langle x  , x - y \rangle - \langle y , x - y \rangle
+    \end{equation*}
+    \begin{equation*}
+        = \langle x , x  \rangle + \langle x , y \rangle+ \langle y , x \rangle + \langle y ,y \rangle + \langle x  , x \rangle - \langle x  , y \rangle - \langle y , x \rangle + \langle y , y \rangle
+    \end{equation*}
+    \begin{equation*}
+        = 2 \langle x  , x \rangle + 2 \langle y, y \rangle = 2 {\norm{x}}^{2} + 2 {\norm{y}}^{2}
+    \end{equation*}
+    $\therefore$ se cumple la identidad del paralelogramo
+\end{proof}
+
+\begin{proof}
+    \begin{enumerate}
+        \item Notemos que la norma infinito no satisface la identidad del paralelogramo. Sea $x = (1,0,...,0) , y = (0,-1,0,...,0) \in \R^n$
+
+        \begin{equation*}
+            {\norm{x+y}}^{2} + {\norm{x-y}}^{2} = 2 {\norm{x}}^{2} + 2 {\norm{y}}^{2}
+        \end{equation*}
+        \begin{equation*}
+            {\max \{ \abs{{x}_{i}+{y}_{i}} \mid i = 1,...,n\}}^{2} + {\max \{ \abs{{x}_{i}-{y}_{i}}\}}^{2} = 2 \cdot {\max \{ \abs{{x}_{i}}\}}^{2} +  2 \cdot {\max \{ \abs{{y}_{i}} \}}^{2}
+        \end{equation*}
+        \begin{equation*}
+            1^2 + 1^2 = 2 \neq 2 \cdot 1^2 + 2 \cdot 1^2 = 4
+        \end{equation*}
+        \item Notemos que la norma uno no satisface la identidad del paralelogramo. Sea $x = (1,0,...,0)$,  $y = (0,1,0,...,0) \in \R^n$
+
+        \begin{equation*}
+        \sum_{i=1}^{n} \abs{x_i + y_i}^2 + \sum_{i=1}^{n} \abs{x_i - y_i}^2 = 2 \sum_{i=1}^{n} \abs{x_i}^2 + 2 \sum_{i=1}^{n} \abs{y_i}^2
+    \end{equation*}
+    \begin{equation*}
+        2^2 + 2^2 = 8 \neq 2 \cdot 1^2 + 2 \cdot 1^2 = 4
+    \end{equation*}
+    \end{enumerate}
+\end{proof}
+
+\item Consideremos el polinomio $Q(x, y) = ax^2 + 2bxy + cy^2$ donde $a, b, c \in \R$, $a > 0$ y $ac - b^2 > 0$. Demuestra que la fórmula $\norm{(x, y)} = \sqrt{Q(x, y)} $ define en $\R^2$ una norma asociada a un producto interior.
+
+\begin{proof}
+    NO SE
+\end{proof}
+
+\item Sea $(X, d)$ un espacio métrico y $A \subseteq X$. La distancia de $A$ a $x \in X $ se define como ${d}^{\prime}(A,x) = \inf \{ d(y,x) \mid y \in A \}$. Demostrar que $\abs{{d}^{\prime}(A,x)-{d}^{\prime}(A,y)} \leqslant d(x,y)$
+
+\begin{proof}
+    Sea $x,y \in X \Rightarrow \forall \: z \in A$ s.t.q.
+
+    \begin{equation*}
+        {d}^{\prime}(A,x) \leqslant d(x,z) \leqslant d(x,y) + d(y,z)
+    \end{equation*}
+    \begin{equation*}
+        {d}^{\prime}(A,y) \leqslant d(y,z) \leqslant d(y,x) + d(x,z)
+    \end{equation*}
+
+    Podemos tomar el ínfimo en $z$, ya que la desigualdad se cumple para todas las métricas
+
+    \begin{equation*}
+        {d}^{\prime}(A,x) \leqslant d(x,y) + {d}^{\prime}(A,y) \Rightarrow  {d}^{\prime}(A,x) - {d}^{\prime}(A,y)  \leqslant d(x,y) 
+    \end{equation*}
+    \begin{equation*}
+        {d}^{\prime}(A,y)  \leqslant d(y,x) + {d}^{\prime}(A,x) \Rightarrow {d}^{\prime}(A,y) - {d}^{\prime}(A,x) \leqslant d(y,x)
+    \end{equation*}
+
+    Esto implica $\abs{{d}^{\prime}(A,x)-{d}^{\prime}(A,y)} \leqslant d(x,y)$
+\end{proof}
+
+\item Sea $(X,d)$ un espacio métrico y $\varnothing \neq Y \subseteq X$, se define al diámetro de $Y$ como $\text{diam} (Y) = \sup \{ d(y,w) \mid y, w \in Y\}$. Suponga que $(V, \norm{\cdot})$ es un espacio vectorial normado, que $d(x,y) = \norm{x-y}$ y que $A, B \subseteq V$ son no vacíos.¿Se cumplen las siguientes afirmaciones? argumente o dé un contraejemplo.
+
+\begin{enumerate}
+    \item Si $A \cap B \neq \varnothing \Rightarrow \text{diam} (A \cup B) \leqslant \text{diam} (A) + \text{diam} (B)$
+    \item $\text{diam} (A \setminus B) = \text{diam} (A) - \text{diam} (B)$
+    \item Si $A \cap B = \varnothing \Rightarrow \text{diam} (A \cup B) = \text{diam} (A) + \text{diam} (B)$
+    \item Dado $u \in V$ definimos $A + u = \{a + u \mid a \in A \} \Rightarrow \text{diam} (A + u) = \text{diam} (A)$
+    \item Si $\lambda \in \R$ definimos $\lambda A = \{ \lambda a \mid a \in A \} \Rightarrow \text{diam} (\lambda A) = \abs{\lambda} \text{diam} (A)$
+    \item Si $A \subseteq B \Rightarrow \text{diam} (A) \leqslant \text{diam} (B)$
+\end{enumerate}
+
+\begin{proof}
+    \begin{enumerate}
+        \item $\forall \: x,y \in A \cup B$ se tienen los siguientes casos
+        \begin{enumerate}
+            \item Si $x , y \in A \Rightarrow d(x,y) \leqslant  \text{diam} (A) \leqslant  \text{diam} (A) +  \text{diam} (B)$
+            \item Si $x , y \in B \Rightarrow d(x,y) \leqslant  \text{diam} (B) \leqslant  \text{diam} (B) +  \text{diam} (A)$
+            \item SPG supongamos que $x \in A$ y que $y \in B \Rightarrow \: \exists \: z \in A \cap B $
+            \begin{equation*}
+                \Rightarrow d(x,y) \leqslant d(x,z) + d(z,y) \leqslant \text{diam} (A) +  \text{diam} (B)
+            \end{equation*}
+        \end{enumerate}
+        \item Creo que no 
+        \item Creo que no
+        \item Creo que no
+        \item Esto es cierto ya que en la definición de distancia se puede ver que proviene de una norma, y esto sucede si y solo si saca escalares en valor absoluto.
+        
+    \end{enumerate}
+\end{proof}
+
+\item Demuestra la Desigualdad de Hölder para series
+
+\begin{proof}
+    Sean $p, q \in [1, \infty] \backepsilon \frac{1}{p}+\frac{1}{q}= 1$
+
+    Sea ${({x}_{m})}_{m=1}^{\infty} \in {\ell}_{p} (\R)$ y ${({y}_{m})}_{m=1}^{\infty} \in {\ell}_{q} (\R)$
+
+    Aplicando la desigualdad de Hölder en $\R^n$ tenemos que $\forall \: n \in \N $
+
+    \begin{equation*}
+        \sum_{i=1}^{n} \abs{{x}_{i}{y}_{i}} \leqslant {\left(  \sum_{i=1}^{n} {\abs{{x}_{i}} }^{p} \right)}^{\frac{1}{p}} {\left(  \sum_{i=1}^{n} {\abs{{y}_{i}} }^{q} \right)}^{\frac{1}{q}} \leqslant {\left(  \sum_{i=1}^{\infty} {\abs{{x}_{i}} }^{p} \right)}^{\frac{1}{p}} {\left(  \sum_{i=1}^{\infty} {\abs{{y}_{i}} }^{q} \right)}^{\frac{1}{q}} = M 
+    \end{equation*}
+    Notemos que $M$ es un número real, porque pertenece a $ {\ell}_{p} (\R)$, por lo tanto converge
+    \begin{equation*}
+        \Rightarrow \forall \: n \in \N \Rightarrow  \sum_{i=1}^{n} \abs{{x}_{i}{y}_{i}} \leqslant M \Rightarrow \sum_{n=1}^{\infty} \abs{{x}_{n}{y}_{n}} \text{ converge }
+    \end{equation*}
+    Si se tiene una sucesión de sumas parciales acotadas y mayores iguales a cero, y se encuentra una cota superior, entonces la serie converge
+    \begin{equation*}
+        \Rightarrow \sum_{n=1}^{\infty} \abs{{x}_{n}{y}_{n}} \leqslant {\left(  \sum_{n=1}^{\infty} {\abs{{x}_{n}} }^{p} \right)}^{\frac{1}{p}} {\left(  \sum_{n=1}^{\infty} {\abs{{y}_{n}} }^{q} \right)}^{\frac{1}{q}}
+    \end{equation*}
+    Pero esta es la desigualdad de Hölder para series 
+\end{proof}
+\end{enumerate}
+\end{document}

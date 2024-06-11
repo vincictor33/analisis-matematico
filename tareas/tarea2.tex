@@ -1,0 +1,558 @@
+\documentclass[12pt]{article}
+
+\addtolength{\hoffset}{-2.25cm}
+\addtolength{\textwidth}{4.5cm}
+\addtolength{\voffset}{-2.5cm}
+\addtolength{\textheight}{5cm}
+\setlength{\parskip}{0pt}
+\setlength{\parindent}{15pt}
+
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage[colorlinks = true, linkcolor = blue, citecolor = blue, final]{hyperref}
+
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{ marvosym }
+\usepackage{wasysym}
+\usepackage{tikz}
+\usepackage{xcolor} 
+\usepackage{CJKutf8}
+\usepackage{tabularx}
+\usepackage{float}
+\usepackage{pgfplots}
+\usepackage{fancyhdr}
+\usepackage{amsfonts}
+\usepackage{physics}
+\usepackage{amsmath}
+\usetikzlibrary{patterns}
+
+\newcommand{\subscript}[2]{$#1 _ #2$}
+\newcommand{\ds}{\displaystyle}
+\newcommand\N{\ensuremath{\mathbb{N}}}
+\newcommand\R{\ensuremath{\mathbb{R}}}
+\newcommand\Z{\ensuremath{\mathbb{Z}}}
+\renewcommand\O{\ensuremath{\emptyset}}
+\newcommand\Q{\ensuremath{\mathbb{Q}}}
+\newcommand\C{\ensuremath{\mathbb{C}}}
+\DeclareMathOperator{\spn}{span}
+
+\pgfplotsset{compat=1.18} 
+\setlength{\parindent}{0in}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\thispagestyle{empty}
+
+{\scshape Análisis $\R$eal} \hfill {\scshape \large Tarea II} \hfill {\scshape Victor Ortega}
+ 
+\smallskip
+
+\hrule
+
+\bigskip
+
+\bigskip
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definición}
+
+\theoremstyle{definition}
+\newtheorem*{dem}{Demostración}
+
+\theoremstyle{definition}
+\newtheorem*{notation}{Notación}
+
+\theoremstyle{definition}
+\newtheorem*{theorem}{Teorema}
+
+\theoremstyle{definition}
+\newtheorem*{lema}{Lema}
+
+\theoremstyle{remark}
+\newtheorem*{observation}{Observación}
+
+\theoremstyle{remark}
+\newtheorem*{example}{Ejemplo}
+
+
+\begin{enumerate}[label=\textbf{\arabic*}.]
+
+\item Sea $p \in [1,\infty)$. Demuestra que el espacio $(C[a,b],{\norm{\cdot}}_{p})$ donde ${\norm{f}}_{p} = {\left( \int_{a}^{b} {\abs{f(x)}}^{p} dx \right)}^{\frac{1}{p}}$ es un espacio normado sobre el campo de los números reales con las operaciones de suma y multiplicación por números reales usuales.
+
+\item Demuestra que el espacio $(C[a,b],{\norm{\cdot}}_{\infty})$ donde ${\norm{f}}_{\infty} = \sup \{ \abs{f(x)} \mid x \in [a,b] \}$ es un espacio normado.
+
+\begin{lema}
+    Sean $p,q \in (1,\infty)$ tales que $\frac{1}{p} + \frac{1}{q} = 1$. Veamos que
+    
+    $$ \norm{fg}_1 \leqslant \norm{f}_p \norm{g}_q$$
+    
+    Supongamos $f,g \neq 0. \forall \: x \in [a,b]$ definimos a 
+    \begin{align*}
+       \alpha = \frac{\abs{f(x)}}{{\left( \int_{a}^{b} {\abs{f(x)}}^{p} dx \right)}^{\frac{1}{p}}} = \frac{\abs{f(x)}}{\norm{f}_p} && \text{ y } && \beta = \frac{\abs{g(x)}}{{\left( \int_{a}^{b} {\abs{g(x)}}^{q} dx \right)}^{\frac{1}{q}}} = \frac{\abs{g(x)}}{\norm{g}_q}
+    \end{align*}
+    Tomaremos por sentada la desigualdad de Young. $$ab \leqslant \frac{a^p}{p} + \frac{b^q}{q}$$ Si la aplicamos a $\alpha$ y $\beta$ s.t.q.
+
+    $$\alpha \cdot \beta \leqslant \left( \frac{\abs{f(x)}}{\norm{f}_p} \right)^p \cdot \frac{1}{p} + \left( \frac{\abs{g(x)}}{\norm{g}_q} \right)^q \cdot \frac{1}{q}$$
+
+    Integramos de ambos lados
+
+    $$\frac{\int_{a}^{b}\abs{f(x)g(x)dx}}{\norm{f}_p \norm{g}_q} \leqslant \frac{\int_{a}^{b}{\abs{f(x)}}^{p}dx}{p{\norm{f}}^{p}_{p}}+\frac{\int_{a}^{b}{\abs{g(x)}}^{q}dx}{q{\norm{g}}^{q}_{q}} = \frac{1}{p} + \frac{1}{q} = 1$$
+
+    $$\int_{a}^{b}\abs{f(x)g(x)dx} = \norm{fg}_1 \leq \norm{f}_p \norm{g}_q$$
+
+    Podemos ver que también
+
+    $$\norm{fg}_1 \leqslant \norm{f}_1 \norm{g}_\infty$$
+\end{lema}
+
+\begin{lema}
+    Sea $p\in [1,\infty]$. Veamos que $\forall \: f,g \in C([a,b])$
+
+    $$\norm{f+g}_p \leqslant \norm{f}_p + \norm{g}_p$$
+\end{lema}
+
+    Supongamos que $f \neq g$ y que $p \in (1,\infty)$. Definamos $h(x) = {\left(\abs{f(x)}-\abs{g(x)}\right)}^{p-1}$. Aplicamos Hölder a $f,h$ y $g,h$. Notando que $q=\frac{p}{p-1}$
+
+    $$ \int_{a}^{b} \abs{f(x)} {\left(\abs{f(x)}-\abs{g(x)}\right)}^{p-1}dx \leqslant \norm{f}_p \cdot {\left(\int_{a}^{b} {(\abs{f(x)}+\abs{g(x)})}^{p-1\cdot\frac{p}{p-1}} \right)}^{\frac{1}{q}} $$
+    $$ \int_{a}^{b} \abs{g(x)} {\left(\abs{f(x)}-\abs{g(x)}\right)}^{p-1}dx \leqslant \norm{g}_p \cdot {\left(\int_{a}^{b} {(\abs{f(x)}+\abs{g(x)})}^{p} \right)}^{\frac{1}{q}} $$
+
+    Sumando las desigualdades
+
+    $$\int_{a}^{b} {(\abs{f(x)}-\abs{g(x)})}^{p}dx \leqslant \left(\norm{f}_p+\norm{g}_q\right) {\left(\int_{a}^{b} {(\abs{f(x)}+\abs{g(x)})}^{p} \right)}^{\frac{1}{q}} $$
+
+    Ahora como $\frac{1}{q} = 1-\frac{1}{p}$ 
+
+    $$\frac{\int_{a}^{b} {(\abs{f(x)}-\abs{g(x)})}^{p}dx}{{\left(\int_{a}^{b} {(\abs{f(x)}+\abs{g(x)})}^{p} \right)}^{\frac{1}{q}}} = {\left(\int_{a}^{b} {(\abs{f(x)}+\abs{g(x)})}^{p} \right)}^{\frac{1}{p}}$$
+
+    Notemos que
+
+    $$\norm{f+g}_p = {\left(\int_{a}^{b} {(\abs{f(x)+g(x)})}^{p} \right)}^{\frac{1}{p}} \leqslant {\left(\int_{a}^{b} {(\abs{f(x)}+\abs{g(x)})}^{p} \right)}^{\frac{1}{p}} \leqslant \norm{f}_p+\norm{g}_q$$
+
+\begin{proof}
+     Hemos probado la desigualdad del triangulo en el último lema. Que es no negativa es trivial, y saca escalares en valor absoluto por linealidad de la integral. Solo falta ver una propiedad. Como $\abs{f(x)}^p$ es continua y no negativa, notemos que
+     $$ \norm{f}_p = {\left( \int_{a}^{b} {\abs{f(x)}}^{p} dx \right)}^{\frac{1}{p}} = 0 \Leftrightarrow  {\abs{f(x)}}^{p} = 0 \Leftrightarrow f = 0$$
+
+     $\therefore \norm{f}_p$ es norma. $\norm{f}_\infty$ también es norma.  
+\end{proof}
+
+\item Sea $C^r[a, b]$ el conjunto de las funciones $f : [a, b] \to \mathbb{R}$ que son $r$-veces continuamente diferenciables en $[a, b]$, es decir, tales que todas sus derivadas $f^{\prime}, f^{\prime \prime}, \ldots, f^{r}$ hasta el orden $r$ existen en $(a, b)$ y son continuas en $[a, b]$. Para cada $p \in [1, \infty]$ definimos
+
+$$\|f\|_{r,p} = \|f\|_{p} + \|f^{\prime}\|_{p} + \ldots + \|f^{r}\|_{p}$$
+
+Demuestra que $C^r_p [a, b] = (C^r[a, b],{\norm{\cdot}}_{r,p})$ es un espacio normado.
+
+\begin{proof}
+    Sean $f,g \in C^r[a, b]. $ Notemos que, $\forall \: 0 \leqslant s \leqslant r$
+
+    $${\left(f^s + g^s \right)}^{\prime} = {f}^{s+1}+{g}^{s+1}$$
+    $$\norm{f+g}_{r,p} = \sum_{s=0}^{r} \norm{(f+g)^s}_p = \sum_{s=0}^{r} \norm{f^s+g^s}_p \leqslant \sum_{s=0}^{r} \norm{f^s}_p + \sum_{s=0}^{r} \norm{g^s}_p = \norm{f}_{r,p}+\norm{g}_{r,p}$$
+
+    Las demás propiedades son triviales. $\therefore \norm{f}_{r,p}$ es norma. 
+\end{proof}
+
+\item La norma es convexa
+
+\begin{proof}
+    Trivial por la desigualdad de Minkowski para norma (triangular)
+\end{proof}
+
+\item Defina $\mathcal{B}(X, Y ) = \{f : X \to Y \mid f \text{es acotada} \}$. Demuestre que
+la función $d_\infty : \mathcal{B}((X, Y ) \times \mathcal{B}((X, Y ) \to \R$ dada por $d_\infty(f,g) =
+\sup \{d_Y (f(x), g(x)) \mid x \in X \}$ para toda $f,g \in \mathcal{B}(X, Y ) $, es una métrica en $\mathcal{B}(X, Y)$
+
+\begin{proof}
+    Esta métrica se llama métrica úniforme. 
+
+    $(D_1)$ Es evidente que es mayor que cero, ya que $d_Y$ es métrica.
+
+    $(D_2)$ Como $d_Y$ satisface $(D_1)$ s.t.q.
+
+    $$d_\infty(f,g) = 0 \Leftrightarrow d_Y(f(x),g(x)) = 0 \Leftrightarrow f(x) = g(x) \: \forall \: x \in X$$
+
+    $(D_3)$ Como $d_Y$ satisface $(D_3)$ s.t.q.
+
+    $$d_\infty(f,g) = \sup \{d_Y (f(x), g(x)) \mid x \in X \} = \sup \{d_Y (g(x), f(x)) \mid x \in X \} = d_\infty(g,f) $$
+
+    $(D_3)$ Sean $f,g,h \in \mathcal{B}(X,Y)$
+
+    $$d_Y(f(x),g(x)) \leqslant d_Y(f(x),h(x)) + d_Y(h(x),g(x)) \leqslant d_\infty (f,h) + d_\infty(h,g)$$
+    $$d_Y(f(x),g(x)) \leqslant d_\infty(f,g) \leqslant d_\infty (f,h) + d_\infty(h,g)$$
+
+    $\therefore d_\infty$ es métrica en $\mathcal{B}(X,Y)$
+\end{proof}
+
+\item Da un ejemplo de dos métricas definidas sobre un mismo conjunto $X$ de tal manera que la función identidad de $(X, d_1) $ a $(X, d_2)$ no sea continua.
+
+\begin{proof}
+     Considere a $X=\R$, donde $d_1(x,y) = \abs{x-y}$ y  a $d$ como la métrica discreta. Sea $f : X \to X$ la función $f(x) = x$. Veamos que $f : (X, d_1) \to (X,d)$ no es continua. 
+
+     En efecto, debemos probar que la proposición que niega la definición de función continua. Es decir, la proposición
+
+    \begin{equation*}
+        \exists \: \varepsilon < 0 \: \: \: \forall \: \delta < 0 \backepsilon \: \exists \: {x}_{\delta} \in X \Rightarrow  {d}_{1}({x}_{\delta},y) < \delta \text{ y } d(f(x),f(y)) \geqslant \varepsilon 
+    \end{equation*}
+
+    es verdadera. Por ello, consideremos a $\varepsilon = \frac{1}{2}$. Sea $\delta > 0$ arbitrario
+    
+    $$\Rightarrow \: \exists \: x_\delta \in X \backepsilon \abs{x_\delta - y} = \frac{\delta}{2}$$. 
+    
+    Note que $ x_\delta = y + \frac{\delta}{2}$ con $x_\delta > y$. Además, sucede que 
+    \begin{align*}
+        {d}_{1}({x}_{\delta},y) = \abs{x_\delta - y} = \frac{\delta}{2} < \delta && \text{ y }&& d(f({x}_{\delta}),f(y)) = d(x_\delta,y) = d(y + \frac{\delta}{2}, y) = 1 > \frac{1}{2}
+    \end{align*}
+
+    Esto porque $x_\delta \neq y$ y la métrica $d = 1$ si eso sucede. 
+    
+    $\therefore f:(X,{d}_{1}) \to (Y,d)$ no es continua en $x_0 = 0$
+\end{proof}
+
+\item Sea $(X, d)$ un espacio métrico y $f_1, ..., f_n : X \to \R$ una colección de $n$ funciones continuas. Entonces la función $f : X \to \R^n$ definida como $f(x)=(f_1(x), f_2(x), ..., f_n(x))$ es continua. Aquí, tanto $\R$
+como $\R^n$ se consideran con las métricas inducidas por la norma ${\norm{\cdot}}_{2}$.
+
+\begin{proof}
+    Supongamos $f_1, ..., f_n : X \to \R$ una colección de $n$ funciones continuas. Sea $\varepsilon > 0$. Por hipótesis $\exists \: \delta(i) > 0 \backepsilon \: \forall \: x \in X \Rightarrow d(x,y) < \delta_i \Rightarrow \abs{f_i(x) - f_i(y)} < \frac{\varepsilon}{n}$ 
+
+    Sea $\delta = min (\{ \delta(1),...,\delta(n)\})$
+
+    \begin{equation*}
+        \text{Si} \: x \in X \: \text{y} \: d(x,y) \leqslant \delta \leqslant \delta(1) \leqslant ... \leqslant \delta(n)
+    \end{equation*}
+    \begin{equation*}
+         \Rightarrow \norm{f(x)-f(y)} \leqslant \abs{{f}_{1}(x) - f_1(y)} + ... + \abs{{f}_{n}(x) - {f}_{n}(y)} < \frac{\varepsilon}{n} + ... + \frac{\varepsilon}{n} = n \cdot \frac{\varepsilon}{n} = \varepsilon
+    \end{equation*}
+
+    $\therefore f$ es continua en $X$.
+\end{proof}
+
+\item Sean $(X, d)$ un espacio métrico y$ A \subseteq X, A \neq \varnothing$. Demuestra que la función $f : X \to \R$ dada por$ f(x) = d(x, A)$ es continua.
+
+\begin{lema}
+
+    Sea $(X, d)$ un espacio métrico y $A \subseteq X$. La distancia de $A$ a $x \in X $ se define como ${d}^{\prime}(A,x) = \inf \{ d(y,x) \mid y \in A \}$. Demostrar que $\abs{{d}^{\prime}(A,x)-{d}^{\prime}(A,y)} \leqslant d(x,y)$
+    
+    Sea $x,y \in X \Rightarrow \forall \: z \in A$ s.t.q.
+
+    \begin{equation*}
+        {d}^{\prime}(A,x) \leqslant d(x,z) \leqslant d(x,y) + d(y,z)
+    \end{equation*}
+    \begin{equation*}
+        {d}^{\prime}(A,y) \leqslant d(y,z) \leqslant d(y,x) + d(x,z)
+    \end{equation*}
+
+    Podemos tomar el ínfimo en $z$, ya que la desigualdad se cumple para todas las métricas
+
+    \begin{equation*}
+        {d}^{\prime}(A,x) \leqslant d(x,y) + {d}^{\prime}(A,y) \Rightarrow  {d}^{\prime}(A,x) - {d}^{\prime}(A,y)  \leqslant d(x,y) 
+    \end{equation*}
+    \begin{equation*}
+        {d}^{\prime}(A,y)  \leqslant d(y,x) + {d}^{\prime}(A,x) \Rightarrow {d}^{\prime}(A,y) - {d}^{\prime}(A,x) \leqslant d(y,x)
+    \end{equation*}
+
+    Esto implica $\abs{{d}^{\prime}(A,x)-{d}^{\prime}(A,y)} \leqslant d(x,y)$
+\end{lema}
+
+
+\begin{proof}
+    Sea $x,y \in X$ f.p.a. Notemos que $\forall \: a \in A$ s.t.q.
+
+    $$ \abs{d(A,x)-d(A,y)} \leqslant d(x,y)$$
+
+    Esto por el Lema anterior, que fue un ejercicio de la tarea anterior. Veamos que es continua. 
+
+    Sea $\varepsilon >0$. Consideremos a $\delta = \varepsilon$. Sucede que
+    \begin{align*}
+    d(x,y) < \delta && \text{ y } && \abs{d(A,x)-d(A,y)} \leqslant d(x,y) < \delta = \varepsilon
+    \end{align*}
+
+    $\therefore f(x) = d(x,A)$ es continua. Note que también es Lipschitz continua con constante 1.
+\end{proof}
+
+\item Prueba que $f : (\R^n, {\norm{\cdot}}_{2}) \to (\R^m, {\norm{\cdot}}_{2})$ es continua si y solo si $f: (\R^n, {\norm{\cdot}}_{p}) \to (\R^m, {\norm{\cdot}}_{r})$ es continua para cualesquiera $p,r \in [1,\infty]$
+
+\begin{lema}
+Sean $\Phi : X \to Y$ y y $\Psi : Y \to Z$ funciones entre espacios métricos.
+
+    \begin{enumerate}
+        \item Si $\Phi$ y $\Psi$ son continuas $\Rightarrow \Psi \circ \Phi : X \to Z$ es continua. 
+        \item Si $\Phi$ es un homeomorfismo $\Rightarrow \Psi$ es continua $\Leftrightarrow \Psi \circ \Phi$ es continua.
+        \item Si $\Psi$ es un homeomorfismo $\Rightarrow \Phi$ es continua $\Leftrightarrow \Psi \circ \Phi$ es continua.
+    \end{enumerate}
+\end{lema}
+
+\begin{proof}
+    \begin{enumerate}
+        \item Sean $x_0 \in X$ y $\varepsilon > 0$. Notemos que $\Psi$ es una función continua en $y_0 = \Phi(x_0)$, por lo que $\exists \: \gamma > 0$ tal que si 
+
+        $$ d_Y(y,y_0) < \gamma \Rightarrow d_Z(\Psi(y),\Psi(y_0)) < \varepsilon$$
+
+        Como $\Phi$ es continua en $x_0 \: \exists \: \delta$ tal que si
+
+        $$d_X(x,x_0) < \delta \Rightarrow d(\Phi(x),\Phi(x_0))$$
+        $$\Rightarrow \text{ si } d_X(x,x_0) < \delta \Rightarrow d_Z(\Psi(\Phi(x)), \Psi(\Phi(x_0)))$$
+
+        Esto satisface la definición de continuidad.
+
+        \item Si $\Phi$ es un homeomorfismo, ${\Phi}^{-1}$ es continua, y por el inciso anterior sabemos que si  $\Psi \circ \Phi $ es continua $\Rightarrow (\Psi \circ \Phi ) \circ {\Phi}^{-1}$ es continua.
+        \item Es análogo al anterior. 
+    \end{enumerate}
+\end{proof}
+
+\begin{proof}
+    Demostremos ahora el inciso anterior. Sea $\Phi$ la identidad de ${\R}^{n}_{p}$ a $\R^n$ 
+
+    $$ \Phi: (\R^n, {\norm{\cdot}}_{p}) \to (\R^n, {\norm{\cdot}}_{1}) $$
+    
+    y sea $\Psi$ la identidad de ${\R}^{m}$ a ${\R}^{m}_{r}$
+
+    $$ \Psi: (\R^m, {\norm{\cdot}}_{1}) \to (\R^m, {\norm{\cdot}}_{r}) $$
+
+    Sabemos que $\Phi$ y $\Psi$ son homeomorfismos. Esto implica que son continuas. Supongamos otra función continua $f : \R^n \to \R^m$, por el Lema anterior, sabemos que $f = f \circ \Phi : {\R}^{n}_{p} \to \R^m$ es continua. Además, por el mismo Lema, se tiene que $f = \Psi \circ f : {\R}^{n}_{p} \to {\R}^{m}_{r}$ es una función continua. 
+\end{proof}
+
+\item Sea$ (X, d)$ espacio métrico y $f,g : X \to \R$ funciones Lipschitz continuas.
+
+\begin{enumerate}
+    \item Si $f$ y $g$ son funciones acotadas, entonces su producto $fg$ es una función Lipschitz continua.
+    \item Mediante un ejemplo muestre que el inciso anterior puede fallar si no se supone que $f$ y $g$ son acotadas.
+\end{enumerate}
+
+\begin{proof}
+    \begin{enumerate}
+        \item Supongamos que $\abs{f} \leqslant M$ y $\abs{g} \leqslant M$
+
+        $$\begin{aligned} 
+|(fg)(x) - (fg)(y)| &\leqslant |f(x)g(x) - f(x)g(y)| + |f(x)g(y) - f(y)g(y)| \\&\leqslant M(|g(x) - g(y)|+|f(x)-f(y)|)
+\end{aligned}$$
+
+\item Sea $f(x)=cos(x)$ y $g(x) = x$. Note que $$h(x):=f(x)g(x)=xcos(x)$$ 
+
+no es Lipschitz en $\R$
+\end{enumerate}
+\end{proof}
+
+\item Demuestra que, si $1 \leqslant s \leqslant r \leqslant \infty$, entonces la inclusión $i : \ell_s \to \ell_r$ es Lipschitz continua.
+
+\begin{proof}
+    Se sigue de la demostración anterior de que si $1 \leqslant s \leqslant r \leqslant \infty$
+
+    $$ {\norm{x}}_{r} \leqslant {\norm{x}}_{s}$$
+
+    Notemos que podemos tomar cualesquiera dos secuencias $(x_n), (y_n) \in \ell_s$ 
+
+    $${\norm{x_n-y_n}}_{r} \leqslant 1 \cdot {\norm{x_n-y_n}}_{s} $$
+
+    Pero esto es la definición de Lipschitz continua. 
+\end{proof}
+
+\item Demuestra que para cualquier $1 \leqslant s \leqslant \infty$, la $k$-esima proyección $\pi_k : \ell_s \to \R$ tal que $\pi_k(x) = x_k$ con $x = (x_n) \in \ell_s$ es Lipschitz
+continua.
+
+\begin{proof}
+    Sea $1 \leqslant p < \infty$. Note que $\forall \: x, y \in \R^n$, si $ 1 \leqslant k \leqslant n$
+
+    $$ \abs{\pi_k(x)-\pi_k(y)} = \abs{x_k-y_k} = {\left( \abs{x_k-y_k} \right)}^{\frac{1}{p}} \leqslant  {\left( \sum_{i=1}^{n} \abs{x_i-y_i} \right)}^{\frac{1}{p}} = 1 \cdot {\norm{x-y}}_{p}$$ 
+
+    De forma análoga, supongamos que $x,y \in \ell_\infty$ y $k \geqslant 1$
+
+    $$ \abs{\pi_k(x)-\pi_k(y)} = \abs{x_k-y_k} \leqslant \sup \{ \abs{x_k-y_k} \}   = 1 \cdot {\norm{x-y}}_{\infty}$$
+\end{proof}
+
+\item Sean $(V, \norm{\cdot}_V )$ y $(W, \norm{\cdot}_W )$ espacios normados, y sea $L : V \to W$ una transformacion lineal. Demuestra que las siguientes afirmaciones son equivalentes.
+
+\begin{enumerate}
+    \item $L$ es continua.
+    \item $L$ es continua en 0.
+    \item Existe $c > 0$ tal que $\norm{Lv}_W \leqslant c \cdot \norm{v}_V$ para todo $v \in V$
+    \item $L$ es Lipschitz continua.
+\end{enumerate}
+
+\begin{proof}
+    $(a) \Rightarrow (b)$ Como $L$ es continua en todos los puntos del dominio, es continua en $0$
+
+    $(b) \Rightarrow (c)$
+
+    Como $L$ es continua en 0, sean $\varepsilon > 0$ y $\delta>0$ tal que si $\norm{v-0}_V < \delta \Rightarrow \norm{Lv-0}_W < \epsilon$
+
+    $\forall \: v \in V \Rightarrow$
+
+    $$ \norm{\frac{\delta}{2{\norm{v}}_{V}} \cdot v}_V = \frac{\delta}{2} < \delta$$
+
+    $$ \Rightarrow \norm{L\left(\frac{\delta}{2{\norm{v}}_{V}} \cdot v\right)}_W = \frac{\delta}{2{\norm{v}}_{V}} \cdot \norm{Lv}_W \leqslant \varepsilon$$
+
+    Sea $c = \frac{2 \varepsilon}{\delta}$. Reordenando algebraicamente
+
+    $$ \norm{Lv}_W \leqslant \varepsilon \cdot \frac{2}{\delta}{\norm{v}}_{V} = \norm{Lv}_W \leqslant c \cdot {\norm{v}}_{V}$$
+
+    $(c) \Rightarrow (d)$
+
+    $\forall \: v,  w \in V$
+
+    $$\norm{Lv-Lw}_W = \norm{L(v-w)}_W \leqslant c \cdot \norm{v-w}_V$$
+
+    Esto por el inciso anterior
+
+    $(d) \Rightarrow (a)$ Trivial 
+\end{proof}
+
+\item Establezca si la función $\Phi : \R \to \R$ dada por
+$\Phi(t) = t^2$ es Lipschitz continua. Justifique todas sus afirmaciones.
+
+\begin{proof}
+    Supongamos, para generar una contradicción, que si es Lipschitz continua. Entonces $\exists \: c > 0$ tal que $\forall \: x,y \in \R $
+
+    $$\Rightarrow \abs{x^2-y^2} \leqslant c \cdot \abs{x-y}$$
+    $$ = \abs{x-y} \cdot \abs{x+y} \leqslant c \cdot \abs{x-y}$$
+    $$= \abs{x+y} \leqslant c$$
+
+    Pero esto no se puede, ya que los números reales no están acotados superiormente. 
+    
+    $\therefore \Phi$ no es Lipschitz continua. 
+\end{proof}
+
+\item Sea $X=(X,d)$ un espacio métrico y sea $x_0 \in X$. Prueba que la función $\Phi : X \to \R$ dada por $\Phi(x) = d(x_0,x)$ es Lipschitz continua. 
+
+\begin{proof}
+    Recordemos que ya demostramos 
+    $$\abs{\rho(x,y)-\rho(z,w)} \leqslant \rho(x,z) +\rho(y,w) $$
+    Veamos que 
+    $$ \abs{f(x)-f(y)} \leqslant c \cdot d(x,y)$$
+    $$\abs{f(x)-f(y)} = \abs{d(x,x_0)-d(y,x_0)}$$
+    Por el primer enunciado, note que
+    $$\abs{d(x,x_0)-d(y,x_0)} \leqslant d(x,y) + d(x_0,x_0) = d(x,y) $$
+
+    $\therefore \Phi$ es Lipschitz continua con constante $c=1$.
+\end{proof}
+
+\item Sea $g_0 \in C([a,b])$. Demuestra que $\forall \: p \in [1,\infty]$, la función $\Phi : (C([a,b]), {\norm{\cdot}}_{p}) \to \R$ dada por
+
+$$ \Phi (x) = \int_{a}^{b} f(t)g_0 (t) dt$$
+
+es Lipschitz continua.
+
+\begin{proof}
+    Tenemos los siguientes casos
+
+    $p \in [1,\infty)$
+
+    Sean $f,h \in C([a,b])$. Por el primer ejercicio, note que
+
+    $$ \abs{\int_{a}^{b} (f(t)-h(t))g_0 (t) dt} \leqslant \norm{f-h}_p \cdot \norm{g_0}_q$$ 
+
+    Si agarramos una cota superior de $\norm{g_0}_q$ como la constante Lipschitz, hemos demostrado que es Lipschitz continua. 
+
+    $p = \infty$
+
+    Análoga. 
+\end{proof}
+
+\item  Demuestra las siguientes afirmaciones.
+\begin{enumerate}
+    \item  Toda isometría es Lipschitz continua.
+    \item  La composición de Lipschitz continua es Lipschitz continua. 
+    \item Si $\Phi : X \to Y $ es una equivalencia, entonces $\Psi: Y \to Z$ es Lipschitz continua si y solo si $\Psi \circ \Phi: X \to Z$ lo es.
+     \item Si $\Psi: Y \to Z$ es una equivalencia, entonces $\Phi : X \to Y $ es Lipschitz continua si y solo si $\Psi \circ \Phi: X \to Z$ lo es.
+\end{enumerate}
+
+\begin{proof}
+    \begin{enumerate}
+        \item Es evidente por la definición de Isometría. No se prohibe la igualdad, por lo que podemos agarrar la $c=1$ y hemos terminado.
+        \item Sean $\Phi : X \to Y, \Psi : Y \to Z$ Lipschitz continuas. $\exists \: \gamma \in \R^+$ tal que 
+        $$\forall \: x,y \in X \Rightarrow d_Y(\Phi(x)-\Phi(y)) \leqslant \gamma \cdot d_X(x-y)$$
+
+        También $\exists \: \lambda \in \R^+$ tal que 
+        $$\forall \: a,b \in Y \Rightarrow d_Z(\Psi(a)-\Psi(b)) \leqslant \lambda \cdot d_Y(a-b)$$
+
+        En particular, $\forall \: x,y \in X$
+        $$d_Z(\Psi(\Phi(x))-\Psi(\Phi(y))) \leqslant \lambda \cdot d_Y(\Phi(x)-\Phi(y)) \leqslant \lambda \gamma \cdot d_X(x-y) $$
+
+        \item Tanto $\Phi: X \to Y$ como $\Phi^\leftarrow : Y \to X$ son Lipschitz continuas, tal que si $\Psi : Y \to Z$ es Lipschitz, por el inciso anterior, también lo es $\Phi \circ \Psi$. Pero si esta función es continua, tomemos $\Phi^\leftarrow$ como nueva composición, haciendo la compisición de la composición, es decir $(\Phi \circ \Psi) \circ \Phi^\leftarrow = \Psi$. Hemos probado la necesidad y la suficiencia. 
+        \item Tanto $\Psi: Y \to Z$ como $\Psi^\leftarrow : Z \to Y$ son Lipschitz continuas, tal que si $\Phi : X \to Y$ es Lipschitz, por el inciso anterior, también lo es $\Phi \circ \Psi$. Pero si esta función es continua, tomemos $\Psi^\leftarrow$ como nueva composición, haciendo la compisición de la composición, es decir $\Psi^\leftarrow\circ (\Psi \circ \Phi) = \Phi$. Hemos probado la necesidad y la suficiencia. 
+    \end{enumerate}
+\end{proof}
+
+\item Sea $I$ un intervalo en $\R$ (abierto, cerrado, acotado o no acotado). Prueba que, si $f : I \to R$ es continuamente diferenciable en $I$ y existe $c \in \R$ tal que $|\abs{f^\prime(t)} \leqslant c$ para toda $t \in I$, entonces $f$ es Lipschitz continua.
+
+\begin{proof}
+    Sea $x \leqslant y \in I \Rightarrow f$ es continua en $[x,y]$, por la definición de $f$, y además es diferenciable en esos puntos, por lo que debe de cumplir el teorema del valor medio para algún $\lambda \in (x,y)$
+
+    $$\abs{f(x)-f(y)} = \abs{f^\prime (\lambda)} \abs{x-y} \leqslant c \cdot \abs{x-y}$$
+\end{proof}
+
+\item ¿Cuáles de las siguientes funciones son Lipschitz continuas y cuáles son equivalencias?
+\begin{enumerate}
+    \item $\Phi : \R \to \R$ donde $\Phi(x) = x^2$
+    \item $\Phi : [0,\infty) \to \R$ donde $\Phi(x) = \sqrt{x}$
+    \item $\Phi : \R \to (-\frac{\pi}{2},\frac{\pi}{2})$ donde $\Phi (x) = \arctan (x)$
+\end{enumerate}
+
+\begin{proof}
+    \begin{enumerate}
+        \item $\Phi : \R \to \R$ donde $\Phi(x) = x^2$ no es Lipschitz continua. Supongamos, para generar una contradicción, que si lo fuera $\Rightarrow \: \exists \: c \in \R^+$ tal que $\abs{x^2+y^2} \leqslant c \cdot \abs{x-y}$. En particular, sea $x > y > 0$ tales que $x+y > c$ 
+
+        $$\Rightarrow x^2 - y^2 = (x+y)(x-y)  < c \cdot (x-y)$$
+
+        Pero esto implica $x+y < x+y$, lo cual es imposible. Otra prueba, tal vez más facil es la del inciso 14.
+
+        \item $\Phi : [0,\infty) \to \R$ donde $\Phi(x) = \sqrt{x}$ no es Lipschitz continua. Si lo fuera, $\Rightarrow \: \exists \: c \in \R^+$ tal que $\abs{\sqrt{x}+\sqrt{y}} \leqslant c \cdot \abs{x-y}$. Sea $x = \left( \frac{1}{1+c} \right)^2$ y sea $y=0$
+
+        $$\Rightarrow \abs{\sqrt{ \left( \frac{1}{1+c} \right)^2}+\sqrt{0}} = \abs{\frac{1}{1+c}} \leqslant c \cdot \abs{ \left( \frac{1}{1+c} \right)^2} \Rightarrow c + 1 \leqslant c$$
+
+        Lo cual es imposible.
+
+        \item $\Phi : \R \to (-\frac{\pi}{2},\frac{\pi}{2})$ donde $\Phi (x) = \arctan (x)$ si es Lipschitz continua. Por el teorema del valor medio $\exists \: c \in (a,b)$ tales que
+
+        $$|f(a)-f(b)|=f^{\prime}(c) |a-b|$$
+
+        Pero usando la derivada de $\arctan (x)$ s.t.q
+
+        $$f^{\prime}(x)=\frac{1}{1+x^2} \leqslant 1$$
+
+        Esto demuestra que $|\arctan a-\arctan b|\leq |a-b|$, por lo que la contante de Lipschitz es 1.
+    \end{enumerate}
+    $\therefore$ se han demostrado los tres incisos. 
+\end{proof}
+
+\item Suponga que $X$ y $Y$ son un par de espacios métricos y fije una función $\Phi : X \to Y$ . Responda los siguientes incisos.
+\begin{enumerate}
+    \item Demuestre que si $\Phi$ es una isometría, entonces es inyectiva.
+    \item Pruebe que si $\Phi$ es una isometría biyectiva, entonces $\Phi^{-1}$ también es una isometría.
+\end{enumerate}
+
+\begin{proof}
+    \begin{enumerate}
+        \item Veamos que toda isometría es inyectiva. Recordemos que sean ($X,d$) y ($Y,\rho$) dos espacios métricos. Una función $\Phi : X \to Y$ es isometría si
+
+        $$\rho(\Phi(x),\Phi(y)) = d(x,y) \: \forall \: x,y \in X$$
+
+        Notemos que si $\Phi(x) = \Phi(y)$, que recordemos es el incicio a la contrapositiva del enunciado de función inyectiva $\Rightarrow d(x,y) = \rho(\Phi(x),\Phi(y)) = 0 \Rightarrow x = y$.
+
+        \item Veamos que si $\Phi$ es una isometría biyectiva, entonces $\Phi^{-1}$ también es una isometría.
+
+        Sean $z,w \in Y$ y $x,y \in X$ tales que $z = \Phi(x)$ y $w = \Phi(y)$. Note que 
+
+        $$\rho(z,w) = \rho(\Phi(x),\Phi(y)) = d(x,y) = d(\Phi^{-1}(z),\Phi^{-1}(w))$$
+    \end{enumerate}
+    $\therefore$ ambos enunciados son verdaderos. 
+\end{proof}
+
+\item ¿Cuáles son isometrías?
+\begin{enumerate}
+    \item La identidad \( I : (\mathbb{R}^2, \norm{\cdot}_p) \rightarrow (\mathbb{R}^2, \norm{\cdot}_r) \), \( I(x) = x \) con \( p \neq r \) 
+    \item  La identidad \( I : (C[0, 1], \norm{\cdot}_p) \rightarrow (C[0, 1], \norm{\cdot}_r) \), \( I(f) = f \) con \( p \neq r \) 
+    \item La inclusión \( i : (C^1[0, 1], \norm{\cdot}_p) \rightarrow (C[0, 1], \norm{\cdot}_p) \), \( i(f) = f \) 
+\end{enumerate}
+
+\begin{proof}
+    \begin{enumerate}
+        \item Si $\norm{(1,1)}_p = \norm{(1,1)}_r$, lo que implica que $2 = 2^{\frac{p}{r}}$, lo que a su vez implica que $p = r$, pero esto contradice el supuesto que $p \neq r$. Esto significa que no es isometría. 
+        \item Esta tampoco es isometría. 
+        \item Como toda inclusión es isometría, se sigue que la inclusión en ese espacio es isometría. 
+    \end{enumerate}
+\end{proof}
+\end{enumerate}
+\end{document}
