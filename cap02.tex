@@ -1,0 +1,1452 @@
+\chapter{Funciones Continuas}
+
+\section{Definición y Ejemplos}
+
+\begin{definition}[Función Continua] \label{def21}
+    Sea ($X,d$) y ($Y,\rho$) espacios métricos cualesquiera. Supongamos que
+    \begin{equation*}
+        f : X \to Y 
+    \end{equation*}
+
+    es una función cualquiera
+
+    \begin{enumerate}
+        \item Se dice que $f$ es continua en ${x}_{0} \in X$ respecto de las métricas $d$ y $\rho$ $\iff$ la siguiente proposición es verdadera
+
+        \begin{equation*}
+            \forall \: \varepsilon > 0 \: \: \: \exists \: \delta > 0 \backepsilon \: \forall \: x \in X \Rightarrow d(x,{x}_{0}) < \delta \Rightarrow \rho(f(x),f({x}_{0})) < \varepsilon 
+        \end{equation*}
+        \item Diremos que $f$ es continua (o continua en todo $X$) si $f$ es continua en cada $x \in X$
+    \end{enumerate}
+\end{definition}
+
+\begin{notation}
+    $ f : (X.d) \to (Y, \rho) $ es continua en $x_0$
+\end{notation}
+
+\begin{eg}
+    Considere a $X=[0,1), Y= \R, f : X \to Y$ es la función $f(x)=x$, y además
+    \begin{align*}
+        d(x,y) = \abs{x-y} &&&& {d}_{1}(x,y) = \min \{ \abs{x-y}, 1 - \abs{x-y}\}
+    \end{align*}
+
+    Resulta ser que $f:(X,d) \to (Y,d)$ es continua en $x_0 = 0$, pero $f:(X,{d}_{1}) \to (Y,d)$ no lo es
+\end{eg}
+
+\begin{remark}
+    $d$ es métrica tanto en $\R$ como en $X$, mientras que $d_1$ solo es métrica en $X$
+\end{remark}
+
+\begin{proofexplanation}
+\begin{enumerate}
+    \item Veamos que $f:(X,d) \to (Y,d)$ es continua en $x_0 = 0$
+
+    Sea $\varepsilon > 0$. Definamos a $\delta = \varepsilon$. Por lo tanto, $\delta > 0$. Además, si $x \in X$ es cualquier elemento tal que $d(x,x_0=0) = d(x,0) < \delta \implies d(f(x),f(x_0))=d(x,0) < \delta = \varepsilon \implies \therefore f:(X,d) \to (Y,d)$ es continua.
+    
+    \item Veamos que $f:(X,{d}_{1}) \to (Y,d)$ no es continua en $x_0 = 0$
+
+    En efecto, debemos probar que la proposición que niega a 1. de \Cref{def21}, es decir
+
+    \begin{equation*}
+        \exists \: \varepsilon < 0 \: \: \: \forall \: \delta < 0 \backepsilon \: \exists \: {x}_{\delta} \in X \Rightarrow  {d}_{1}({x}_{\delta},0) < \delta \text{ y } d(f(x),f({x}_{0})) = d({x}_{\delta}, 0 ) \geqslant \varepsilon 
+    \end{equation*}
+
+    es verdadera. Por ello, conseremos a $\varepsilon = \frac{1}{2}$. Sea $\delta < 0 $ arbitrario. Debido a que 
+    \begin{equation*}
+        1 - \delta,  \frac{1}{2} < 1 \implies \: \exists \: {x}_{\delta} \in \Q \backepsilon 1 - \delta < {x}_{\delta} < 1 \wedge \frac{1}{2} < {x}_{\delta} < 1
+    \end{equation*}
+    Note que para algún $x_\delta \in [0,1)$ sucede que
+    \begin{align*}
+        {d}_{1}({x}_{\delta},0) = \min \{ \abs{{x}_{\delta}}, 1 - \abs{{x}_{\delta}}\} < \delta && \text{ y }&& d(f({x}_{\delta}),f(0)) = \abs{{x}_{\delta} - 0} = \abs{{x}_{\delta}} = {x}_{\delta} > \frac{1}{2}
+    \end{align*}
+    $\therefore f:(X,{d}_{1}) \to (Y,d)$ no es continua en $x_0 = 0$
+    \end{enumerate} 
+\end{proofexplanation}
+
+\begin{eg}
+    La función identidad 
+    \begin{equation*}
+        {\mathrm{id}}_{\R^n} : (\R^n, {\norm{\cdot}}_{p}) \to (\R^n, {\norm{\cdot}}_{1})
+    \end{equation*}
+
+    es una función continua en cada $x \in \R^n \: \forall \: p,q \in [1,\infty)$. Se usará el siguiente Lema.
+\end{eg}
+
+\begin{lemma} \label{lema21}
+    Las siguientes proposiciónes son verdaderas
+    \begin{enumerate}
+        \item Si $a_1,...,a_n \geqslant 0 $ y $s \in [1,\infty) \implies {[\max \{ {a}_{1}^{s}, ... , {a}_{m}^{s} \}]}^{\frac{1}{s}} = \max \{ {a}_{1}, ..., {a}_{m}\}$ 
+        \item $\forall \: s \in [1,\infty) \: \forall \: x \in \R^n \Rightarrow {\norm{x}}_{s} \leqslant {n}^{\frac{1}{s}} {\norm{x}}_{\infty}$
+        \item $\forall \: s \in [1,\infty) \: \forall \: x \in \R^n \Rightarrow {\norm{x}}_{\infty} \leqslant {\norm{x}}_{s}$
+        \item $\forall \: s, t \in [1,\infty) \: \forall \: x \in \R^n \Rightarrow {\norm{x}}_{s} \leqslant {n}^{\frac{1}{s}} {\norm{x}}_{t}$
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    Vamos a demostrar cada inciso del \Cref{lema21}
+    \begin{enumerate}
+        \item Supongamos que
+        \begin{equation*}
+            {a}_{i}^{s} = \max \{ {a}_{1}^{s}, ... , {a}_{m}^{s} \} \Rightarrow a_i = {({a}_{i}^{s})}^{\frac{1}{s}} = {[\max \{ {a}_{1}^{s}, ... , {a}_{m}^{s} \}]}^{\frac{1}{s}}
+        \end{equation*}
+
+        Sea $j \in \{ 1,...,m \}$ arbitrario. Como ${a}_{j}^{s} \in \{ {a}_{1}^{s}, ... , {a}_{m}^{s} \}$
+
+        \begin{equation*}
+            \Rightarrow {a}_{j}^{s} \leqslant {a}_{i}^{s} \Rightarrow \: \forall \: j = 1,...,m \Rightarrow a_j = {({a}_{j}^{s})}^{\frac{1}{s}} \leqslant a_i = {({a}_{i}^{s})}^{\frac{1}{s}}
+        \end{equation*}
+        Así, como $\forall j = 1,...,m \Rightarrow a_j \Rightarrow a_j \leqslant a_i \Rightarrow a_i = \max \{ {a}_{1}, ... , {a}_{m}\} $
+
+        $\therefore {[\max \{ {a}_{1}^{s}, ... , {a}_{m}^{s} \}]}^{\frac{1}{s}} =  {({a}_{i}^{s})}^{\frac{1}{s}} = a_i = \max \{ {a}_{1}, ... , {a}_{m}\} $
+        \item Sean $s \in [1,\infty)$ y $x=(x_1,...,x_n) \in \R^n$ arbitrarios
+        \begin{equation*}
+            {\norm{x}}_{s} =  {\left( \sum_{i=1}^{n} {\abs{{x}_{i}}}^{s}\right)}^{\frac{1}{s}} \leqslant  {\left( \sum_{i=1}^{n} {\max \{ \abs{x_1},..., \abs{x_n}\}}^{s}\right)}^{\frac{1}{s}}
+        \end{equation*}
+        Ya que $\abs{x_i} \leqslant \max \{ \abs{x_1},..., \abs{x_n}\} \: \forall \: i = 1,...,n$. Pero 
+        \begin{equation*}
+            {\left( \sum_{i=1}^{n} 1 \cdot {\max \{ \abs{x_1},..., \abs{x_n}\}}^{s}\right)}^{\frac{1}{s}} =  {\left( {\max \{ \abs{x_1},..., \abs{x_n}\}}^{s} \sum_{i=1}^{n} \cdot 1\right)}^{\frac{1}{s}}
+        \end{equation*}
+        \begin{equation*}
+             = {n}^{\frac{1}{s}} {({\norm{x}}^{s}_{\infty} )}^{\frac{1}{s}} = {n}^{\frac{1}{s}} {\norm{x}}_{\infty}
+        \end{equation*}
+        \item Sean $s \in [1,\infty)$ y $x=(x_1,...,x_n) \in \R^n$ arbitrarios
+        Supongamos qu ${\norm{x}}_{\infty} = \abs{{x}_{i}}$
+        \begin{equation*}
+            {\norm{x}}^{s}_{\infty} = {\abs{{x}_{i}}}^{s} \leqslant \sum_{j=1}^{n} {\abs{{x}_{j}}}^{s} 
+        \end{equation*}
+
+        Luego, se tiene que
+
+        \begin{equation*}
+            {\norm{x}}_{\infty} = {({\norm{x}}^{s}_{\infty} )}^{\frac{1}{s}} \leqslant {\left( \sum_{j=1}^{n} {\abs{{x}_{j}}}^{s}  \right)}^{\frac{1}{s}} = {\norm{x}}_{s}
+        \end{equation*}
+        \item Sean $s,t \in [1,\infty)$  y $x=(x_1,...,x_n) \in \R^n$ arbitrarios. Por el inciso 2. de esta demostración
+        \begin{equation*}
+            {\norm{x}}_{s} \leqslant {n}^{\frac{1}{s}} {\norm{x}}_{\infty}
+        \end{equation*}
+
+        Por el inciso 3. s.t.q.
+        \begin{equation*}
+            {\norm{x}}_{\infty} \leqslant {\norm{x}}_{s}
+        \end{equation*}
+
+        Así
+
+        \begin{equation*}
+            {\norm{x}}_{s} \leqslant {n}^{\frac{1}{s}} {\norm{x}}_{t}
+        \end{equation*}
+    \end{enumerate}
+\end{proof}
+
+\begin{proofexplanation}
+    Podemos ahora demostrar el ejemplo. Sea $x_0 \in \R^n$ f.p.a. Sea $\varepsilon > 0 $ cualquiera. Definimos a $\delta = \frac{\varepsilon}{{n}^{\frac{1}{q}}}$. Resulta que, por 3. del \Cref{lema21}, si $\norm{x-x_0} < \delta \Rightarrow$
+
+    \begin{equation*}
+        {\norm{{\mathrm{id}}_{\R^n}(x)-{\mathrm{id}}_{\R^n}(x_0)}}_{q} = {\norm{x-x_0}}_{q} \leqslant {n}^{\frac{1}{q}} {\norm{x-x_0}}_{p} < {n}^{\frac{1}{q}} \cdot \delta = \varepsilon
+    \end{equation*}
+
+    $\therefore {\mathrm{id}}_{\R^n}$ es continua en $x_0$
+\end{proofexplanation}
+
+\begin{definition}[Lipschitz Continua] \label{def22} 
+    Sean ($X.d$) y ($Y, \rho$) espacios métricos cualesquiera. Diremos que una función $ f : X \to Y$ es Lipschitz continua si existe una constante de Lipschitz $c < 0$ tal que
+    \begin{equation*}
+        \forall \: x,z \in X \Rightarrow \rho(f(x).f(z)) \leqslant c \cdot d(x,z)
+    \end{equation*}
+\end{definition}
+
+\begin{corollary} 
+    Sean ($X.d$) y ($Y, \rho$) espacios métricos. Si $ f : X \to Y$ es Lipschitz continua $\Rightarrow f$ es continua
+\end{corollary}
+
+\begin{orangeproof}
+    Sea $x_0 \in X$ arbitrario. Sea $\varepsilon \in \R^+$ cualquiera. Definamos $\delta=\frac{\varepsilon}{c}$. Donde $c>0$ es tal que
+
+    \begin{equation*}
+         \rho(f(x).f(y)) \leqslant c \cdot d(x,y) \: \forall \: x,y \in X
+    \end{equation*}
+    Resulta que
+    \begin{equation*}
+        \forall \: x \in X \Rightarrow d(x,x_0) < \delta \Rightarrow \rho(f(x). f(x_0)) < \varepsilon
+    \end{equation*}
+
+    Efectivamente, sea $x \in X \backepsilon d(x,x_0) < \delta \implies$
+
+    \begin{equation*}
+        \rho(f(x). f(x_0)) \leqslant c \cdot d(x,x_0) < c \cdot \delta  = \varepsilon
+    \end{equation*}
+    $\therefore f$ es continua en $x_0$. Como $x_0$ es arbitrario, es continua en el espacio.
+\end{orangeproof} 
+
+\begin{eg}
+    La función identidad
+    \begin{equation*}
+        {\mathrm{id}}_{\R^n} : (\R^n, {\norm{\cdot}}_{p}) \to (\R^n, {\norm{\cdot}}_{1})
+    \end{equation*}
+
+    es una función Lipschitz continua con $ p,q \in [1,\infty]$.
+\end{eg}
+
+\begin{proofexplanation}
+    Supongamos $x,y \in \R^n$ arbitrarios. Si $p=q$. es claro que es Lipschitz continua. Supongamos que $p \neq q$. Tenemos los siguientes casos.
+
+    \begin{enumerate}
+        \item $p \in [1,\infty), q = \infty$
+
+        Definimos $c = 1$, y por el inciso 3. del \Cref{lema21}, s.t.q.
+        \begin{equation*}
+            {\norm{{\mathrm{id}}_{\R^n}(x)-{\mathrm{id}}_{\R^n}(y)}}_{\infty} \leqslant 1 \cdot {\norm{x-y}}_{p}
+        \end{equation*}
+        \item $q \in [1,\infty), p = \infty$
+
+        En este caso, definimos a $c = {n}^{\frac{1}{q}} > 0$, por el inciso 2. del \Cref{lema21} s.t.q
+        \begin{equation*}
+             {\norm{x-y}}_{q} =  {\norm{{\mathrm{id}}_{\R^n}(x)-{\mathrm{id}}_{\R^n}(y)}}_{q} \leqslant c \cdot {\norm{x-y}}_{\infty}
+        \end{equation*}
+
+        \item $p \neq q \in [1,\infty]$
+
+        Una vez más, definimos a $c = {n}^{\frac{1}{q}} > 0$ y por el inciso 4. del \Cref{lema21} s.t.q.
+        \begin{equation*}
+            {\norm{x-y}}_{q} = {\norm{{\mathrm{id}}_{\R^n}(x)-{\mathrm{id}}_{\R^n}(y)}}_{q} \leqslant c \cdot {\norm{x-y}}_{p}
+        \end{equation*}
+    \end{enumerate}
+    $\therefore  {\mathrm{id}}_{\R^n} : (\R^n, {\norm{\cdot}}_{p}) \to (\R^n, {\norm{\cdot}}_{1})$ es una función Lipschitz continua
+\end{proofexplanation}
+
+\begin{remark}
+    En el ejemplo anterior, las funciones identidad son biyectivas, y por lo tanto existe su función inversa. Lo notable de esto, es que las inversas son Lipschitz continua. Estas se llaman equivalencias.
+\end{remark}
+
+\begin{definition}[Equivalencia] \label{defequiv}
+   Sean ($X,d$) y ($Y,\rho$) dos espacios métricos. Una función $f : X \to Y$ es una equivalencia si es biyectiva, si es Lipschitz continua, y si su inversa también lo es. Debido a que las funciones Lipschitz continuas son continuas, cualquier función $f: (X,d) \to (Y,\rho)$ que sea una equivalencia es biyectiva, y tanto ella como su función inversa son continuas. Las funciones de este tipo se llaman homeomorfismos.
+\end{definition}
+
+\begin{definition}[Homeomorfismo]
+
+   Una función $f: (X,d) \to (Y,\rho)$ es un homeomorfismo si
+
+   \begin{enumerate}
+       \item $f$ es biyectiva
+       \item $f$ es continua
+       \item ${f}^{-1}$ es continua
+   \end{enumerate}
+
+   Se dice que $X$ y $Y$ son homeomorfos si existe un homeomorfismo entre ellos.
+\end{definition}
+
+\begin{remark}
+       La función ${\mathrm{id}}_{\R^n} : (\R^n, {\norm{\cdot}}_{p}) \to (\R^n, {\norm{\cdot}}_{1})$ es un homeomorfismo porque es equivalencia. La noción de equivalencia nos permite definir cuando dos métricas son equivalentes.
+\end{remark}
+
+\begin{definition}[Métricas Equivalentes]
+    Sean $d$ y $\rho$ dos métricas en un conjunto $X$. Diremos que la métrica de $d$ es equivalente a la métrica $\rho$ si la función identidad
+
+    \begin{equation*}
+        {\mathrm{id}}_{X} : (X, d) \to (X, \rho)
+    \end{equation*}
+
+    es una equivalencia
+\end{definition}
+
+\begin{remark}
+    Si $d$ y $\rho$ son métricas equivalentes en un conjunto $X  \Rightarrow \: \exists \:$ constantes $\in \R^+ c, k \backepsilon \: \forall \: x, y \in X$
+
+    \begin{equation*}
+        k \cdot \rho(x,y) \leqslant d(x,y) \leqslant c \cdot \rho(x,y)
+    \end{equation*}
+\end{remark}
+
+\begin{eg}
+    En el conjunto $X = \{ \frac{1}{n} \mid n \in \N^+ \}$ consideramos 
+    \begin{align*}
+       d_1\left( \frac{1}{n}, \frac{1}{m} \right) = \abs{n-m} && \text{ y } && d_2\left( \frac{1}{n}, \frac{1}{m} \right) = \abs{\frac{1}{n} - \frac{1}{m}}
+    \end{align*}
+
+    Estas métricas no son equivalentes. Se tiene que 
+    \begin{equation*}
+         d_2\left( \frac{1}{n}, \frac{1}{m} \right) \leqslant 1 \cdot  d_1\left( \frac{1}{n}, \frac{1}{m} \right)
+    \end{equation*}
+
+    Pero no existe una constante $k > 0 $ tal que
+
+    \begin{equation*}
+        k \cdot d_2\left( \frac{1}{n}, \frac{1}{m} \right) \leqslant d_1\left( \frac{1}{n}, \frac{1}{m} \right)
+    \end{equation*}
+\end{eg}
+
+\begin{remark}
+    De esta manera, podemos decir que dos normas ${\norm{\cdot}}_{1}$ y ${\norm{\cdot}}_{2}$ en un espacio vectorial $V$ son equivalentes si existen dos constantes $c, k > 0 \backepsilon \: \forall \: \vec{v} \in V$
+
+    \begin{equation*}
+        k \cdot {\norm{\vec{v}}}_{2} \leqslant {\norm{\vec{v}}}_{1} \leqslant c \cdot {\norm{\vec{v}}}_{2}
+    \end{equation*}
+\end{remark}
+
+\begin{corollary}
+    Las desigualdades del \Cref{lema21} muestran que $\forall \: p,q \in [1,\infty]$ las normas ${\norm{\cdot}}_{p}$ y ${\norm{\cdot}}_{q}$ son equivalentes en $\R^n$
+\end{corollary}
+
+\section{Conjuntos Abiertos y Cerrados}
+
+\begin{definition}[Bolas]
+    Sea ($X,d$) un espacio métrico cualquiera. 
+
+    \begin{enumerate}
+        \item La bola abierta de centro $x \in X$ y radio $r > 0$ en ($X,d$) es el subconjunto
+
+        \begin{equation*}
+            B_d(x,r) = \{ y \in X \mid d(x,y) < r \}
+        \end{equation*}
+
+        \item La bola cerrada de centro $x \in X$ y radio $r > 0$ en ($X,d$) es el subconjunto
+
+        \begin{equation*}
+            \widebar{B}_{d}(x,r) = \{ y \in X \mid d(x,y) \leqslant r \}
+        \end{equation*}
+    \end{enumerate}
+\end{definition}
+
+\begin{theorem}
+    Las siguientes son propiedades básicas de las bolas abiertas en cualquier espacio métrico.
+
+    \begin{enumerate}
+        \item Si $0 < r < s \Rightarrow$
+
+        \begin{equation*}
+            B(x,r) \subseteq \widebar{B}(x,r) \subseteq B(x,s)
+        \end{equation*}
+
+        \item $\forall x \in X \Rightarrow$
+
+        \begin{equation*}
+            \bigcap_{r \in \R^+} B(x,r) = \{ x \} = \bigcap_{n=1}^{\infty} B \left(x, \frac{1}{n}\right)
+        \end{equation*}
+        
+        \item $\forall x \in X \Rightarrow$
+
+        \begin{equation*}
+            X = \bigcup_{r \in \R^+} B(x,r)  = \bigcup_{n=1}^{\infty} B (x, n )
+        \end{equation*}
+    \end{enumerate}
+\end{theorem}
+
+\begin{eg}
+    Sean $a,b \in \R$ con $a < b$. En el conjunto 
+
+    \begin{equation*}
+        C([a,b]) = \{ f : [a,b] \to \R \mid f \text{ es continua }\}
+    \end{equation*}
+
+    La función ${\norm{\cdot}}_{1} : C([a,b]) \to \R$ dada pr
+
+    \begin{equation*}
+        {\norm{f}}_{1} = \int_{a}^{b} \abs{f(x)} \, dx
+    \end{equation*}
+
+    es una norma en $C([a,b])$. Observe que si $f\in C([a,b])$ y $r > 0 \Rightarrow$
+
+    \begin{equation*}
+        B_{d_{1}} = \{ g \in C([a,b]) \mid {\norm{f-g}}_{1} < r \}
+    \end{equation*}
+    \begin{equation*}
+        \Rightarrow  B_{d_{1}}  =  \{ g \in C([a,b]) \mid \int_{a}^{b} \abs{f(x)-g(x)} \, dx < r \}
+    \end{equation*}
+    
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[scale = 1,
+            axis lines=middle,
+            xlabel=$x$,
+            ylabel=$y$,
+            enlargelimits,
+            ytick=\empty,
+            xtick={1,4},
+            xticklabels={a,b}]
+\addplot[name path=F,blue,domain={-.2:5}] {0.5*x^2-2*x+5} node[pos=.8, above]{$f$};
+
+\addplot[name path=G,red,domain={-.2:5}] {-0.1*x^2+2}node[pos=.1, below]{$g$};
+
+\addplot[pattern=north west lines, pattern color=magenta!50]fill between[of=F and G, soft clip={domain=1:4}]
+;
+\node[coordinate,pin=30:{$< r $}] at (axis cs:3.8,3){};
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+$B_{d_{1}}$ se puede interpretar geométricamente como el conjunto de todas las funciones continuas $g : [a,b] \to \R$ tales que la región determinada por las gráficas de $f$ y de $g$ tiene área $< r$
+\end{eg}
+
+\begin{eg}
+    Sean $a,b \in \R$ con $a < b$. la función  ${\norm{\cdot}}_{\infty} : C([a,b]) \to \R$ dada pr
+
+    \begin{equation*}
+        {\norm{f}}_{\infty} = \sup \{ \abs{f(x)} \mid x \in [a,b] \}
+    \end{equation*}
+
+    es una norma en $C([a,b])$. Como $C([a,b])$ es cerrado y acotado es compacto\footnote{El Teorema de Heine-Börel se verá más adelante, de donde se obtiene esta propiedad}, por lo que alcanza su máximo y su mínimo
+
+    \begin{equation*}
+        \Rightarrow {\norm{f}}_{\infty} = \max \{ \abs{f(x)} \mid x \in [a,b] \}
+    \end{equation*}
+
+    En este espacio normado de centro $f$ y radio $r > 0 \Rightarrow$
+
+    \begin{equation*}
+        B_{d_{\infty}} = \{ g \in C([a,b]) \mid {\norm{f-g}}_{\infty} < r \}
+    \end{equation*}
+    \begin{equation*}
+        \Rightarrow  B_{d_{\infty}}  =  \{ g \in C([a,b]) \mid \sup  \{ \abs{f(x)} \mid x \in [a,b] \} < r \}
+    \end{equation*}
+    
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[scale = 1,
+            axis lines=middle,
+            xmin = -1, xmax = 5,
+            xlabel=$x$,
+            ylabel=$y$,
+            enlargelimits,
+            ytick=\empty,
+            xtick={1,4},
+            xticklabels={a,b}]
+            
+\addplot[name path=F,blue,domain={0:5}] {0.5*x^2-2*x+5} node[pos=.9, left]{$+r$};
+
+\addplot[name path=H,red,domain={0:5}] {0.5*x^2-2*x+3} node[pos=.9, above]{$f$};
+
+\addplot[name path=K,green,domain={0:5}] {(0.2*x)^3+2} node[pos=.9, above]{$h$};
+
+
+\addplot[name path=G,blue,domain={0:5}] {0.5*x^2-2*x}node[pos=.9, right]{$-r$};
+
+\addplot[pattern=north west lines, pattern color=magenta!50]fill between[of=F and G, soft clip={domain=1:4}]
+;
+\node [left, blue] at (axis cs: 0, 0.4) {$f(x)-r$};
+\node [left, red] at (axis cs: 0, 3) {$f(x)$};
+\node [left, blue] at (axis cs: 0, 5) {$f(x)+r$};
+\node [left, purple] at (axis cs: 2, -0.4) {$R$};
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+Donde el área sombrada de color magenta la denotamos como 
+
+\begin{equation*}
+    R = \{ (x,y) \in \R^2 \mid a \leqslant x \leqslant b \text{ y } f(x)-r < y < f(x)+r \}
+\end{equation*}
+
+Sea $h \in B_{d_{\infty}}(f,r) $. Si $x \in [a,b]$ es cualquier elemento
+
+\begin{equation*}
+    \Rightarrow \abs{f(x)-h(x)} \leqslant \sup \{ \abs{f(y)-h(y)} \mid y \in [a,b] \} = {\norm{f-h}}_{\infty} < r
+\end{equation*}
+
+Así que 
+
+\begin{equation*}
+    \forall \: x \in [a,b] \Rightarrow f(x)-r < h(x) < f(x)+r
+\end{equation*}
+
+Luego
+
+\begin{equation*}
+    \forall \: x \in [a,b] \Rightarrow (x,h(x)) \in R
+\end{equation*}
+
+Por lo tanto
+
+\begin{equation*}
+    \text{graf}(h) = \{ (x,h(x)) \mid x \in [a,b] \} \subseteq R
+\end{equation*}
+
+Así $h \in R \therefore B_{d_{\infty}}(f,r) \subseteq R$. Esta es una forma potencial de hablar del infinito que hay en $R$. Es decir, podríamos llenar a $R$.
+\end{eg}
+
+
+\begin{definition}[Conjunto Abierto] \label{def23}
+    Sea ($X,d$) un espacio métrico. Diremos que $A \subseteq X$ es abierto en ($X,d$) si ocurre lo siguiente:
+
+    \begin{equation*}
+        \forall \: x \in A \: \: \exists \: {r}_{x} > 0 \backepsilon {B}(x, {r}_{x}) \subseteq A
+    \end{equation*}
+\end{definition}
+
+\begin{theorem}
+    En cualquier espacio métrico ($X,d$) cualquier bola abierta es un conjunto abierto en ($X,d$)
+\end{theorem}
+
+\begin{proof}
+    Sea $x \in X$ y $r \in \R^+$ cualesquiera elementos. Supongamos $y \in {B}_{d}(x,r)$ es arbitrario.
+
+    \begin{equation*}
+        \Rightarrow d(x,y) < r
+    \end{equation*}
+
+    Luego, $t = r-d(x,y) > 0$. Resulta ser que
+
+    \begin{equation*}
+        {B}_{d}(y,t) \subseteq {B}_{d}(x,r)
+    \end{equation*}
+
+    Efectivamente, si $x \in {B}_{d}(y,t) $ es arbitrario
+
+    \begin{equation*}
+        \Rightarrow d(x,z) \leqslant d(x,y) + d(y,z) < d(x,y) + t = r
+    \end{equation*}
+
+    Así $z \in {B}_{d}(x,r) \therefore {B}_{d}(x,r)$ es un conjunto abierto en ($X,d$)
+\end{proof}
+
+\begin{corollary}
+    El conjunto $A = \{ f \in C([a,b]) \Rightarrow \: \forall \: t \in [a,b] \abs{f(t)} < r \}$ es un conjunto abierto en ($C([a,b]), {\norm{\cdot}}_{\infty}$) con $a<b$
+\end{corollary}
+
+\begin{orangeproof}
+    Observe que $A =  B_{d_{\infty}}(\vec{0},1)$
+
+    \begin{equation*}
+        B_{d_{\infty}}  =  \{ g \in C([a,b]) \mid \sup  \{ \abs{g(x)-\vec{0}} \mid x \in [a,b] \} < r \}
+    \end{equation*}
+
+    Como es una bola es abierto. Es interesante ver que como es continua alcanza su máximo, por lo que $\max = \sup$ y $\sup < 1$
+\end{orangeproof}
+
+\begin{corollary}
+    En ($\R, \norm{\cdot}$) el intervalo $(a,b)$ con $a < b$ es un conjunto abierto
+\end{corollary}
+
+\begin{orangeproof}
+    En efecto, observe que
+
+    \begin{equation*}
+        (a,b) = B\left( \frac{a+b}{2}, \frac{b-a}{2} \right)
+    \end{equation*}
+
+    Así $(a,b)$ es un conjunto abierto en ($\R, \abs{\cdot}$)
+\end{orangeproof}
+
+\begin{definition}[Punto Interior]
+    Sea $A \subseteq X$ y ${x}_{o} \in A$. Si ${x}_{0}$ es punto interior de $A \Rightarrow $ 
+
+    \begin{equation*}
+        \exists \: r > 0 \backepsilon {B}({x}_{0}, r) \subseteq A
+    \end{equation*}
+\end{definition}
+
+\begin{remark}
+    Esta definición es idéntica a la \Cref{def23}
+\end{remark}
+
+\begin{theorem} \label{theom223}
+\
+    \begin{enumerate}
+        \item $\varnothing$, $X$ son abiertos.
+        \item Si $\{ {\F}_{\alpha} \mid \alpha \in J \}$ es una familia de conjuntos abiertos $\Rightarrow \bigcup\limits_{\alpha \in J} {\F}_{\alpha}$ 
+        es abierto.
+        \item Si $\{ {\F}_{i} \mid i=1,...,k \}$ es una familia finita de conjuntos abiertos $\Rightarrow  \bigcap\limits_{i=1}^{k}{\F}_{i}$ es un conjunto abierto. 
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\
+    \begin{enumerate}
+    
+        \item P.D. $X$ es abierto.
+
+        Sea ${x}_{0} \in X$ fijo pero arbitrario. Tomando $r=1$
+        \begin{equation*}
+            {B}({x}_{0}, 1) \subseteq X
+        \end{equation*}
+        Como ${x}_{0}$ fue arbitrario $\Rightarrow$ todos los puntos son interiores.
+
+        $\therefore X$ es abierto.
+
+        P.D. $\varnothing$ es abierto (por vacuidad)
+
+        Si $\varnothing$ no fuera abierto $\Rightarrow \: \exists \: {x}_{0} \in \varnothing \backepsilon {x}_{0}$ no es punto interior del $\varnothing$. Sin embargo, no se puede exhibir dicho punto.
+
+        $\therefore \varnothing$ es abierto.
+
+        \item Sea  $\{ {\F}_{\alpha} \mid \alpha \in J \}$ es una familia de conjuntos abiertos P.D. que $\bigcup\limits_{\alpha \in J} {\F}_{\alpha}$ es abierto.
+
+        Sea ${x}_{0} \in \bigcup\limits_{\alpha \in J} {\F}_{\alpha}$
+
+        \begin{equation*}
+            \Rightarrow \exists \: {\alpha}_{0} \in J \backepsilon {x}_{0} \in {\F}_{{\alpha}_{0}}
+        \end{equation*}
+
+        Como ${\F}_{{\alpha}_{0}}$ es abierto $\Rightarrow {x}_{0}$ es punto interior de ${\F}_{{\alpha}_{0}}$.
+
+        \begin{equation*}
+            \Rightarrow \exists \: r > 0 \backepsilon {B}({x}_{0}, r) \subseteq {\F}_{{\alpha}_{0}}
+        \end{equation*}
+
+        Como ${\F}_{{\alpha}_{0}} \subseteq \bigcup\limits_{\alpha \in J} {\F}_{\alpha}$, por transitividad:
+
+        \begin{equation*}
+            \Rightarrow  {B}({x}_{0}, r) \subseteq \bigcup_{\alpha \in J} {\F}_{\alpha}
+        \end{equation*}
+
+        $\Rightarrow {x}_{0}$ es punto interior de $\bigcup\limits_{\alpha \in J} {\F}_{\alpha}$. Como ${x}_{0}$ fue arbitrario en $\bigcup\limits_{\alpha \in J} {\F}_{\alpha}$,
+
+        $\therefore \bigcup\limits_{\alpha \in J} {\F}_{\alpha}$ es abierto. (la unión arbitraria de abiertos es abierta)
+
+        \item Sea  $\{ {\F}_{i} \mid i=1,...,k \}$  una familia finita de conjuntos abiertos P.D. $\bigcap\limits_{i=1}^{k}{\F}_{i}$ es un conjunto abierto. 
+
+        Sea ${x}_{0} \in \bigcap\limits_{i=1}^{k}{\F}_{i} \Rightarrow \forall \: i=1,...,k$ $\: {x}_{0} \in {\F}_{i}$.
+
+        \begin{equation*}
+            \Rightarrow \forall \: i=1,...,k \: \: \: \exists \: {r}_{i} > 0 \backepsilon  {B}({x}_{0}, {r}_{i}) \subseteq {\F}_{i}
+        \end{equation*}
+
+        Definimos a $r = \min (\{ {r}_{1},...,{r}_{k} \}) > 0$
+
+        Veamos que ${B}({x}_{0},{r}) \subseteq \bigcap\limits_{i=1}^{k}{\F}_{i}$
+
+        $\forall \: i=1,...,k$ tenemos que $r = \min (\{ {r}_{1},...,{r}_{k} \}) \leq {r}_{i}$
+
+        \begin{equation*}
+             \Rightarrow \forall \: i=1,...,k \: \: \: B({x}_{0},{r}) \subseteq {B}({x}_{0}, {r}_{i}) \subseteq {\F}_{i}
+        \end{equation*}
+
+            $A \subseteq {B}_{1}, A \subseteq {B}_{2},...,A \subseteq {B}_{k} \Rightarrow A \subseteq \bigcap\limits_{i=1}^{k}{B}_{i}$
+        \begin{equation*}
+            \Rightarrow {B}({x}_{0}, {r}) \subseteq \bigcap_{i=1}^{k}{\F}_{i}
+        \end{equation*}
+
+        $\Rightarrow {x}_{0}$ es punto interior de $\bigcap\limits_{i=1}^{k}{\F}_{i}$.        
+    \end{enumerate}
+    
+$\therefore \bigcap\limits_{i=1}^{k}{\F}_{i}$ es abierto. (la intersección finita de abiertos es abierta)
+\end{proof}
+
+\begin{definition}[Punto de Acumulación] \label{def229}
+    Sea $A \subseteq X$ donde $X$ es un espacio métrico. Un punto $x \in X$ se llama punto de acumulación de $A$ si toda bola abierta con centro en $x$ tiene un punto de $A$ distinto de $x$. Es decir
+
+    \begin{equation*}
+        \forall \: r > 0 \Rightarrow (B(x,r) \setminus \{ x \}) \cap A \neq \varnothing
+    \end{equation*}
+\end{definition}
+
+\begin{theorem}
+    Si $x$ es punto de acumulación de un cojunto $A$ es un espacio métrico ($X,d$) $\Rightarrow$ toda bola abierta con centro en $x$ tiene una cantidad infinita de elementos de $A$
+\end{theorem}
+
+\begin{proof}
+    Sea $r > 0$ arbitrario y supongamos, para generar una contradicción, que $(B(x,r) \setminus \{ x \}) \cap A$ es un conjunto finito, es decir, que $B(x,r) \setminus \{ x \}$ tiene una cantidad finita de elementos de $A$
+
+    \begin{equation*}
+        \Rightarrow (B(x,r) \setminus \{ x \}) \cap A = \{ x_1, ..., x_n \}
+    \end{equation*}
+
+    Definamos a $\delta = \min \{ d(x, x_i) \mid i = 1 ,..., n \} < r$. Resulta ser que
+
+    \begin{equation*}
+         (B(x,\delta) \setminus \{ x \}) \cap A = \varnothing
+    \end{equation*}
+
+    En efecto, si ocurriera que
+    \begin{equation*}
+        y \in (B(x,\delta) \setminus \{ x \}) \cap A 
+    \end{equation*}
+    
+    $\Rightarrow$ como $\delta < r$ s.t.q. 
+
+    \begin{equation*}
+        y \in  (B(x,r) \setminus \{ x \}) \cap A = \{ x_1, ..., x_n \}
+    \end{equation*}
+
+    $\Rightarrow \: \exists \:$ un índice $j=1,...,n$ tal que $y = x_j$
+
+    Luego $\delta \leqslant d(x,x_j) = d(x,y)$ y como $y \in B(x, \delta)$ también se tiene que $d(x,y) < \delta \Rightarrow \Leftarrow$
+
+    $\therefore   (B(x,\delta) \setminus \{ x \}) \cap A = \varnothing$, lo cual contradice la hipótesis, es decir, que $x$ es un punto de acumulación
+\end{proof}
+
+\begin{corollary}
+    Si $A$ es un subconjunto finito de un espacio métrico $\Rightarrow A$ no tiene puntos de acumulación.
+\end{corollary}
+
+\begin{notation}
+    Al conjunto de puntos de acumulación de $A$ se denota como $\der(A)$
+\end{notation}
+
+\begin{remark}
+    Diremos que un subconjunto de un espacio métrico es cerrado si contiene a todos sus puntos de acumulación
+\end{remark}
+
+\begin{definition}[Conjunto Cerrado]
+    Sea ($X,d$) un espacio métrico. Diremos que $A \subseteq X$ es cerrado en ($X,d$) si $\der(A) \subseteq$
+\end{definition}
+
+\begin{remark}
+    Si $A$ es finito $\Rightarrow \der(A) = \varnothing$, por lo que se sigue que $A$ es un subcojunto cerrado
+\end{remark}
+
+\begin{corollary}
+    Todo conjunto finito es un espacio métrico es un conjunto cerrado
+\end{corollary}
+
+\begin{theorem}
+    Sea ($X,d$) un espacio métrico y $F \subseteq X$. $F$ es cerrado en $X \iff X \setminus F$ es abierto
+\end{theorem}
+
+\begin{proof}
+    $\Rightarrow$ Supongamos que $F$ es cerrado $\Rightarrow \der(F) \subseteq F$
+
+    Si $X \setminus F = \varnothing \Rightarrow X=F$, el cual ya es abierto\footnote{Este hecho se demostrará en el Corolario inmediato a este Teorema}. Así que, supongamos que $X \setminus F \neq \varnothing$ y que $x \in X \setminus F$ es abitrario
+
+    \begin{equation*}
+        \Rightarrow x \notin \der(F) \Rightarrow \: \exists \: r > 0 \backepsilon  (B(x,r) \setminus \{ x \}) \cap F = \varnothing
+    \end{equation*}
+    \begin{equation*}
+        \Rightarrow B(x,r) \cap F = \varnothing
+    \end{equation*}
+    $\therefore B(x,r) \subseteq X \setminus F \Rightarrow X \setminus F$ es abierto
+
+    Supongamos ahora que $X \setminus F$ es abierto. Si $\der(F) = \varnothing \Rightarrow F$ es cerrado. Supongamos que $\der(F) \neq \varnothing$. Sea $y \in \der(F)$ es cualquier elemento. Supongamos, para generar una contradicción, que $y \notin F \Rightarrow y \in X \setminus F$, que por hipótesis es abierto
+
+    \begin{equation*}
+        \Rightarrow \: \exists \: \varepsilon > 0 \backepsilon B(y, \varepsilon) \subseteq X \setminus F
+    \end{equation*}
+    Esto implica
+    \begin{equation*}
+        (B(y,\varepsilon) \setminus \{ y \} ) \subseteq X \setminus F \Rightarrow \Leftarrow
+    \end{equation*}
+    Esto contradice que $y \in \der(F) \Rightarrow y \in F$ $\therefore \der(F) \subseteq F$
+\end{proof} 
+
+\begin{corollary}
+    \
+    \begin{enumerate}
+        \item $\varnothing$, $X$ son cerrados.
+        \item Si $\{ {\F}_{\alpha} \mid \alpha \in J \}$ es una familia de conjuntos cerrados $\Rightarrow \bigcap\limits_{\alpha \in J} {\F}_{\alpha}$ es cerrado.
+        \item Si $\{ {\F}_{i} \mid i=1,...,k \}$ es una familia finita de conjuntos cerrados $\Rightarrow \bigcup\limits_{i=1}^{k}{\F}_{i}$  es un conjunto cerrado. 
+    \end{enumerate}
+\end{corollary}
+
+\begin{orangeproof}
+    \
+    \begin{enumerate}
+    
+        \item  $\varnothing$ es cerrado, ya que el complemento $X \setminus \varnothing = X$ es abierto.
+
+        $X$ es cerrado ya que $X \setminus X = \varnothing$ es abierto.
+
+        \item Sea $\{ {\F}_{\alpha} \mid \alpha \in J \}$  una familia arbitraria de conjuntos cerrados. Sea  $\{ {\mathcal{A}}_{\alpha} \mid \alpha \in J \}$  una familia arbitraria de conjuntos abiertod. Veamos que $\bigcap\limits_{i=1}^{k}{\F}_{i}$ es cerrado.
+
+        Por el \Cref{theom223} sabemos que la unión arbitraria de abiertos es abierta. 
+
+        Por definición $\bigcup\limits_{\alpha \in J}{\mathcal{A}}_{\alpha}$ es abierto $\Leftrightarrow X \setminus \bigcup\limits_{\alpha \in J}{\mathcal{A}}_{\alpha}$ es cerrado.
+
+        
+        Por leyes de De Morgan s.t.q ${A}^{c} \cup X = A \cap X$. Se sigue que:
+
+        \begin{equation*}
+             X \setminus \left( \bigcup_{\alpha \in J}{\mathcal{A}}_{\alpha} \right) = \bigcap_{\alpha \in J} (X \setminus {\mathcal{A}}_{\alpha}) = \bigcap_{\alpha \in J} \F_\alpha
+        \end{equation*}
+
+        $\therefore \bigcap_{\alpha \in J} \F_\alpha$ es cerrrado, porque es el complemento de la unión arbitraria de abiertos, que sabemos que es abierto. 
+
+        \item Sea $\{ {\F}_{i} \mid i=1,...,k \}$  una familia finita de conjuntos cerrados. Veamos que $\bigcup\limits_{i=1}^{k}{\F}_{i}$ es cerrado. 
+
+        Por definición $\bigcup\limits_{i=1}^{k}{\F}_{i}$ es cerrado $\Leftrightarrow X \setminus \bigcup\limits_{i=1}^{k}{\F}_{i}$ es abierto.
+
+        
+        Por leyes de De Morgan s.t.q ${A}^{c} \cup X = A \cap X$. Se sigue que:
+
+        \begin{equation*}
+             X \setminus \left( \bigcup_{i=1}^{k}{\F}_{i} \right) = \bigcap_{i=1}^{k} (X \setminus {\F}_{i})
+        \end{equation*}
+
+        Por otra parte, por hipótesis $\forall \: 1,...,k \: \: X \setminus {\F}_{i}$ es abierto.
+
+        $\Rightarrow \bigcap\limits_{i=1}^{k} (X \setminus {\F}_{i})$ es abierto.
+
+        $\Rightarrow X \setminus \left( \bigcup\limits_{i=1}^{k}{\F}_{i} \right)$ es abierto.
+
+        $\therefore \bigcup\limits_{i=1}^{k}{\F}_{i}$ es cerrado.
+    \end{enumerate}
+\end{orangeproof}
+
+\begin{theorem} \label{theom226}
+    En todo espacio métrico ($X,d$) cualquier bola cerrada $\widebar{B}(x,r)$ es siempre un conjunto cerrado.
+\end{theorem}
+
+\begin{proof}
+    Veamos que $X \setminus \widebar{B}(x,r)$ es un subconjunto abierto de ($X,d$). Sea $y \in X \setminus \widebar{B}(x,r)$ arbitrario $\Rightarrow d(x,y) >r$.
+
+    Defina a $s = d(x,y) - r$. Note que $s>0$. Además $B(y,s) \subseteq X \setminus \widebar{B}(x,r)$
+
+    Nuevamente, sea $z \in B(y,s)$ un elemento cualquiera $\Rightarrow$
+
+    \begin{equation*}
+        d(z,y) < s = d(x,y)-r \leqslant d(xz) + d(z,y) - r
+    \end{equation*}
+
+    Consecuentemente 
+
+    \begin{equation*}
+        r < d(x,z) + d(z,y) - d(z,y) = d(x,z)
+    \end{equation*}
+
+    Así, $z \in X \setminus \widebar{B}(x,r)$  $\therefore \widebar{B}(y,s) \subseteq X \setminus \widebar{B}(x,r)$
+\end{proof}
+
+\begin{remark}
+    Si $d$ es la métrica discreta en un conjunto no vacío $X \Rightarrow$
+
+    $$ B(x,r) = \begin{cases}
+              \{ x \} & \text{si }  0 < r \leqslant 1\\
+              X & \text{si } r >1
+     \end{cases}$$
+
+     $\forall \: x \in X$, y $\forall \: r \in \R^+$
+
+     Si $0 < r \leqslant 1$, y sea $y \in B(x,r)$. Resulta que $y=x$, puesto que si $y \neq x \Rightarrow d(x,y) = 1$ lo que implica $1 < r$, lo cual es imposible.
+
+     Si $r > 1$ y $ y \in X$ es un elemento cualquiera $\Rightarrow d(y,x) \leqslant 1 < r$. Luego $y \in B(x,r)$
+
+     Note también que si $x \in X$ y $r \in \R^+$ arbitrarios $\Rightarrow y \in B(x,r) \Rightarrow$
+
+     $$ \widebar{B}(x,r) = \begin{cases}
+         \{ x \} & \text{si } x 0 < r <  1\\
+              X & \text{si } r \geqslant 1
+     \end{cases}$$
+
+     Todo subconjunto $A \subseteq X$ es un subconjunto cerrado. En efecto, sea $A \subseteq X$ arbitrario. Sea $x \in X$ cualquier momento. Consideremos a $B\left(x,\frac{1}{2}\right)$. Note que
+
+     \begin{equation*}
+         \left(B\left(x,\frac{1}{2}\right) \setminus \{ x \} \right) \cap A = (\{ x \} \setminus \{ x \}) = \varnothing \cap A = \varnothing.
+     \end{equation*}
+
+    $\therefore x$ no es punto de acumulacion de $A.$ Además, $\der(A) = \varnothing$. Como $\varnothing \subseteq A$, s.t.q. $\der(A) \subseteq A$ $\therefore A$ es cerrado en ($X,d$) 
+
+    Ahora, todo subconjunto de $B \subseteq X$ es abierto en ($X,d$). Recordemos que $X \setminus B$ es cerrado $\Leftrightarrow B$ es abierto. Pero $X \setminus B$ es un subconjunto de $X$, por lo que es cerrado y $B$ es abierto.
+\end{remark}
+
+\begin{definition}[Imagen Inversa]
+    La imagen inversa de $B \subseteq Y$ bajo la función $f: X \to Y$ es el conjunto
+    $$f^\leftarrow[B] := \{ x \in X \mid f(x) \in B \}$$
+\end{definition}
+
+\begin{theorem} \label{theom227}
+    Sean ($X,d$) y ($Y,\rho$) espacios métricos y $f: X \to X$ una función. Son equivalentes
+
+    \begin{enumerate}
+        \item $f$ es continua
+        \item $\forall \: W$ abierto en ($Y, \rho$) $\Rightarrow {f}^{\leftarrow}[W]$ es abierto en ($X,d$)
+        \item $\forall \: \F$ cerrado en ($Y, \rho) \Rightarrow {f}^{\leftarrow}[\F]$ es cerrado en ($X,d$)
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    $1. \Rightarrow 2.$
+
+    Sea $W$ un abierto cualquiera de $Y$. Sea $x \in {f}^{\leftarrow}[W]$. Como $W$ es abierto, $\exists \: \varepsilon > 0 \backepsilon \: {B}_{\rho}(f(x),\varepsilon) \subseteq W$
+
+    Como supusimos $f$ es continua en $x$
+    
+    $$\exists \: \delta > 0 \backepsilon \: \forall \: z \in X \Rightarrow d(x,z) < \delta \Rightarrow \rho(f(x),f(z)) < \varepsilon$$ 
+    
+    Observe que $B_d(x, \delta) \subseteq {f}^{\leftarrow}[W]$. Tomemos $z \in B(x,\delta)$, lo que implica 
+
+    \begin{equation*}
+        f(z) \in B_\rho(f(x), \varepsilon) \subseteq W
+    \end{equation*}
+
+    $\therefore z \in {f}^{\leftarrow}[W]$
+    \smallskip \smallskip \smallskip
+
+    $2. \Rightarrow 3.$
+
+    Supongamos que $F \subseteq Y$ es cualquier cerrado $\Rightarrow Y \setminus F$ es abierto en $Y$. Por el inciso anterior s.t.q. ${f}^{\leftarrow}[Y \setminus F]$ es abierto en en $X$. Además, notemos que
+    \begin{equation*}
+        {f}^{\leftarrow}[Y \setminus F] = {f}^{\leftarrow}[Y ] \setminus {f}^{\leftarrow}[F] = X \setminus {f}^{\leftarrow}[F]
+    \end{equation*}
+
+    Pero este es abierto, por lo que su complemento ${f}^{\leftarrow}[F]$ es cerrado en $X$
+    \smallskip \smallskip \smallskip
+    
+    $3. \Rightarrow 1.$
+
+    Supongamos que $x \in X$ es cualquier elemento y que $\varepsilon > 0$ es arbitrario. Consideremos a $B(f(x), \varepsilon)$, que es un abierto de $Y$, como todas las bolas son abiertas, por lo que $$Y \setminus B(f(x), \varepsilon)$$ es un cerrado de $Y$. Por el inciso anterior s.t.q. $$ {f}^{\leftarrow}[Y \setminus B(f(x), \varepsilon)] $$ es cerrado en $X$ y además
+
+    $$ {f}^{\leftarrow}[Y \setminus B(f(x), \varepsilon)] = {f}^{\leftarrow}[Y]  \setminus {f}^{\leftarrow}[ B(f(x), \varepsilon)]  = X \setminus {f}^{\leftarrow}[ B(f(x), \varepsilon)]$$
+
+    $\Rightarrow {f}^{\leftarrow}[ B(f(x), \varepsilon)]$ es abierto en $X$. Además $x \in  {f}^{\leftarrow}[ B(f(x), \varepsilon)]$, y por ser abierto $\exists \: \delta > 0 \backepsilon$
+
+    $$ B(x,\delta) \subseteq {f}^{\leftarrow}[ B(f(x), \varepsilon)]$$
+
+    Resulta que
+
+    $$ f[B(x,\delta)] \subseteq {f}^{\leftarrow}[ B(f(x), \varepsilon)]$$
+
+    En efecto, supongamos que $z \in f[B(x,\delta)] $ es arbitrario
+
+    $$\Rightarrow \: \exists \: y \in B(x,\delta) \backepsilon z=f(y) \Rightarrow y \in {f}^{\leftarrow}[ B(f(x), \varepsilon)]$$
+
+    Luego $f(y) \in B(f(x), \varepsilon)$ pero $f(y)=z$, lo que prueba la contención 
+    
+    $$f[B(x,\delta)] \subseteq {f}^{\leftarrow}[ B(f(x), \varepsilon)] $$ 
+    
+   $\Rightarrow f$ es continua en $x$. 
+    
+    Como fue arbitrario, s.t.q. $f$ es continua en todo $X$.
+\end{proof}
+
+\begin{remark}
+    Para que $f$ sea continua en $x \in X$ s.t.q. probar 
+
+    $$\forall \: \varepsilon >0 \: \exists \: \delta >0 \text{ tal que si} d_X(x,z) < \delta \Rightarrow d_Y(f(x),f(z)) < \varepsilon$$
+    $$\Leftrightarrow z \in B(x,\delta) \Rightarrow f(z) \in B(f(x),\varepsilon) \Leftrightarrow f[B(x,\delta)] \subseteq B(f(x),\varepsilon)$$
+
+    Si $a \in  f[B(x,\delta)] \Rightarrow \: \exists \: b \in B(x,\delta) \backepsilon f(b) = a \Rightarrow a=f(b) \in  B(f(x),\varepsilon)$
+\end{remark}
+
+\begin{eg}
+    Las funciones constantes son continuas. Sean $X$ y $Y$ dos espacios métricos, y $y_0 \in Y$. Definimos a $f: X \to Y$ como 
+
+    $$\forall \: x \in X \Rightarrow f(x) = y_0$$
+
+    si $U \subseteq$ es cualquier abierto $\Rightarrow$
+
+    $$f^\leftarrow[U] = \begin{cases}
+             X & \text{si } y_0 \in U\\
+             \varnothing & \text{si } y_0 \notin U
+     \end{cases} $$
+
+    Por 2. de \Cref{theom227} como en ambos casos $f^\leftarrow[U]$ es abierto en $X \Rightarrow f$ es continua.
+\end{eg}
+
+\begin{eg}
+    La función identidad es continua. Si ($X,d$) es un espacio métrico y ${\mathrm{id}}_{X} : (X,d) \to (X,d) $
+    definida como 
+
+    $$ f(x) = x \: \forall \: x \in X \Rightarrow$$
+
+    Si $U \subseteq X$ es cualquier abierto $\Rightarrow f^\leftarrow[U] = {\mathrm{id}}_{X}^\leftarrow[U] = U$ es abierto. $\therefore f$ es continua
+\end{eg}
+
+\begin{eg}
+    Toda función con dominio en un espacio discreto es una función continua. Sean ($X,d$) y ($Y,\rho$) espacios métricos con $d$ la métrica discreta y $f: (X,d) \to (Y,\rho)$ cualquier función.
+
+    Se probó en la Observación inmediata al \Cref{theom226} que para un conjunto con la métrica discreta (espacio discreto), todo subconjunto del espacio es abierto y cerrado.
+
+    Si $V \subseteq Y$ es abierto $f^\leftarrow[V] \subseteq X$ es abierto en $X$ por ser discrerto. Esto por el simple hecho de ser un subconjunto del espacio. $\therefore f$ es continua. 
+\end{eg}
+
+\begin{theorem}
+    Sean $X,Y,Z$ espacios métricos y las funciones $f : X \to Y$ y $g : Y \to Z$ continuas $\Rightarrow g \circ f : X \to Z$ es continua.
+\end{theorem}
+
+\begin{proof}
+    Usaremos 2. del \Cref{theom227}. Supongamos que $U \subseteq Z$ es cualquier abierto en $Z$. Como $g$ es continua $g^\leftarrow[U]$ es abierto en $Y$. Como $f$ es continua $\Rightarrow f^\leftarrow[g^\leftarrow[U]]$ es abierto en $X$. Note que
+
+    $$(g \circ f)^\leftarrow[U] = f^\leftarrow[g^\leftarrow[U]]$$
+
+    $\therefore g \circ f$ es continua
+\end{proof}
+
+\section{Convergencia de Sucesiones}
+
+\begin{definition}[Sucesiones] \label{defsuc}
+    Si $X$ es un conjunto $\Rightarrow$ una sucesión de elementos de $X$ es cualquier función
+
+    $$x : \N \to X$$
+
+    El valor $x(n)$ es llamado $n$-ésimo término de la sucesión.
+
+    Una cola de $X$ es cualquier conjunto del tipo
+
+    $$ \{ x(m) \mid m \geqslant n \}$$
+
+    donde $n \in \N = \{ 1,2, ... \} = \mathbb{Z}^+$
+\end{definition}
+
+\begin{notation}
+   $ {(x(n))}_{n \in \N}$ o $ {(x_n)}_{n \in \N}$ o $(x_n)$
+\end{notation}
+
+\begin{definition}[Convergencia] \label{def2213}
+    Sean ($X,d$) un espacio métrico arbitrario, $X : \N \to X$ una sucesión y $x \in X$. Diremos que la sucesión $ {(x_n)}_{n \in \N}$ converge a $x$ en $X$ si ocurre lo siguiente
+
+    $$ \forall \: \varepsilon >0 \: \exists \: m \in \N \: \forall \: n \geqslant m \Rightarrow d(x_n,x) < \varepsilon $$
+
+    Como es común, escribiremos $x = \lim\limits_{n \to \infty} x_n$
+\end{definition}
+
+\begin{remark}
+    Podemos ver que una sucesión $ {(x_n)}_{n \in \N}$ converge a $x$ en ($X,d$) $\iff \: \forall \: r > 0 \: \exists \: m \in \N \Rightarrow \{ x_m \mid m \geqslant n \} \subseteq B(x,r)$
+\end{remark}
+
+\begin{theorem} \label{theom232} 
+    Si ${(x_n)}_{n \in \N}$ converge a $x$ en ($X,d$) $\Rightarrow {(x_n)}_{n \in \N}$ sólo puede converger a $x$. 
+\end{theorem}
+
+\begin{proof}
+    En efecto. Sean $y \in X \setminus \{ x \} \Rightarrow r = d(x,y) > 0$
+
+    Luego $B(x,\delta) \cap B(y,\delta) = \varnothing$ donde $\delta = \frac{r}{2}$
+
+    Supongamos, para generar una contradicción, que ${(x_n)}_{n \in \N}$ converge a $x$ y a otro elemento $y$.
+
+    Debido a esto $\exists \: m,k \in \N \backepsilon$
+
+    \begin{align*}
+       \{ x_n \mid m \geqslant n \} \subseteq B(x,\delta) && \text{ y } \{ x_n \mid k \geqslant n \} \subseteq B(y,\delta) &&
+    \end{align*}
+
+    Note que, por lo visto en educación primaria, ${x}_{k+m+1} \in \{ x_n \mid k \geqslant n \} \cap \{ x_n \mid m \geqslant n \} $
+
+    Así ${x}_{k+m+1} \in B(x,\delta) \cap B(y,\delta)$, lo cual no es posible, ya que por construcción $B(x,\delta) \cap B(y,\delta) = \varnothing$
+
+    $\therefore {(x_n)}_{n \in \N}$ solo converge a $x$ en ($X,d$)
+\end{proof}
+
+\begin{remark}
+    En espacios topológicos esto no siempre pasa. 
+\end{remark}
+
+\begin{corollary}
+    En cursos de análisis podemos poner $x = \lim\limits_{n \to \infty} x_n$, mientras que en Topología se escribe $x \in \lim\limits_{n \to \infty} x_n$
+\end{corollary}
+
+\begin{theorem}
+    Sea ($X, \norm{\cdot}$) un espacio normado real. Sean ${(x_n)}_{n \in \N}$ una sucesión en $X$ y $x \in X$. Son equivalentes
+
+    \begin{enumerate}
+        \item La sucesión ${(x_n)}_{n \in \N}$ converge a $x$ en $(X,d)$ donde $d$ es la métrica $\Rightarrow d(x,y) = \norm{x-y}$
+        \item La sucesión ${(\norm{x_n-x})}_{n \in \N}$ converge a 0 en $(\R, \abs{\cdot})$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    $1. \Rightarrow 2.$
+
+    Sea $\varepsilon > 0$ arbitrario. Debido a que $x = \lim\limits_{n \to \infty} x_n$
+
+    $$\forall \: \epsilon > 0 \: \exists \: N \in \N \backepsilon d(x_n,x) = \norm{x_n-x} < \varepsilon \: \forall \: n \geqslant N$$
+
+    Como $\norm{x_n - x} = \abs{\norm{x_n - x}  - 0}$, podemos concluir que
+
+    $$\forall \: n \geqslant N \Rightarrow \abs{\norm{x_n - x}  - 0} < \varepsilon $$
+
+    Pero hemos probado
+
+    $$\forall \: \epsilon > 0 \: \exists \: N \in \N \backepsilon \abs{\norm{x_n - x}  - 0} < \varepsilon \: \forall \: n \geqslant N$$
+
+    $\therefore {(\norm{x_n-x})}_{n \in \N}$ converge a 0 en $(\R, \abs{\cdot})$
+
+    $2. \Rightarrow 1.$
+
+    Sea $\varepsilon > 0$ arbitrario. Debido a que ${(\norm{x_n-x})}_{n \in \N}$ converge a 0 en $(\R, \abs{\cdot})$
+
+    $$\forall \: \epsilon > 0 \: \exists \: N \in \N \backepsilon \abs{\norm{x_n - x}  - 0} < \varepsilon \: \forall \: n \geqslant N$$
+
+    Como $\abs{\norm{x_n - x}  - 0} = \norm{x_n - x} $, podemos concluir que
+
+    $$\forall \: n \geqslant N \Rightarrow \norm{x_n - x}  < \varepsilon $$
+
+    Pero hemos probado
+
+    $$\forall \: \epsilon > 0 \: \exists \: N \in \N \backepsilon \norm{x_n - x}  < \varepsilon \: \forall \: n \geqslant N$$
+
+    Como $\norm{x_n - x} = d(x,y)$
+
+    $\therefore$ la sucesión ${(x_n)}_{n \in \N}$ converge a $x$ en $(X,d)$
+\end{proof}
+
+\begin{definition}
+    Sea ($X,d$) un espacio métrico cualquiera. Diremos que una sucesión ${(x_n)}_{n \in \N}$ de elementos de $X$ es eventualmente constante $\iff \: \exists \: x_0 \in X$ y $m \in \N$ tales que
+    $$x_n = x_0 \: \forall \: n \geqslant m$$
+    $x_0$ se llama constante de enventualidad de ${(x_n)}_{n \in \N}$. Cuando $m=1$, la sucesión ${(x_n)}_{n \in \N}$ es llamada sucesión constante de valor $x_0$
+\end{definition}
+
+\begin{theorem} \label{theom2211}
+    En cualquier espacio métrico, cualquier sucesión eventualmente constante converge.
+\end{theorem}
+
+\begin{proof}
+    Sean ($X,d$) un espacio métrico y supongamos que ${(x_n)}_{n \in \N}$ es una sucesión eventualmente constante. Sean $x_0 \in X$ y $N \in \N$ tales que 
+    
+    $$x_n=x_0 \: \forall \: n \geqslant N$$
+
+    Suponga un $\varepsilon > 0$ arbitrario $\Rightarrow$
+
+    $$d(x_n,x_0) = d(x_0,x_0) = 0 < \varepsilon \: \forall \: n \geqslant N$$
+
+    $\therefore {(x_n)}_{n \in \N}$ converge a $x_0$.
+\end{proof}
+
+\begin{eg}
+    Sea $X \neq \varnothing$ y $d$ la métrica discreta. Las siguientes afirmaciones son equivalentes para cualquier sucesión ${(x_n)}_{n \in \N}$ de elementos de $X$.
+
+    \begin{enumerate}
+        \item La sucesión ${(x_n)}_{n \in \N}$ es convergente.
+        \item ${(x_n)}_{n \in \N}$ es eventualmente constante
+    \end{enumerate}
+
+    Es decir, con la métrica discreta, las únicas sucesiones que convergen son las eventualmente constantes.
+\end{eg}
+
+\begin{proofexplanation}
+    $2. \Rightarrow 1.$ Inmediato por el teorema \Cref{theom2211}
+
+    $1. \Rightarrow 2.$ Como ${(x_n)}_{n \in \N}$ converge en ($X,d$) $\exists \: x \in X$ tal que $\lim\limits_{n \to \infty} x_n = x$. Entonces, sea $\varepsilon = \frac{1}{2} > 0 \Rightarrow \: \exists \: N \in \N \backepsilon$ si $n \geqslant N \Rightarrow d(x_n,x) < \varepsilon = \frac{1}{2}$ Por el espacio métrico $x=x_n$ necesariamente, por definición de métrica discreta. 
+\end{proofexplanation}
+
+\begin{eg}
+    En ($\R,\abs{\cdot}$) la sucesión $x_n = \frac{1}{n^p} \: \forall \: n \in \N$ y $p \in \Z^+$ f.p.a es convergente y $\lim\limits_{n \to \infty} x_n = 0$ 
+\end{eg}
+
+\begin{proofexplanation}
+    Sea $\varepsilon > 0$ arbitrario, como $\N$ no es un conjunto acotado superiormente en $\R$, podemos fijar $N \in \N$ tal que $N > \frac{1}{\sqrt[\leftroot{-3}\uproot{3}p]{\varepsilon}} \Rightarrow N^p > \frac{1}{\varepsilon}$ y en consecuencia que $\frac{1}{N^p} < \varepsilon$
+
+    Si $m \geqslant N \Rightarrow$
+
+    $$\abs{x_m-0} = \abs{x_m} = \abs{\frac{1}{m^p}} \leqslant \frac{1}{N^p} < \varepsilon$$
+
+    $\therefore {(x_n)}_{n \in \N}$ converge a 0 en ($\R,\abs{\cdot}$)
+\end{proofexplanation}
+
+\begin{theorem}
+    Sea $X$ un espacio normado. Una sucesión ${(x_n)}_{n \in \N}$ converge a $x \Leftrightarrow$ la sucesión ${(y_n)}_{n \in \N}$ dada por $y_n = x_n - x$ converge a 0
+\end{theorem}
+
+\begin{proof}
+    $\Rightarrow$ Sea $\varepsilon > 0$ cualquier elemento. Como ${(x_n)}_{n \in \N}$ converge a $x$, para $\varepsilon$
+
+    $$\exists \: N \in \N \backepsilon \text{ si } n \geqslant N \Rightarrow \norm{x_n-x} < \varepsilon $$
+
+    Note que lo anterior implica que $\forall \: n \geqslant N$
+
+    $$\norm{x_n-x} = \norm{y_n} = \norm{y_n - 0} < \varepsilon$$
+
+    $\therefore {(y_n)}_{n \in \N}$ converge a 0.
+
+    $\Leftarrow$ La suficiencia es análoga 
+\end{proof}
+
+\begin{eg}
+    Sea $X = (C([0,1]), \R)$ con la norma $\norm{f}_1$
+
+    Recordemos que $(C([0,1]), \R) = \{ f : [0,1] \to \R \mid f \text{ es continua } \}$. Sabemos que $C([0,1], \R)$ es un $\R$-ésimo espacio vectorial con las operaciones
+    \begin{align*}
+       (f+g)(x) = f(x)+ g(x) \: \forall \: x \in [0,1] && \text{ y } && (\lambda f)(x) ) \lambda \cdot f(x) \: \forall \: x \in [0,1] 
+    \end{align*}
+    En $ (C([0,1]), \R)$ definimos a la norma $\norm{\cdot}_p$ para $p \in [1,\infty)$
+
+    $${\norm{f}}_{p} = {\left( \int_{0}^{1} {\abs{f(t)}}^{p} dt \right)}^{\frac{1}{p}}$$
+
+    Para $p = \infty$
+
+    $${\norm{f}}_{\infty} = \sup \{ \abs{f(x)} \mid x \in [0,1] \} = \max \{ \abs{f(x)} \mid x \in [0,1] \}$$
+
+    Definimos a la sucesión ${(f_n)}_{n \in \N}$ donde $\forall \: n \in \N$
+
+     $$ f_n(t) = \begin{cases}
+              -nt+1 & \text{si }  0 \leqslant t \leqslant \frac{1}{n}\\
+              0 & \text{si } \frac{1}{n} \leqslant t \leqslant 1
+     \end{cases}$$
+
+     Veamos que ${(f_n)}_{n \in \N}$ converge a la función constante 0. 
+\end{eg}
+
+\begin{proofexplanation}
+    Note que $\forall \: n \in \N$
+
+    
+    $${\norm{f_n}}_{1} =  \int_{0}^{1} \abs{f(t)} dt = \int_{0}^{1} f(t) dt$$
+    $$= \int_{0}^{\frac{1}{n}} f(t) dt + \int_{\frac{1}{n}}^{1} f(t) dt = \int_{0}^{\frac{1}{n}} f(t) dt + 0 = \frac{1}{2n}$$
+
+    Si $\varepsilon > 0$ es arbitrario $\Rightarrow$ podemos fijar $N \in \N$ tal que $\frac{1}{2n} < \varepsilon \Rightarrow \forall \: m \geqslant N$ s.t.q.
+
+    $$\norm{f_m-0} = \norm{f_m} = \frac{1}{2m} \leqslant \frac{1}{2n} < \varepsilon$$
+
+    $\therefore {(f_n)}_{n \in \N}$ converge a la función constante 0. 
+\end{proofexplanation}
+
+\begin{remark}
+    El ejemplo anterior nos es útil para hacer notar que la convergencia o no convergencia de una sucesión depende fuertemente de la métrica que estamos utilizando. 
+
+    En $(C([0,1]),\R)$ con $\norm{\cdot}_\infty$ la sucesión definida anteriormente no converge.
+
+    Si existiera $f \in (C([a,b]),\R)$ tal que $\lim\limits_{n \to \infty} f_n = f \Rightarrow$ para $0 < x \leqslant 1$ y $n \in \N$ s.t.q.
+
+    $$ \abs{f(x)-f_n(x)} \leqslant \norm{f-f_n}_\infty = \max \{ \abs{f(t)-f_n(t)} \mid t \in [0,1] \}$$
+
+    Es decir que $\forall x \in [0,1]$ la sucesión $f_n(x)$ convergería a $f(x)$. Esto implica $f(x) = 0$
+
+    Pero para $x=0 \Rightarrow f(x) = 1$
+\end{remark}
+
+\begin{theorem} \label{theom2213}
+    Sea $p \in [1,\infty)$. El espacio $(C[a,b],{\norm{\cdot}}_{p})$ donde ${\norm{f}}_{p} = {\left( \int_{a}^{b} {\abs{f(x)}}^{p} dx \right)}^{\frac{1}{p}}$ es un espacio normado sobre el campo de los números reales con las operaciones de suma y multiplicación por números reales usuales.
+\end{theorem}
+
+\begin{lemma}
+    $\forall \: f,g \in C([a,b])$ s.t.q.
+    
+    $$\norm{fg}_1 \leq \norm{f}_p \norm{g}_q$$
+\end{lemma}
+\begin{proof}
+    Sean $p,q \in (1,\infty)$ tales que $\frac{1}{p} + \frac{1}{q} = 1$. Veamos que
+    
+    $$ \norm{fg}_1 \leqslant \norm{f}_p \norm{g}_q$$
+    
+    Supongamos $f,g \neq 0. \forall \: x \in [a,b]$ definimos a 
+    \begin{align*}
+       \alpha = \frac{\abs{f(x)}}{{\left( \int_{a}^{b} {\abs{f(x)}}^{p} dx \right)}^{\frac{1}{p}}} = \frac{\abs{f(x)}}{\norm{f}_p} && \text{ y } && \beta = \frac{\abs{g(x)}}{{\left( \int_{a}^{b} {\abs{g(x)}}^{q} dx \right)}^{\frac{1}{q}}} = \frac{\abs{g(x)}}{\norm{g}_q}
+    \end{align*}
+    
+    Por el \Cref{lema1} $$ab \leqslant \frac{a^p}{p} + \frac{b^q}{q}$$ Si la aplicamos a $\alpha$ y $\beta$ s.t.q.
+
+    $$\alpha \cdot \beta \leqslant \left( \frac{\abs{f(x)}}{\norm{f}_p} \right)^p \cdot \frac{1}{p} + \left( \frac{\abs{g(x)}}{\norm{g}_q} \right)^q \cdot \frac{1}{q}$$
+
+    Integramos de ambos lados
+
+    $$\frac{\int_{a}^{b}\abs{f(x)g(x)dx}}{\norm{f}_p \norm{g}_q} \leqslant \frac{\int_{a}^{b}{\abs{f(x)}}^{p}dx}{p{\norm{f}}^{p}_{p}}+\frac{\int_{a}^{b}{\abs{g(x)}}^{q}dx}{q{\norm{g}}^{q}_{q}} = \frac{1}{p} + \frac{1}{q} = 1$$
+
+    $$\int_{a}^{b}\abs{f(x)g(x)dx} = \norm{fg}_1 \leq \norm{f}_p \norm{g}_q$$    
+\end{proof}
+
+\begin{lemma}\label{lema221}
+    Sea $p\in [1,\infty]$. Se cumple que $\forall \: f,g \in C([a,b])$
+
+    $$\norm{f+g}_p \leqslant \norm{f}_p + \norm{g}_p$$
+\end{lemma}
+
+\begin{proof}
+    Supongamos que $f \neq g$ y que $p \in (1,\infty)$. Definamos $h(x) = {\left(\abs{f(x)}-\abs{g(x)}\right)}^{p-1}$. Aplicamos Hölder a $f,h$ y $g,h$. Notando que $q=\frac{p}{p-1}$
+
+    $$ \int_{a}^{b} \abs{f(x)} {\left(\abs{f(x)}-\abs{g(x)}\right)}^{p-1}dx \leqslant \norm{f}_p \cdot {\left(\int_{a}^{b} {\left(\abs{f(x)}+\abs{g(x)}\right)}^{p-1\cdot\frac{p}{p-1}} \right)}^{\frac{1}{q}} $$
+    $$ \int_{a}^{b} \abs{g(x)} {\left(\abs{f(x)}-\abs{g(x)}\right)}^{p-1}dx \leqslant \norm{g}_p \cdot {\left(\int_{a}^{b} {\left(\abs{f(x)}+\abs{g(x)}\right)}^{p} \right)}^{\frac{1}{q}} $$
+
+    Sumando las desigualdades
+
+    $$\int_{a}^{b} {\left(\abs{f(x)}-\abs{g(x)}\right)}^{p}dx \leqslant \left(\norm{f}_p+\norm{g}_q\right) {\left(\int_{a}^{b} {\left(\abs{f(x)}+\abs{g(x)}\right)}^{p} \right)}^{\frac{1}{q}} $$
+
+    Ahora como $\frac{1}{q} = 1-\frac{1}{p}$ 
+
+    $$\frac{\int_{a}^{b} {\left(\abs{f(x)}-\abs{g(x)}\right)}^{p}dx}{{\left(\int_{a}^{b} {\left(\abs{f(x)}+\abs{g(x)}\right)}^{p} \right)}^{\frac{1}{q}}} = {\left(\int_{a}^{b} {\left(\abs{f(x)}+\abs{g(x)}\right)}^{p} \right)}^{\frac{1}{p}}$$
+
+    Notemos que
+
+    $$\norm{f+g}_p = {\left(\int_{a}^{b} {(\abs{f(x)+g(x)})}^{p} \right)}^{\frac{1}{p}} \leqslant {\left(\int_{a}^{b} {\left(\abs{f(x)}+\abs{g(x)}\right)}^{p} \right)}^{\frac{1}{p}} \leqslant \norm{f}_p+\norm{g}_q$$
+\end{proof}
+
+\begin{proof}
+    Podemos demostrar ahora el \Cref{theom2213}. 
+    
+    Hemos probado la desigualdad del triangulo en el \Cref{lema221}. Que es no negativa es trivial, y saca escalares en valor absoluto por linealidad de la integral. Solo falta ver una propiedad. Como $\abs{f(x)}^p$ es continua y no negativa, notemos que
+     $$ \norm{f}_p = {\left( \int_{a}^{b} {\abs{f(x)}}^{p} dx \right)}^{\frac{1}{p}} = 0 \Leftrightarrow  {\abs{f(x)}}^{p} = 0 \Leftrightarrow f = 0$$
+
+     $\therefore \norm{f}_p$ es norma.
+\end{proof}
+
+\begin{corollary}
+    El espacio $(C[a,b],{\norm{\cdot}}_{\infty})$ donde ${\norm{f}}_{\infty} = \sup \{ \abs{f(x)} \mid x \in [a,b] \}$ es un espacio normado. La prueba es análoga a la del \Cref{theom113}.
+\end{corollary}
+
+\begin{eg}
+    Si ${(g_n)}_{n \in \N}$ es una sucesión en $C([a,b])$ que converge a $g \in C([a,b])$ en $(C([a,b]),\norm{\cdot}_\infty) \Rightarrow \lim\limits_{n\to \infty} g_n = g$ en $(C([a,b]),\norm{\cdot}_p) \: \forall \: p \in [1,\infty)$
+\end{eg}
+
+\begin{proofexplanation}
+    Sea $r>0$. Supongamos que $p \in [1,\infty)$ es f.p.a. Definimos a $\varepsilon = \frac{r}{2{(b-a)}^{\frac{1}{p}}} > 0$. Debido a que  $\lim\limits_{n\to \infty} g_n = g$ en $(C([a,b]),\norm{\cdot}_\infty)$ para la $\varepsilon$ dada
+
+    $\exists \: N \in \N \backepsilon \: \forall \: n \geqslant N \Rightarrow \norm{g_n-g}_\infty < \varepsilon$
+
+    Resulta que $\forall \: n \geqslant N \Rightarrow \norm{g_n-g}_p < r$. Veamos que es cierto. Suponga que $n \in \N$ es tal que $n \geqslant N$
+
+    $$\norm{g_n-g}_p =  {\left( \int_{a}^{b} {\abs{g_n(x)-g(x)}}^{p} dx \right)}^{\frac{1}{p}} \leqslant {\left( \int_{a}^{b} {\norm{g_n-g}_\infty}^{p} dx \right)}^{\frac{1}{p}}$$
+
+    Como la integral es un supremo podemos decir que
+    
+    $$\leqslant  {\left( \int_{a}^{b} {\varepsilon}^{p} dx \right)}^{\frac{1}{p}} = \varepsilon {(b-a)}^{\frac{1}{p}} = \frac{r}{2{(b-a)}^{\frac{1}{p}}} \cdot {(b-a)}^{\frac{1}{p}} = \frac{r}{2} < r$$
+
+    $\therefore \lim\limits_{n\to \infty} g_n = g$ en $(C([a,b]),\norm{\cdot}_p)$
+\end{proofexplanation}
+
+\begin{eg}
+    El recíproco del ejemplo anterior no siempre es cierto. 
+
+    Consideremos a las funciones $f_n : [a,b] \to \R$ con $n \in \mathbb{Z}$ definidas como
+
+    $$ f_n(x) = \begin{cases}
+              1- \frac{n(x-a)}{b-a}& \text{si }  x \in [a, a + \frac{b-a}{n}]\\
+              0 & \text{si } x \in [a + \frac{b-a}{n}],b
+     \end{cases}$$
+
+     donde definimos a $[b,b] = \{ b\}$. Podemos ver que $f_n \in C([a,b]) \: \forall \: n \in \mathbb{Z}^+$
+
+     Veamos que las siguientes proposiciones son verdaderas.
+
+     \begin{enumerate}
+         \item La sucesión ${(f_n)}_{n \in \N}$ converge a la función constante 0 en $(C([a,b]), \norm{\cdot}_1)$
+         \item La sucesión ${(f_n)}_{n \in \N}$ no converge a ninguna función  en $(C([a,b]), \norm{\cdot}_\infty)$
+     \end{enumerate}
+\end{eg}
+
+\begin{proofexplanation}
+
+    Veamos que son ciertos los dos incisos.
+    \begin{enumerate}
+        \item Sea $\varepsilon > 0$ arbitrario. Como $\Z^+$ no está acotado superiormente en $\R$, $\exists \: N \in \Z^+$ tal que $\frac{b-a}{2\varepsilon} < N$
+
+        Resulta que 
+
+        $$\forall \: n \geqslant N \Rightarrow \norm{f_n-0}_1 < \varepsilon$$
+
+        Efectivamente, suponga que $n \in \N$ tal que $n \geqslant N$
+
+        $$\Rightarrow \frac{b-a}{2n} \leqslant \frac{b-a}{2N} < \varepsilon$$
+
+        Así
+
+        $$\norm{f_n-0}_1 = \norm{f_n}_1 = \frac{b-a}{2n} < \varepsilon$$
+
+        $\therefore \lim\limits_{n \to \infty} f_n = 0$ en $(C([a,b]), \norm{\cdot}_1)$
+        \item Supongamos que existe $f \in (C([a,b])$ de modo que $ \lim\limits_{n \to \infty} f_n = f$ en $(C([a,b]), \norm{\cdot}_\infty)$
+
+        Resulta que $\forall \: \in [a,b] \lim\limits_{n \to \infty} f_n(x) = f(x)$ en $(\R,\abs{\cdot})$
+
+        En efecto, sea $x \in [a,b]$ arbitrario. Supongamos que $\varepsilon > 0$ también es arbitrario. Como $ \lim\limits_{n \to \infty} f_n = f$ en $(C([a,b]), \norm{\cdot}_\infty)$ para la $\varepsilon > 0$
+
+        $$\exists \: m \in \N \backepsilon \: \forall \: n \geqslant m \Rightarrow \norm{f_n-f}_\infty < \varepsilon$$
+
+        Tenemos que $\abs{f_n(x)-f(x)} \leqslant \norm{f_n-f}_\infty \: \forall \: n \geqslant m$
+
+        $$\forall \: n \geqslant m \Rightarrow \abs{f_n(x)-f(x)} \leqslant \norm{f_n-f}_\infty < \varepsilon$$
+
+        $\therefore  \lim\limits_{n \to \infty} f_n(x) = f(x)$ en $(\R,\abs{\cdot})$
+
+        Utilicemos este último resultado para deducir la regla de asociación de $f : [a,b] \to \R$
+
+        Sea $x \in [a,b]$ cualquiera $\Rightarrow x-a > 0$. Luego $\frac{b-a}{x-a} > 0$. Como este conjunto no es acotado superiormente en $\R \: \exists \: M \in \N \backepsilon \frac{b-a}{x-a} < m$
+
+        Entonces $\frac{b-a}{m} < x-a$. Consecuentemene 
+
+        $$\forall \: n \geqslant m \Rightarrow a+\frac{b-a}{n} < x$$
+
+        Aplicando las definiciones de cada $f_n$ s.t.q. $\forall \: n \geqslant m f_n(x) = 0$
+
+        $\therefore f(x) = \lim\limits_{n \to \infty} f_n(x) = 0$
+
+        En el caso de $x=a$, sabemos que $f_n(a) = 1 \: \forall \: n \in \N \Rightarrow  \lim\limits_{n \to \infty} f_n(a) = 1$
+
+        La función $f : [a,b] \to \R$ tiene la siguiente regla de asociación.
+
+        $$ f(x) = \begin{cases}
+              1 & \text{si }  x = a\\
+              0 & \text{si } x \in (a,b]
+     \end{cases}$$
+
+     lo cual es imposible porque $f$ no es continua por la derecha en $x = a$, puesto que 
+
+     $$ \lim\limits_{x \to a^+} f(x) = 0 \neq 1 = f(a)$$
+
+     $\therefore {(f_n)}_{n \in \N}$ no converge en $(C([a,b]), \norm{\cdot}_\infty)$
+    \end{enumerate}
+\end{proofexplanation}
+
+\begin{theorem} \label{theom2214}
+    Sean ($X,d$) un espacio métrico u $A \subseteq X \Rightarrow$ 
+\begin{enumerate}
+    \item $x \in \der(A) $
+    \item $\exists \: {(x_n)}_{n \in \N}$ de elementos de $A$,  que no es eventualmente constante y que converge a $X$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    $1. \Rightarrow 2.$
+
+    Como $x \in \der(A) \Rightarrow \: \forall \: n \in \Z^+$
+
+    $$ \left( B\left(x,\frac{1}{n}\right) \setminus \{ x \} \right) \cap A \neq \varnothing $$
+
+    $\forall \: n \in \N$ fijemos un elemento 
+
+    $$x_n \in \left( B\left(x,\frac{1}{n}\right) \setminus \{ x \} \right) \cap A$$
+
+    Es cierto que ${(x_n)}_{n \in \N}$ es una sucesión de elementos de $A$. Probemos que $\lim\limits_{n \to \infty} x_n = x$ en ($X,d$). Sea $\varepsilon > 0$ cualquier elemento. Como $\N$ no está acotado superiormente, para $\frac{1}{\varepsilon} \: \exists \: m \in \N $ tal que $\frac{1}{\varepsilon} < m$
+
+    Así entonces
+
+    $$\forall \: n \geqslant m \Rightarrow \frac{1}{n} \leqslant \frac{1}{m} < \varepsilon \Rightarrow \: \forall \: n \geqslant m \Rightarrow d(x_n,x) \leqslant \frac{1}{n} < \varepsilon$$
+
+    $\therefore \lim\limits_{n \to \infty} x_n = x$ en ($X,d$). 
+    
+    Note que ${(x_n)}_{n \in \N}$ no es eventualmente constante. Si existiera $x_n = x$, pero tomamos a $x_n$ en el derivado, que es el conjunto de los puntos de acumulación, que considera a la bola sin el centro. Por lo tanto, $x_n$ no puede ser el centro.
+
+    $2. \Rightarrow 1.$
+
+    Supongamos que ${(x_n)}_{n \in \N}$ es una sucesión de elementos de $A$, que no es eventualmente constante, u que onverge a $x$. 
+
+    Sea $r \in \R^+$ arbitrario. Como $\lim\limits_{n \to \infty} x_n = x$ en ($X,d$), para la $r \in \R^+ \: \exists \: m \in \N$ tal que
+
+    $$\{ x_n \mid n \geqslant m \} \subseteq B(x,r)$$
+
+    Observe que como $x_n$ no es eventualmente constante, no puede ocurrir que $x_n = x \: \forall \: n \geqslant m$
+
+    Si lo fuera, sería eventualmente constante. Entonces $\exists \: n \geqslant m$ tal que $x_n \neq x$
+
+    Luego $x_n \in \left( B\left(x,\frac{1}{n}\right) \setminus \{ x \} \right) \cap A$
+
+    Está en $A$ porque lo tomamos de elementos de $A$
+
+    $\therefore \left( B\left(x,\frac{1}{n}\right) \setminus \{ x \} \right) \cap A \neq \varnothing \Rightarrow x \in \der(A)$
+\end{proof}
+
+\begin{definition}[Continuidad por Sucesiones]
+    Diremos que una función $f : X \to Y$ entre espacios métricos es continua por sucesiones $\iff$ para toda sucesión ${(x_n)}_{n \in \N}$ en $X$ tal que $\lim\limits_{n \to \infty} x_n = x \Rightarrow$
+
+    $$\lim\limits_{n \to \infty} f(x_n) = f(x)$$
+\end{definition}
+
+\begin{theorem} \label{theom235}
+    Sea $f : X \to Y$ una funcion donde ($X,d$) y ($Y,\rho$) son espacios métricos $\Rightarrow$ son equivalentes
+
+    \begin{enumerate}
+        \item $f$ es continua en toda $x \in X$
+        \item $f$ es continua por sucesiones
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    $1. \Rightarrow 2.$
+
+    Supongamos que ${(x_n)}_{n \in \N}$ es una sucesión en $X$ tal que $\lim\limits_{n \to \infty} x_n = x$ en ($X,d$) 
+
+    Veamos que $\lim\limits_{n \to \infty} f(x_n) = f(x)$
+
+    Sea $\varepsilon > 0$ arbitrario. Como  $\lim\limits_{n \to \infty} x_n = x$ en ($X,d$) $\exists \: m \in \N$ tal que 
+
+    $$\forall \: n \geqslant m \Rightarrow x_n \in B(x,r)$$
+
+    Veamos que $\forall \: n \geqslant m \Rightarrow f(x_n) \in B(f(x),r)$
+
+    $$\exists \: \delta > 0 \Rightarrow d(f(x),f(x_0)) < r$$
+
+    Como $x_n \in B(x,\delta) \Rightarrow f(x_n) \in B(f(x),r)$
+
+    $2. \Rightarrow 1.$
+
+    Supongamos que $f$ es continua por sucesiones. Para verificar que $f$ es continua supongamos que $F \subseteq Y$ es cualquier subconjunto cerrado de $X$. Veamos que $f^\leftarrow[F]$ es cerrado en $X$. Supongamos, para generar una contradicción, que $f^\leftarrow[F]$ no es cerrado en $X$. Es decir
+
+    $$\der(f^\leftarrow[F]) \nsubseteq f^\leftarrow[F]$$
+
+    Entonces, podemos fijar $x \in \der(f^\leftarrow[F])$ tal que $x \in f^\leftarrow[F]$. Por el \Cref{theom2214} existe una sucesión ${(x_n)}_{n \in \N}$ no trivial (no eventualmente constante) de elementos de $f^\leftarrow[F]$ tal que $\lim\limits_{n \to \infty} x_n = x$
+
+    Como $f$ es continua por sucesiones $\Rightarrow \lim\limits_{n \to \infty} f(x_n) = f(x)$
+
+    Además $\forall \: n \in \N \Rightarrow f(x_n) \in F$, es decir ${(f(x_n))}_{n \in \N}$ es una sucesión de elementos de $F$ que converge a $f(x)$. 
+
+    $\therefore f(x) \in \der(F) \subseteq F$, porque $F$ es cerrado. Pero esto contradice que $x \notin f^\leftarrow[F]$
+
+    $\therefore \der(f^\leftarrow[F]) \subseteq f^\leftarrow[F] \Rightarrow f^\leftarrow[F] $ es cerrado en $X$ y por lo tanto $f$ es continua
+\end{proof}

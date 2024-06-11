@@ -1,0 +1,451 @@
+% basics
+\usepackage[utf8]{inputenc}
+\usepackage{ragged2e}
+\justifying
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[spanish]{babel}
+\usepackage{url}
+\usepackage{commath}
+\usepackage{hyperref}
+\hypersetup{colorlinks, citecolor=blue, filecolor=blue, linkcolor=blue, urlcolor=blue}
+\usepackage[right=1.25in,left=1.25in,top=1in,bottom=0.85in]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{emptypage}
+\usepackage{nameref}
+\usepackage[nameinlink]{cleveref}
+\usepackage{cleveref}
+\usepackage{multicol}
+\usepackage[usenames,dvipsnames]{xcolor}
+
+
+\crefname{lemma}{lema}{}
+\Crefname{lemma}{Lema}{}
+
+\crefname{eg}{ejemplo}{}
+\Crefname{eg}{Ejemplo}{}
+
+
+\crefname{aff}{afirmación}{}
+\Crefname{aff}{Afirmación}{}
+
+\crefname{theorem}{teorema}{}
+\Crefname{theorem}{Teorema}{}
+
+\crefname{definition}{definición}{}
+\Crefname{definition}{Definición}{}
+
+\crefname{corollary}{corolario}{}
+\Crefname{corollary}{Corolario}{}
+
+
+\usepackage{amsmath, amsfonts, mathtools, amsthm, amssymb}
+\usepackage{mathrsfs}
+\usepackage{cancel}
+\usepackage{bm}
+\newcommand\F{\ensuremath{\mathcal{F}}}
+\newcommand\A{\ensuremath{\mathcal{U}}}
+\newcommand\cfc{\ensuremath{\mathcal{C}}}
+\newcommand\U{\ensuremath{\mathscr{U}}}
+\newcommand\FF{\ensuremath{\mathscr{F}}}
+\newcommand\N{\ensuremath{\mathbb{N}}}
+\newcommand\K{\ensuremath{\mathbb{K}}}
+\newcommand\R{\ensuremath{\mathbb{R}}}
+\newcommand\Z{\ensuremath{\mathbb{Z}}}
+\renewcommand\O{\ensuremath{\emptyset}}
+\newcommand\Q{\ensuremath{\mathbb{Q}}}
+\newcommand\C{\ensuremath{\mathbb{C}}}
+\newcommand\der{\ensuremath{\mathrm{der}}}
+\newcommand\clos{\ensuremath{\mathrm{cl}}}
+\DeclareMathOperator{\sgn}{sgn}
+
+%%% magic code starts
+\mathcode`*=\string"8000
+\begingroup
+\catcode`*=\active
+\xdef*{\noexpand\textup{\string*}}
+\endgroup
+%%% magic code ends
+
+\usepackage{systeme}
+\let\svlim\lim\def\lim{\svlim\limits}
+\let\implies\Rightarrow
+\let\impliedby\Leftarrow
+\let\iff\Leftrightarrow
+\let\epsilon\varepsilon
+\usepackage{stmaryrd} % for \lightning
+\newcommand\contra{\scalebox{1.1}{$\lightning$}}
+\DeclarePairedDelimiterX{\innerproduct}[1]{\langle}{\rangle}{\makebraket{#1}}
+\NewDocumentCommand{\makebraket}{>{\SplitArgument{1}{,}}m}{\makebraketaux#1}
+\NewDocumentCommand{\makebraketaux}{mm}{#1\;\delimsize\vert\;#2}
+
+
+% correct
+\definecolor{correct}{HTML}{009900}
+\newcommand\correct[2]{\ensuremath{\:}{\color{red}{#1}}\ensuremath{\to }{\color{correct}{#2}}\ensuremath{\:}}
+\newcommand\green[1]{{\color{correct}{#1}}}
+
+
+
+% horizontal rule
+\newcommand\hr{
+    \noindent\rule[0.5ex]{\linewidth}{0.5pt}
+}
+
+
+% hide parts
+\newcommand\hide[1]{}
+
+\usepackage[skip=10pt plus1pt, indent=0pt]{parskip}
+\usepackage{titlesec}
+
+\titlespacing*{\section}
+  {0pt}{1\baselineskip}{1\baselineskip}
+\titlespacing*{\subsection}
+  {0pt}{1\baselineskip}{1\baselineskip}
+
+
+% si unitx
+\usepackage{}
+\usepackage{siunitx}
+\sisetup{locale = FR}
+% \renewcommand\vec[1]{\mathbf{#1}}
+\newcommand\mat[1]{\mathbf{#1}}
+\usepackage{physics}
+\AtBeginDocument{\RenewCommandCopy\qty\SI}
+\ExplSyntaxOn
+\msg_redirect_name:nnn { siunitx } { physics-pkg } { none }
+\ExplSyntaxOff
+
+% tikz
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{intersections, angles, quotes, calc, positioning, patterns}
+\usetikzlibrary{arrows.meta}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.13}
+\usepgfplotslibrary{fillbetween}
+
+
+
+\tikzset{
+    force/.style={thick, {Circle[length=2pt]}-stealth, shorten <=-1pt}
+}
+
+% theorems
+\makeatother
+\usepackage{thmtools}
+\usepackage[framemethod=TikZ]{mdframed}
+\mdfsetup{skipabove=1em,skipbelow=0em}
+
+
+\theoremstyle{definition}
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{blue!70!black}, bodyfont=\normalfont,
+    mdframed={
+        linewidth=2pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=blue, backgroundcolor=blue!5,
+    }
+]{thmgreenbox}
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{ForestGreen!70!black}, bodyfont=\normalfont,
+    mdframed={
+        linewidth=2pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=ForestGreen, backgroundcolor=ForestGreen!5,
+    }
+]{thmbluebox}
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{Orange!90!black}, bodyfont=\normalfont,
+    mdframed={
+        linewidth=2pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=Orange, backgroundcolor=Orange!5,
+    }
+]{thmborangebox}
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{magenta!90!black}, bodyfont=\normalfont,
+    mdframed={
+        linewidth=2pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=magenta, backgroundcolor=magenta!5,
+    }
+]{thmbmagentabox}
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{Purple!90!black}, bodyfont=\normalfont,
+    mdframed={
+        linewidth=2pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=Purple, backgroundcolor=Purple!5,
+    }
+]{thmbpurplebox}
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{ForestGreen!70!black}, bodyfont=\normalfont,
+    mdframed={
+        linewidth=2pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=ForestGreen, everyline=true,
+    }
+]{thmblueline}
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{red!70!black}, bodyfont=\normalfont,
+    mdframed={
+        linewidth=2pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=red, backgroundcolor=red!5,
+    }
+]{thmredbox}
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{red!70!black}, bodyfont=\normalfont,
+    numbered=no,
+    mdframed={
+        linewidth=2pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=red, backgroundcolor=red!1,
+    },
+    qed=\qedsymbol
+]{thmproofbox}
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{ForestGreen!70!black}, bodyfont=\normalfont,
+    numbered=no,
+    mdframed={
+        linewidth=2pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=ForestGreen, backgroundcolor=ForestGreen!1,
+    },
+]{thmexplanationbox}
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{ForestGreen!70!black}, bodyfont=\normalfont,
+    numbered=no,
+    mdframed={
+        linewidth=2pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=ForestGreen, backgroundcolor=ForestGreen!1,
+    },
+    qed=\qedsymbol
+]{thmproofexplanationbox}
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{ForestGreen!70!black}, bodyfont=\normalfont,
+    numbered=no,
+    mdframed={
+        linewidth=2pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=ForestGreen, backgroundcolor=ForestGreen!1,
+    },
+    qed=\qedsymbol
+]{thmgreenproofbox}
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{Orange!90!black}, bodyfont=\normalfont,
+    numbered=no,
+    mdframed={
+        linewidth=2pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=Orange, backgroundcolor=Orange!1,
+    },
+    qed=\qedsymbol
+]{thmorangeproofbox}
+
+
+
+% \declaretheoremstyle[headfont=\bfseries\sffamily, bodyfont=\normalfont, mdframed={ nobreak } ]{thmgreenbox}
+% \declaretheoremstyle[headfont=\bfseries\sffamily, bodyfont=\normalfont, mdframed={ nobreak } ]{thmredbox}
+% \declaretheoremstyle[headfont=\bfseries\sffamily, bodyfont=\normalfont]{thmbluebox}
+% \declaretheoremstyle[headfont=\bfseries\sffamily, bodyfont=\normalfont]{thmblueline}
+% \declaretheoremstyle[headfont=\bfseries\sffamily, bodyfont=\normalfont, numbered=no, mdframed={ rightline=false, topline=false, bottomline=false, }, qed=\qedsymbol ]{thmproofbox}
+% \declaretheoremstyle[headfont=\bfseries\sffamily, bodyfont=\normalfont, numbered=no, mdframed={ nobreak, rightline=false, topline=false, bottomline=false } ]{thmexplanationbox}
+
+\declaretheorem[style=thmgreenbox, numberwithin=chapter, name=Definición]{definition}
+\declaretheorem[style=thmbluebox, numberwithin=chapter, name=Ejemplo]{eg}
+\declaretheorem[style=thmredbox, numberwithin=chapter, name=Proposición]{prop}
+\declaretheorem[style=thmredbox, numberwithin=chapter, name=Teorema]{theorem}
+\declaretheorem[style=thmredbox, numberwithin=chapter, name=Lema]{lemma}
+\declaretheorem[style=thmborangebox, numbered=no, name=Corolario]{corollary}
+
+\declaretheorem[style=thmproofbox, name=Proof]{replacementproof}
+\renewenvironment{proof}[1][\proofname]{\vspace{-10pt}\begin{replacementproof}}{\end{replacementproof}}
+
+\declaretheorem[style=thmproofexplanationbox, name=Proof]{tmpexplanationproof}
+\newenvironment{proofexplanation}[1][\proofname]{\vspace{-10pt}\begin{tmpexplanationproof}}{\end{tmpexplanationproof}}
+
+\declaretheorem[style=thmgreenproofbox, name=Proof]{thmgreenproof}
+\newenvironment{greenproof}[1][]{\vspace{-10pt}\begin{thmgreenproof}}{\end{thmgreenproof}}
+
+\declaretheorem[style=thmorangeproofbox, name=Proof]{thmorangeproof}
+\newenvironment{orangeproof}[1][\proofname]{\vspace{-10pt}\begin{thmorangeproof}}{\end{thmorangeproof}}
+
+\declaretheorem[style=thmexplanationbox, name=Proof]{tmpexplanation}
+\newenvironment{explanation}[1][]{\vspace{-10pt}\begin{tmpexplanation}}{\end{tmpexplanation}}
+
+\declaretheorem[style=thmbpurplebox, numbered=no, name=Observación]{remark}
+\declaretheorem[style=thmbmagentabox, numbered=no, name=Notación]{notation}
+\declaretheorem[style=thmblueline, numbered=no, name=Nota]{note}
+\declaretheorem[style=thmblueline, name=Afirmación]{aff}
+
+\newtheorem*{uovt}{UOVT}
+\newtheorem*{previouslyseen}{As previously seen}
+\newtheorem*{problem}{Problema}
+\newtheorem*{observe}{Observe}
+\newtheorem*{property}{Property}
+\newtheorem*{intuition}{Intuition}
+
+
+\usepackage{etoolbox}
+\AtEndEnvironment{vb}{\null\hfill$\diamond$}%
+\AtEndEnvironment{intermezzo}{\null\hfill$\diamond$}%
+% \AtEndEnvironment{opmerking}{\null\hfill$\diamond$}%
+
+% http://tex.stackexchange.com/questions/22119/how-can-i-change-the-spacing-before-theorems-with-amsthm
+\makeatletter
+% \def\thm@space@setup{%
+%   \thm@preskip=\parskip \thm@postskip=0pt
+% }
+
+\newcommand{\subscript}[2]{$#1 _ #2$}
+
+\newcommand{\oefening}[1]{%
+    \def\@oefening{#1}%
+    \subsection*{Oefening #1}
+}
+
+\newcommand{\suboefening}[1]{%
+    \subsubsection*{Oefening \@oefening.#1}
+}
+
+\newcommand{\exercise}[1]{%
+    \def\@exercise{#1}%
+    \subsection*{Exercise #1}
+}
+
+\newcommand{\subexercise}[1]{%
+    \subsubsection*{Exercise \@exercise.#1}
+}
+
+
+\usepackage{xifthen}
+
+\def\testdateparts#1{\dateparts#1\relax}
+\def\dateparts#1 #2 #3 #4 #5\relax{
+    \marginpar{\small\textsf{\mbox{#1 #2 #3 #5}}}
+}
+
+\def\@lesson{}%
+\newcommand{\lesson}[3]{
+    \ifthenelse{\isempty{#3}}{%
+        \def\@lesson{Lecture #1}%
+    }{%
+        \def\@lesson{Lecture #1: #3}%
+    }%
+    \subsection*{\@lesson}
+    \testdateparts{#2}
+}
+
+% \renewcommand\date[1]{\marginpar{#1}}
+
+
+% fancy headers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\setlength{\headheight}{12.1638pt}
+
+
+\makeatother
+
+
+
+
+% notes
+\usepackage{todonotes}
+\usepackage{tcolorbox}
+
+\tcbuselibrary{breakable}
+\newenvironment{verbetering}{\begin{tcolorbox}[
+    arc=0mm,
+    colback=white,
+    colframe=green!60!black,
+    title=Opmerking,
+    fonttitle=\sffamily,
+    breakable
+]}{\end{tcolorbox}}
+
+\newenvironment{noot}[1]{\begin{tcolorbox}[
+    arc=0mm,
+    colback=white,
+    colframe=white!60!black,
+    title=#1,
+    fonttitle=\sffamily,
+    breakable
+]}{\end{tcolorbox}}
+
+
+
+
+% figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+
+
+\makeatletter
+\DeclareRobustCommand*{\mfaktor}[3][]
+{
+   { \mathpalette{\mfaktor@impl@}{{#1}{#2}{#3}} }
+}
+\newcommand*{\mfaktor@impl@}[2]{\mfaktor@impl#1#2}
+\newcommand*{\mfaktor@impl}[4]{
+   \settoheight{\faktor@zaehlerhoehe}{\ensuremath{#1#2{#3}}}%
+   \settoheight{\faktor@nennerhoehe}{\ensuremath{#1#2{#4}}}%
+      \raisebox{-0.5\faktor@zaehlerhoehe}{\ensuremath{#1#2{#3}}}%
+      \mkern-4mu\diagdown\mkern-5mu%
+      \raisebox{0.5\faktor@nennerhoehe}{\ensuremath{#1#2{#4}}}%
+}
+\makeatother
+
+\DeclareMathOperator{\Ker}{ker}
+\DeclareMathOperator{\im}{Im}
+
+\makeatletter
+\newcommand*\rel@kern[1]{\kern#1\dimexpr\macc@kerna}
+\newcommand*\widebar[1]{%
+  \begingroup
+  \def\mathaccent##1##2{%
+    \rel@kern{0.8}%
+    \overline{\rel@kern{-0.8}\macc@nucleus\rel@kern{0.2}}%
+    \rel@kern{-0.2}%
+  }%
+  \macc@depth\@ne
+  \let\math@bgroup\@empty \let\math@egroup\macc@set@skewchar
+  \mathsurround\z@ \frozen@everymath{\mathgroup\macc@group\relax}%
+  \macc@set@skewchar\relax
+  \let\mathaccentV\macc@nested@a
+  \macc@nested@a\relax111{#1}%
+  \endgroup
+}
+\makeatother
+
+\pdfsuppresswarningpagegroup=1
+
+
+\author{\href{mailto:vincictor33@gmail.com}{Victor Ortega}\\ Facultad de Economía, UNAM }
+\date{\today}

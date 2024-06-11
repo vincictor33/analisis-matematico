@@ -1,0 +1,826 @@
+\chapter{Completitud}
+
+\section{Espacios Métricos Completos}
+
+\begin{definition}[Sucesión de Cauchy] \label{def411}
+    Sea ($X,d$) un espacio métrico. Una sucesión ${\left(x_n\right)}_{n \in \N}$ de elementos de $X$ es una sucesión de Cauchy si $\forall \: n, m \: \exists \: N \in \N $ tal que $\forall \: n, m  \geqslant N$ s.t.q.
+
+    $$d(x_n,x_m) < \varepsilon$$
+\end{definition}
+
+\begin{theorem} \label{theom411}
+    Si ($X,d$) es un espacio métrico, toda sucesión convergente en ($X,d$) es una sucesión de Cauchy.
+\end{theorem}
+
+\begin{proof}
+    Supongamos que ${\left(x_n\right)}_{n \in \N}$ es una sucesión en $X$ que converge a un elemento $x_0 \in X$. Sea $\varepsilon > 0$ arbitrario.
+
+    Por la convergencia $\exists \: N \in \N$ tal que $\forall \: n  \geqslant N$  s.t.q. $d(x_n,x_) < \frac{\varepsilon}{2} \Rightarrow \forall \: n, m  \geqslant N$ s.t.q.
+
+
+    $$d(x_n,x_m) \leqslant d(x_n,x_0) + d(x_0,x_m) < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon$$
+
+    $\therefore {(x_n)}_{n \in \N}$ es de Cauchy
+\end{proof}
+
+\begin{remark}
+    Aunque es cierto que toda sucesión convergente es de Cauchy, no es cierto, en general, que toda sucesión de Cauchy sea convergente.
+\end{remark}
+
+\begin{eg}
+    Considere al intervalo $(0,1)$ y la métrica inducida por $\R$, es decir ($(0,1), \abs{\cdot}$). En este conjunto la sucesión ${\left( \frac{1}{n+1} \right)}_{n \in \N}$ es de Cauchy, pero no es convergente en ($(0,1), \abs{\cdot}$). Esto también es cierto en $\R^+$, y lo demostraremos más adelante
+\end{eg}
+
+\begin{theorem} \label{theom400}
+    Sean ($X,d$) un espacio métrico y $\varnothing \neq Y \subseteq X$ con la métrica $\rho$, ${(y_n)}_{n \in \N}$ una sucesión de elementos de $Y$, y $y \in X \Rightarrow$
+
+    \begin{enumerate}
+        \item ${(y_n)}_{n \in \N}$ es de Cauchy en ($Y,\rho$) $ \iff {(y_n)}_{n \in \N}$ es de Cauchy en ($X,d$)
+        \item ${(y_n)}_{n \in \N}$ converge a $y$ ($Y,\rho$) $\iff {(y_n)}_{n \in \N}$ converge a $y$ en ($X,d$)
+    \end{enumerate} 
+    \end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item $\Rightarrow$ Sea $\varepsilon > 0$ arbitrario. Como la sucesión ${(y_n)}_{n \in \N}$ es de Cauchy en ($Y, \rho$), $\exists \: N \in \N$ tal que $\forall \:n,m \geqslant N$
+
+        $$\rho(y_n,y_m) < \varepsilon$$
+
+        Recuerde que si ($X,d$) es un espacio métrico y $\varnothing \neq Y \subseteq X \Rightarrow$ la métrica inducida por $d$ en $Y$ es la distancia $\rho : Y \times Y \to \R$
+
+        $$\rho(y_0,y) = d(y_0,y)$$
+
+        $\Rightarrow d(y_n,y_m) < \varepsilon \: \forall \: n,m \geqslant N$
+
+        $\therefore$  ${(y_n)}_{n \in \N}$ es de Cauchy en ($X, d$)
+
+        $\Leftarrow$ Sea $\varepsilon > 0$ arbitrario. Como la sucesión ${(y_n)}_{n \in \N}$ es de Cauchy en ($X, d$), $\exists \: M \in \N$ tal que $\forall \:n,m \geqslant M$
+
+        $$d(y_n,y_m) < \varepsilon$$
+
+        $\rho(y_n,y_m) = d(y_n, y_m) < \varepsilon \: \forall \: n,m \geqslant M$
+
+        $\therefore$  ${(y_n)}_{n \in \N}$ es de Cauchy en ($Y, \rho$)
+
+        \item La demostración es análoga a la anterior, utilizando esta vez la definición de convergencia.
+    \end{enumerate}
+\end{proof}
+
+\begin{remark}
+    ¿Cuál es la utilidad de las sucesiones de Cauchy? Imaginemos estar en cuarto en el que cae agua. Si el nivel de agua se mantiene, podemos suponer que el agua se está yendo a algún lado mediante un hoyo. El cuarto no está completo. Las sucesiones de Cauchy nos permiten notar esto.
+\end{remark}
+
+\begin{eg}
+    En $X = \R^+$ con la métrica $d(x,y) = \abs{x-y}$ inducida por la norma usual de $\R$. La sucesión ${\left( \frac{1}{n+1} \right)}_{n \in \N}$  es de Cauchy, pero no converge a ningún elemento de $\R^+$
+\end{eg}
+
+\begin{proofexplanation}
+    Sea $\varepsilon > 0$. Como $\N$ no es acotado superiormente en $\R^+ \Rightarrow \: \exists \: N \in \N$ tal que $\frac{2}{\varepsilon} < N$
+
+    Resulta que $\forall \: n, m \geqslant N \Rightarrow \abs{\frac{1}{n+1} - \frac{1}{m+1} } < \varepsilon$
+
+    En efecto, sean $n,m \in \N$ tal que $n, m \geqslant N \Rightarrow$
+
+    $$\abs{\frac{1}{n+1} - \frac{1}{m+1} } \leqslant \abs{\frac{1}{n+1}} +  \abs{\frac{-1}{m+1}} \leqslant \frac{1}{n} + \frac{1}{m} \leqslant \frac{1}{N} + \frac{1}{N} = \frac{2}{N} < \varepsilon$$
+
+    Como $\frac{2}{\varepsilon} < N \Rightarrow \frac{2}{N} < \varepsilon$
+
+    $\therefore {\left( \frac{1}{n+1} \right)}_{n \in \N}$ es de Cauchy.
+
+    Ahora veamos que no converge a ningún elemento de $\R^+$
+
+    Sea $ x \in \R^+$ cualquier elemento. Definamos $\varepsilon_0 = \frac{x}{2}$. Como $\N$ no es acotado superiormente en $\R^+ \Rightarrow \: \exists \: N \in \N$ tal que $\frac{1}{\varepsilon} = \frac{2}{x} < N$
+
+    Resulta que $\forall \: n \geqslant N \Rightarrow \frac{1}{n+1} < \frac{x}{2} \Rightarrow \frac{1}{n+1} \notin \left( \frac{x}{2}, \frac{3x}{2} \right)$
+
+    Consecuentemente $\nexists \: M \in \N$ tal que $\forall \: n \geqslant M \Rightarrow  \frac{1}{n+1} \in \left( \frac{x}{2}, \frac{3x}{2} \right)$
+
+    La sucesión convergería si ocurriése lo siguiente
+
+    $$ \forall \: \varepsilon >0 \: \exists \: M \in \N \: \forall \: n \geqslant M \Rightarrow \frac{1}{n+1} \in ( x - \varepsilon, x + \varepsilon) $$
+
+    Como queremos ver que no converge
+
+    $$\exists \: \varepsilon = \varepsilon_0 = \frac{x}{2} \: \nexists \: M \in \N \: \forall \: n \geqslant N \Rightarrow \frac{1}{n+1} \in ( x - \varepsilon, x + \varepsilon)$$
+
+    Si $M \in \N$ es arbitrario definamos a $n = N + M + 10^{100}$
+
+    $\therefore {\left( \frac{1}{n+1} \right)}_{n \in \N}$ no converge a $x$
+\end{proofexplanation}
+
+\begin{eg}
+    Si ($X,d$) es un espacio métrico discreto (es decir, $d$ es la métrica discreta) $\Rightarrow$ toda sucesión de Cauchy en ($X,d$) converge a un elemento de $X$
+\end{eg}
+
+\begin{proofexplanation}
+    Supongamos que ${\left( x_n\right)}_{n \in \N}$ es una sucesión de Cauchy en ($X,d$). Aplicando la \Cref{def411} a $\varepsilon =1$ s.t.q. $\exists \: N \in \N$ tal que
+
+    $$\forall \: n, m  \geqslant N \Rightarrow d(x_n,x_m) < \varepsilon = 1$$
+
+    En particular, $\forall \: n \geqslant N \Rightarrow d(x_n,x_N) < 1 $
+
+    Pero esto sucede $\iff x_n = x_N \: \forall \: n \in \N \geqslant N$, ya que $d$ es la métrica discreta. Por \Cref{theom2211} todas las sucesiones eventualmente constantes convergen. Note que ${\left( x_n\right)}_{n \in \N}$ es eventualmente constante.
+
+    $\therefore {\left( x_n\right)}_{n \in \N}$ converge a $x_N$
+\end{proofexplanation}
+
+\begin{definition}[Espacio Métrico Completo] \label{def418}
+    Diremos que un espacio ($X,d$) es un espacio métrico completo $\iff$ toda sucesión de Cauchy en ($X,d$) converge a un elemento en ($X,d$) 
+\end{definition}
+
+\begin{definition}[Espacio de Banach]
+    Diremos que un espacio normado real ($X, \norm{\cdot}$), es decir un $\R$-espacio vectorial, es un espacio de Banach $\iff$ el espacio métrico ($X,d$) es completo, donde $d$ es la métrica inducida por $\norm{\cdot}$
+
+    $$d(x,y) = \norm{x -y}$$
+
+    donde $x, y \in X$
+\end{definition}
+
+\begin{definition}[Espacio de Hilbert]
+    Diremos que un espacio con producto interior real ($X, \langle ,  \rangle$) es un espacio de Hilbert (real) $\iff$ el espacio ($X, \norm{\cdot}$) es un espacio de Banach, donde $\norm{\cdot}$ es la norma
+
+    $$\norm{x} = \sqrt{\langle x, x \rangle}$$
+
+    donde $x \in X$
+\end{definition}
+
+\begin{remark}
+    La idea de lo que se va a ver a continuación es ver que los espacios métricos compactos son completos.
+\end{remark}
+
+\begin{definition} \label{def415}
+    Si $f : \N \to X$ es una sucesión $\Rightarrow$ una subsucesión de $f$ es cualquier composición $f \circ g : \N \to X$ donde $g : \N \to \N$ es estrictamente creciente.
+
+    Si denotamos como ${\left( x_n\right)}_{n \in \N}$ a la $f$ sucesión, es decir, si $f(n) = x_n \: \forall \: n \in \N \Rightarrow$ la subsucesión $f \circ g$ puede ser denotada como ${\left( x_{n_m}\right)}_{m \in \N}$ donde $n_n = g(m)$ y así $x_{n_m} = (f \circ g)(m) = f(g(m)) \: \forall \: m \in \N$
+\end{definition}
+
+\begin{corollary}
+    $\forall \: n \in \N$ se cumple que $n \leqslant g(n)$
+\end{corollary}
+
+\begin{orangeproof}
+    Supongamos, para generar una contradicción, que $\exists \: m \in \N$ tal que $m > g(m) \Rightarrow$ el conjunto $A = \{ n \in \N \mid n > g(n) \}$ es no vacío , ya que $m \in A$, y por ello, $\exists \: \alpha = \min(A)$
+
+    Por \Cref{def415}, $g$ es estrictamente creciente, y como $\alpha \in A$ s.t.q.
+
+    $$\alpha > g(\alpha) \Rightarrow g(\alpha) > g(g(\alpha))$$
+
+    Note que $\alpha > g(\alpha)$, ya que $\alpha \in A$, y además $g(\alpha) \in A$, pero eso contradice que $\alpha = \min(A)$, ya que $g(\alpha) \in A$ es menor que $\alpha$
+
+    $\therefore \: \nexists  \: m \in \N$ tal que  $m > g(m) \Rightarrow \forall \: n \in \N$ se cumple que $n \leqslant g(n)$
+\end{orangeproof}
+
+\begin{theorem} \label{theom413}
+    Sea ($X,d$) un espacio métrico y ${\left( x_n\right)}_{n \in \N}$ una sucesión de elementos de $X$. Si ${\left( x_n\right)}_{n \in \N}$ es una sucesión de Cauchy $\Rightarrow {\left( x_n\right)}_{n \in \N}$ es acotada, es decir, $\exists \: z \in X$ y $r > 0$ tales que $\{ x_n \mid n \in \N \} \subseteq B(z,r)$
+\end{theorem}
+
+\begin{proof}
+    Supongamos que ${\left( x_n\right)}_{n \in \N}$ es de Cauchy. Para $\varepsilon = 1 \: \exists \: N \in \N$ tal que 
+
+    $$\forall \: n,m \geqslant N \Rightarrow d(x_n, x_m) < 1$$
+
+    En particular, $\forall \: m \geqslant N \Rightarrow  d(x_N, x_m) < 1$, o sea que 
+
+    $$\{ x_m \mid m \geqslant N \} \subseteq B(x_N, 1)$$
+
+    Definamos $M = \max \{ d(x_i,x_N) \mid 1 \leqslant i \leqslant N -1 \} + 1$. Note que $M \geqslant 1$. Resulta que
+
+    $$\{ x_n \mid n \in \N \} \subseteq B(x_N, M)$$
+
+    $\therefore {\left( x_n\right)}_{n \in \N}$ es acotada.
+\end{proof}
+
+\begin{corollary}
+    Si ${\left( x_n\right)}_{n \in \N}$ es una sucesión convergente $\Rightarrow {\left( x_n\right)}_{n \in \N}$ es acotada.
+\end{corollary}
+
+\begin{orangeproof}
+    Por el \Cref{theom411}, toda sucesión convergente es de Cauchy, y por \Cref{theom413}, toda sucesión de Cauchy es acotada. 
+\end{orangeproof}
+
+\begin{theorem} \label{theom414}
+    Sea ($X,d$) un espacio métrico y ${\left( x_n\right)}_{n \in \N}$ una sucesión de elementos de $X$. Si ${\left( x_n\right)}_{n \in \N}$ es de Cauchy y $\exists$ una subsucesión ${\left( x_{n_m}\right)}_{m \in \N}$ de ${\left( x_n\right)}_{n \in \N}$ que converge a un elemento $ x \in X \Rightarrow {\left( x_n\right)}_{n \in \N}$ también converge a $x \in X$
+\end{theorem}
+
+\begin{proof}
+    Sea $\varepsilon > 0$. Como ${\left( x_n\right)}_{n \in \N}$ es de Cauchy, para $\varepsilon = \frac{\varepsilon}{2} \: \exists \: M \in \N$ tal que 
+
+    $$\forall \: n,m \geqslant M \Rightarrow d(x_n, x_m) < \frac{\varepsilon}{2}$$
+
+    Por otra parte, como ${\left( x_{n_m}\right)}_{m \in \N}$ converge a $x \in X$, para $\frac{\varepsilon}{2} \: \exists J \in \N$ tal que
+
+    $$\forall \: k \geqslant J \Rightarrow d(x_{n_k}, x) < \frac{\varepsilon}{2}$$
+
+    Definamos a $N = M + J \Rightarrow N \geqslant M$ y $N \geqslant J$. Luego, si $K \geqslant N \Rightarrow$, por el corolario de la \Cref{def415}, $n_k \geqslant K \geqslant J \Rightarrow k, n_k \geqslant M \geqslant N \Rightarrow$
+
+    $$d(x_k, x) \leqslant d(x_k, x_{n_k}) + d(x_{n_k}, x) < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon$$
+
+    Pero esto implica que $d(x_k, x) < \varepsilon \Rightarrow \lim_{n \to \infty} x_n = x$
+
+    $\therefore {\left( x_n\right)}_{n \in \N}$ converge a $x \in X$
+\end{proof}
+
+\begin{lemma} \label{lemma411}
+    Toda sucesión ${\left( x_n\right)}_{n \in \N}$ de números reales tiene una subsucesión ${\left( x_{n_m}\right)}_{m \in \N}$ que es creciente o decreciente.
+\end{lemma}
+
+\begin{proof}
+    Sea ${\left( x_n\right)}_{n \in \N}$ cualquier sucesión de números reales. Diremos que un número natural $m$ es distinguido con respecto a la sucesión $\iff$
+
+    $$\forall \: n \geqslant m \Rightarrow x_n \leqslant x_m $$
+
+    Sea $D = \{ n \in \N \mid n \text{ es distinguido } \}$. No importa si $D = \varnothing$, por lo que tenemos los siguientes dos casos.
+
+    \begin{enumerate}
+        \item $D$ es finito
+
+        En este caso vamos a construir una subsucesión ${\left( x_{n_m}\right)}_{m \in \N}$ de ${\left( x_n\right)}_{n \in \N}$ que es estrictamente creciente.
+
+        Debido a que $D \subseteq \N$ es finito por el caso $\exists \: N \in \N$ tal que
+
+        $$D \subseteq \{ 1, 2, ..., N \}$$
+
+        Resulta que, $\forall \: n > N \Rightarrow n$ no es disntinguido. Como $N + 1 > N \Rightarrow N +1$ no es distinguido, por lo que para $N + 1$ no se cumple la definición de número distinguido. Así, $\exists \: n_1 \geqslant N +1$ tal que $x_{N+1} < x_{n_1}$
+
+        Asimismo, como $n_1 > N$, $n_1$ tampoco es distinguido, y tampoco cumple su definición. Por ello, $\exists \: n_2 > n_1$ tal que $x_{n_1} < x_{n_2}$
+
+        Observe que $n_1 \neq n_2$, por lo que $n_2 > n_1$. Esto por la \Cref{defsuc}, que nos dice que la sucesión es una función. Si sucediera que $n_1 = n_2 \Rightarrow$ no se podría dar $x_{n_1} < x_{n_2}$
+
+        Supongamos ahora que $m \geqslant 2$, y que se tienen construidos, via recursión, $N < N + 1 \geqslant n_1 < n_1 < ... < n_m$ números $\in \R$ tales que  $x_{n_1} < x_{n_2} < ... < x_{n_m}$
+
+        Debido a que $n_m > m \Rightarrow n_m$ no es distinguido $\Rightarrow \: \exists \: n_{m+1} > n_m$ tal que $x_{n_m} < x_{n_{m+1}}$
+
+        Y note que se sigue que $n_m \neq n_{m+1}$. Esto termina el segundo paso de recursión. Así, por el Teorema de Recursión, tenemos definida a la subsucesión ${\left( x_{n_m}\right)}_{m \in \N}$ de ${\left( x_n\right)}_{n \in \N}$ que es estrictamente creciente. 
+        
+        \item $D$ es infinito
+
+        Debido a que $D$ es infinito $\Rightarrow D \neq \varnothing$. Así, supongamos $n_1 \in D$ f.p.a.
+
+        Como $D$ es infinito, $\exists \: n_2 \in D$ tal que $n_1 < n_2$. Como $n_1$ es distinguido $\forall \: n \geqslant n_1 \Rightarrow x_n \leqslant x_{n_1}$
+
+        Y como $n_2 > n_1 \Rightarrow  x_{n_2} \leqslant  x_{n_1}$
+
+        Supogamos que $m \geqslant 2$, y que tenemos construidos naturales $n_1, n_2, ..., n_m \in D$ tales que $n_1 < n_2 <  ... < n_m$ y $ x_{n_1} \geqslant  x_{n_2} \geqslant ... \geqslant x_{n_m}$
+
+        Observe ahora que, como $D$ es infinito, $\exists \: n_{m+1} \in D$ tal que $n_m \leqslant n_{m+1}$. Como $n_m$ es disntinguido, y dado  $n_{m+1} > n_m \Rightarrow  x_{n_{m + 1}} \leqslant x_{n_m}$
+
+        Esto termina el segundo paso de recursión. Por el teorema homólogo, tenemos definida a la subsucesión ${\left( x_{n_m}\right)}_{m \in \N}$ de ${\left( x_n\right)}_{n \in \N}$ que es estrictamente decreciente. 
+        
+    \end{enumerate}
+\end{proof}
+
+\begin{eg} \label{eg411}
+    El espacio normado $(\R, \norm{\cdot})$ es un espacio de Banach
+\end{eg}
+
+\begin{proofexplanation}
+    Supongamos que ${\left( x_n\right)}_{n \in \N}$ es una sucesión de Cauchy arbitraria en $\R$. Por el \Cref{theom413} esta sucesión es acotada $\Rightarrow \: \exists \: x \in \R$ y $r > 0$ tales que
+
+    $$\{ x_n \mid n \in \N \} \subseteq B(x,r) = B(x-r, x + r)$$
+
+    Por el \Cref{lemma411}, $\exists \: {\left( x_{n_m}\right)}_{m \in \N}$ una subsucesión de ${\left( x_n\right)}_{n \in \N}$ que es creciente o decreciente. Observe que
+
+    $$\{ x_{n_m} \mid m \in \N \} \subseteq \{ x_n \mid n \in \N \}  \subseteq  B(x-r, x + r)$$
+
+    Note que $x_{n_m}$ está acotada superiormente e inferiormente. Así, si $x_{n_m}$ es creciente, converge a $\sup \{ x_{n_m} \mid m \in \N \}$, y si $x_{n_m}$ es decreciente, converge a $\inf \{ x_{n_m} \mid m \in \N \}$.
+
+    En cualquier caso ${\left( x_{n_m} \right)}_{m \in \N}$ converge. Por el \Cref{theom414} ${\left( x_n\right)}_{n \in \N}$ converge. 
+
+    $\therefore \R$ es un espacio métrico completo con la distancia inducida por la norma $\abs{\cdot}$, por lo que es de Banach. Note que también es de Hilbert. 
+\end{proofexplanation}
+
+\begin{eg}
+    Todo espacio ($\R^n , \norm{\cdot}_2$) es un espacio de Banach, con $n \in \N$
+\end{eg}
+
+\begin{proofexplanation}
+     Supongamos que ${\left( \vec{x}_n \right)}_{n \in \N}$ es una sucesión de Cauchy arbitraria en $\R^n$. Denotaremos como $(\vec{x}_n(i))$ a la $i$-ésima coordenada del vector $\vec{x}_n = (x_n(1), ..., x_n(i), ..., x_n(k))$
+
+     Veamos que $\forall \: i \in \{ 1 , ..., k \} \Rightarrow {\left( \vec{x}_n(i) \right)}_{n \in \N}$ es de Cauchy en $\R$. Sea $ i \in \{ 1 , ..., k \} $ arbitrario, y supongamos $\varepsilon > 0$ también arbitrario. 
+
+     Como ${\left( \vec{x}_n \right)}_{n \in \N}$ es de Cacuhy $\exists \: N \in \N$ tal que 
+     
+     $$\forall \: n, m \geqslant N \Rightarrow d(x_n, x_m) = \norm{x_n - x_m}_2 < \varepsilon$$
+     $$\Rightarrow \: \forall \: n, m \geqslant N \Rightarrow \abs{\vec{x}_n(i)-\vec{x}_m(i)} \leqslant \norm{x_n - x_m}_2 < \varepsilon$$
+
+     $\therefore {\left( \vec{x}_n(i) \right)}_{n \in \N}$ es de Cauchy.
+
+     Por lo anterior, y por el \Cref{eg411}, $\exists \: x_1, ..., x_k \in \R$ tales que
+
+     $$\lim_{n \to \infty} \vec{x}_n(i)  = x_ i \: \forall \: i \in  \{ 1 , ..., k \}$$
+
+     Defina $x = (x_1, ..., x_k)$
+
+     $$\Rightarrow \lim_{n \to \infty} \vec{x}_n  = x$$
+
+     $\therefore {\left( \vec{x}_n \right)}_{n \in \N}$ converge a $x \in \R^n$, por lo que es un espacio métrico completo, y como $d$ fue la métrica inducida por $\norm{\cdot}_2$, también es de Banach. Note que también es de Hilbert. 
+\end{proofexplanation}
+
+\begin{lemma} \label{lemma412}
+    Si ($X,d$) es un espacio métrico y $K \subseteq X$ es compacto, $\Rightarrow$ toda sucesión ${\left( x_n \right)}_{n \in \N}$ de elementos de $K$ tiene una subsucesión ${\left( x_{n_m} \right)}_{m \in \N}$ que converge a algún $x \in K$
+\end{lemma}
+
+\begin{proof}
+    Supongamos que ${\left( x_n \right)}_{n \in \N}$ es cualquier sucesión de elementos de $K$. Para $A = \{ x_n \mid n \in \N \}$ se tienen los siguientes casos
+
+    \begin{enumerate}
+        \item $A$ es un conjunto finito
+
+        Supongamos que $A = \{ y_1, y_2, ..., y_n \}$ con $n \in \N \Rightarrow \: \forall \: j \in \{ 1 , ..., n \}$ definimos $N_j = \{ n \in \N \mid x_n = y_n \}$
+
+        $$\Rightarrow \N = \bigcup_{j=1}^{n} N_j$$
+
+        Debido a que $\N$ es infinito $\exists$ un índice $\widebar{j} \in \{ 1 , ..., n \}$ tal que el conjunto
+
+        $$N_{\widebar{j}} = \{ n \in \N \mid x_n = y_{\widebar{j}} \} \subseteq \N$$
+
+        es un conjunto infinito. Podemos definir una función estrictamente creciente de elementos de $N_{\widebar{j}}$. En efecto, como $N_{\widebar{j}}$ es infinito, evidentemente es no vacío, por lo que podemos definir $n_1 = \min (N_{\widebar{j}})$, que existe ya que $\N$ está bien ordenado.
+
+        Nuevamente, debido a que $N_{\widebar{j}} \setminus \{ n_1 \}$ es infinito y no vacío, podemos definir $n_1 = \min (N_{\widebar{j}} \setminus \{ n_1 \})$, y observe que $n_1 < n_2$, ya que queremos dar orden a $N_{\widebar{j}}$
+
+        Supongamos ahora, que tenemos definidos $n_1, n_2, ..., n_m \in N_{\widebar{j}}$ con la propedad $n_1 < n_2 < ... < n_m$ con $m \in \N$
+
+        Como $\{ n_1, ..., n_m \}$ es finito y $N_{\widebar{j}}$ es infinito y no vacío, se puede definir 
+
+        $$n_{m+11} = \min (N_{\widebar{j}} \setminus \{ n_1, ..., n_m \} )$$
+
+        y note que $n_m < n_{m+1}$. Por el Teorema de recursión $\exists$ una función $g : \N \to N_{\widebar{j}}$ que es estrictamente creciente, definida mediante la regla de correspondencia $g(m) = n_m \: \forall \: m \in \N$
+
+        Considere ahora, la subsucesión  ${\left( x_{n_m}\right)}_{m \in \N}$ induce a la función $g$. Esto implica que la subsucesión  ${\left( x_{n_m}\right)}_{m \in \N}$ es la sucesión constante de valor $y_{\widebar{j}}$. Por \Cref{theom2211} converge a $y_{\widebar{j}}$
+
+        $\therefore {\left( x_{n_m}\right)}_{m \in \N}$ converge a $y_{\widebar{j}} \in K$
+        
+        \item $A$ es un conjunto infinito 
+
+        Como $A$ es infinito y $K$ es compacto, por \Cref{theom334}, $\exists \: x \in K$ que es punto de acumulación de $A$ en $K$
+
+        Con el punto de acumulación, vamos a constuir una subsucesión ${\left( x_{n_m}\right)}_{m \in \N}$ de ${\left( x_n \right)}_{m \in \N}$ que converge a $x \in K$
+
+        Como $x$ es punto de acumulación de $A = \{ x_n \mid n \in \N \} \Rightarrow \: \exists \: x_1 \in A \cap B(x,1)$
+
+        Debido a que $x \in \der(A)$ el conjunto $ A \cap B\left(x, \frac{1}{2}\right)$ es infinito. Por ello, $\exists \: x_{n_2} \in \left(  A \cap B\left(x, \frac{1}{2}\right) \right) \setminus \{ x_1, ..., x_{n_i} \}$ y observe que $n_1 < n_2$
+
+        Supongamos ahora un $m \in \N$ con $m \geqslant 2$, y que se tienen construidos los elementos $x_{n_1}, x_{n_2}, ..., x_{n_m}$ que cumplen
+
+        \begin{align*}
+         x_{n_1} \in A \cap B(x, 1)   && \text{ y } && \: \forall \: j \in  \{ 2 , ..., m \} \Rightarrow x_{n_j} \in  \left(  A \cap B\left(x, \frac{1}{j}\right) \right) \setminus \{ x_1, ..., x_{n_{(j-1)}} \}
+        \end{align*}
+
+        Aplicando que $x$ es punto de acumulación de $A$, el conjunto, $\left(  A \cap B\left(x, \frac{1}{m+1}\right) \right) \setminus \{ x_1, ..., x_{m} \}$ es infinito, por lo cual existe 
+
+        $$x_{n_{m+1}} \in \left(  A \cap B\left(x, \frac{1}{m+1}\right) \right) \setminus \{ x_1, ..., x_{m} \}$$
+
+         y observe que $n_m < n_{m+1}$. Por el teorema de recursión $\forall \: n \in \N \: \exists \: x_{n_m}$ tal que 
+
+         \begin{align*}
+         x_{n_1} \in A \cap B(x, 1)   && \text{ y } && \: \forall \: j \text{ con } j \geqslant 2 \Rightarrow x_{n_j} \in  \left(  A \cap B\left(x, \frac{1}{j}\right) \right) \setminus \{ x_1, ..., x_{n_{(j-1)}} \}
+        \end{align*}
+
+        Es claro que ${\left( x_{n_m} \right)}_{m \in \N}$ es una subsucesión de ${\left( x_{n} \right)}_{n \in \N}$ y además converge a $x \in K$.
+
+        Como $x_{n_m} \in  \left(  A \cap B\left(x, \frac{1}{m}\right) \right) \setminus \{ x_1, ..., x_{m} \}$
+
+        $$\Rightarrow 0 \leqslant \lim_{m \to \infty} d(x_{n_m}, x ) \leqslant \lim_{m \to \infty} \frac{1}{m} = 0$$
+
+        $\therefore$ toda sucesión ${\left( x_n \right)}_{n \in \N}$ de elementos de $K$ tiene una subsucesión ${\left( x_{n_m} \right)}_{m \in \N}$ que converge a algún $x \in K$
+    \end{enumerate}
+\end{proof}
+
+\section{Compacto $\Rightarrow$ Completo}
+
+\begin{definition}[Secuencialmente Compacto] \label{def421}
+    Sea ($X,d$) un espacio métrico. Se dice que un conjunto $K \subseteq X$ es secuencialmente compacto si cualquier sucesión ${\left( x_n \right)}_{n \in \N}$ de elementos de $K$ tiene una subsucesión ${\left( x_{n_m} \right)}_{m \in \N}$ que converge a algún elemento de $K$
+\end{definition}
+
+\begin{corollary}
+    Sea ($X,d$) un espacio métrico. Por el \Cref{lemma412}, si $K \subseteq$ es compacto $\Rightarrow K$ es secuencialmente compacto.
+\end{corollary}
+
+\begin{corollary}
+    Sea ($X,d$) un espacio métrico. Si ($X,d$) es compacto $\Rightarrow$ ($X,d$) es completo.
+\end{corollary}
+
+\begin{orangeproof}
+    Sea ${\left( x_n \right)}_{n \in \N}$ cualquier sucesión de Cauchy en ($X,d$). Por \Cref{lemma412} $\exists \: {\left( x_{n_m} \right)}_{m \in \N}$ subsucesión de ${\left( x_n \right)}_{n \in \N}$ que converge a algún $x \in X$. Como $X$ es compacto, por \Cref{theom414}, ${\left( x_n \right)}_{n \in \N}$ también converge a $x \in X$
+\end{orangeproof}
+
+\begin{theorem}
+    Sean ($X,d$) y ($Y,\rho$) dos espacios métricos y sea $ \Phi : X \to Y$ una equivalencia. Si ($X,d$) es completo $\Rightarrow$ ($Y,\rho$) también es completo.
+\end{theorem}
+
+\begin{proof}
+    Sea ${\left( y_n \right)}_{n \in \N}$ una sucesión de Cauchy cualquiera en ($Y,\rho$). Como $\Phi$ es una equivalencia (\Cref{defequiv}), $\Phi$ es biyectiva, y tanto $\Phi$ como ${\Phi}^{-1}$ son funciones Lipschitz continua, con ${\Phi}^{-1} : Y \to X$
+
+    Consideremos, a la sucesión ${\left( {\Phi}^{-1} ( y_n) \right)}_{n \in \N}$. Veamos que esta sucesión es de Cauchy en ($X,d$)
+
+    Sea $\varepsilon > 0$ arbitrario. Como ${\Phi}^{-1}$  es Lipschitz continua con ${\Phi}^{-1} : Y \to X$, por lo que, $\exists \: c > 0$ tal que
+
+    $$\forall \: y, z \in Y \Rightarrow d({\Phi}^{-1} (y), {\Phi}^{-1} (z) ) \leqslant c \cdot \rho(y,z)$$
+
+    Debido a que ${\left( y_n \right)}_{n \in \N}$ es de Cauchy en ($Y,\rho$), para $\varepsilon_0 = \frac{\varepsilon}{c} > 0 \: \exists \: N \in \N$ tal que
+
+    $$\forall \: n, m \geqslant N \Rightarrow \rho(y_n, y_m) < \varepsilon_0 = \frac{\varepsilon}{c}$$
+    $$\Rightarrow \forall \: n, m \geqslant N \Rightarrow d({\Phi}^{-1} (y_n), {\Phi}^{-1} (y_m)) \leqslant c \cdot \rho(y_n, y_m) < \varepsilon_0 = c \cdot \frac{\varepsilon}{c} = \varepsilon$$
+
+    $\therefore {\left( {\Phi}^{-1} ( y_n) \right)}_{n \in \N}$ es de Cauchy en ($X,d$)
+
+    Debido a que ($X,d$) es completo, $\exists \: x \in X$ tal que $\lim\limits_{n \to \infty} \Phi^{-1}(y_n) = x$
+
+    Por otra parte, como $\Phi . X \to Y$ es Lipschitz continua, también es continua, y por \Cref{theom235}, envía sucesiones convergentes a sucesiones convergentes. Así, $\lim\limits_{n \to \infty} \Phi {\left( {\Phi}^{-1} ( y_n) \right)} = \Phi(x) \in Y$
+
+    Luego $\lim\limits_{n \to \infty} y_n = \Phi(x)$
+
+    $\therefore$ ($Y,\rho$) es completo
+\end{proof}
+
+\begin{theorem} \label{theom427}
+    Sean ($X,d$) un espacio métrico completo $\Rightarrow \varnothing \neq F \subseteq X$ es un subconjunto cerrado $\iff$ ($F, d \restriction_F$) es un espacio métrico completo
+\end{theorem}
+
+\begin{proof}
+    $\Rightarrow$ Sea ${\left( x_n \right)}_{n \in \N}$ una sucesión de Cauchy cualquiera en ($F, d \restriction_F$), $\Rightarrow$, por el \Cref{theom400}, ${\left( x_n \right)}_{n \in \N}$ es una sucesión de Cauchy en ($X,d$)
+
+    Como ($X,d$) es completo $\exists \: x \in X$ tal que $\lim\limits_{n \to \infty} x_n = x$ en ($X,d$)
+
+    Resulta que $x \in F$. Efectivamente, si $x \in X \setminus F$, como $F$ es cerrado, $\exists \: r > 0$ tal que $B(x,r) \subseteq X \setminus F$. Pero, como $\lim\limits_{n \to \infty} x_n = x \Rightarrow \: \exists \: M \in \N$ tal que $\forall \: n \geqslant N \Rightarrow d(x_n, x) < r$
+
+    Así, $x_{M+1} \subseteq B(x,r)$. Luego $x_{M+1} \in F \cap (X \setminus F)$, lo cual es una contradiccón, por lo que $x \in F$
+
+    Como ${\left( x_n \right)}_{n \in \N}$ es una sucesión en $F$, y que $x \in F$, podemos concluir que $\lim\limits_{n \to \infty} x_n = x$ en ($F, d \restriction_F$)
+
+    $\therefore$ ($F, d \restriction_F$) es completo
+
+    $\Leftarrow$ Supongamos que $x \in \der(F)$ es cualquier elemento. Por el \Cref{theom400} $\exists \: {\left( x_n \right)}_{n \in \N}$ una sucesión de elementos de $F$ que no es eventualmente constante, y tal que $\lim\limits_{n \to \infty} x_n = x$ en ($X,d$)
+
+    Como ${\left( x_n \right)}_{n \in \N}$ es convergente, por el \Cref{theom411}, es de Cauchy en ($X,d$). Como $F$ tiene la métrica $d \restriction_F$, la sucesión también es de Cauchy en ($F, d \restriction_F$). 
+    
+    Como ($F, d \restriction_F$) es completo $\Rightarrow \: \exists \: a \in F$ tal que $\lim\limits_{n \to \infty} x_n = a$ en $F \Rightarrow \lim\limits_{n \to \infty} x_n = a$ en ($X,d$) por definición de $d \restriction_F$
+
+    En efecto, no puede ocurrir que $a \neq x$, ya que por el \Cref{theom232}, el punto al que converge es único, y como $a \in F \Rightarrow a = x \in F$. Como $x$ fue un punto arbitrario $F \subseteq \der(F)$
+
+    $\therefore F$ es cerrado
+\end{proof}
+
+\section{Teorema del Punto Fijo de Banach}
+
+\begin{definition}[Contracción] \label{def431}
+    Sea ($X,d$) un espacio métrico. Una función $\varphi : X \to X$ se llama contracción si $\exists \: c \in (0,1)$ tal que
+
+    $$\forall \: x, y \in X \Rightarrow d(\varphi(x), \varphi(y)) \leqslant c \cdot d(x,y)$$
+
+    Podemos decir que una contracción es una función en un espacio métrico en si mismo que es Lipschitz continua, con constante de Lipschitz $c \in (0,1)$
+\end{definition}
+
+\begin{definition}[Punto Fijo]
+    Un punto $z \in X$ se llama punto dijo de la función $\varphi : X \to X$ si $\varphi(z) = z$. 
+    
+    Para $n \in \N$ denotaremos por $\varphi^n$ a la composición 
+
+    $$\varphi^n = \varphi \circ \varphi \circ ... \circ \varphi$$
+
+    También definimos $\varphi^\circ = \mathrm{id}_X : X \to X$ a la función identidad
+\end{definition}
+
+\begin{remark}
+    El siguiente teorema nos da la existencia de un único punto fijo de una contracción $\varphi : X \to X$ y además nos dirá como hallar una aproximación de él.
+\end{remark}
+
+\begin{theorem}[Punto Fijo de Banach] \label{theombanach}
+    Sea ($X,d$) un espacio métrico completo, no vacío, y sea $\varphi : X \to X$ una contracción $\Rightarrow$ se cumple que
+
+    \begin{enumerate}
+        \item $\varphi$ tiene un único punto fijo $z \in X$
+        \item $\forall \: x_0 \in X$ la sucesión ${\left( \varphi^n (x_0) \right)}_{n \in \N}$ converge a $z \in X$ y se cumple que
+
+        $$d(\varphi^n(x_0),z) \leqslant \frac{c^n}{1-c} \cdot d(\varphi(x_0), x_0)$$
+
+        donde $\frac{c^n}{1-c}$ es el error de aproximación, y $c \in (0,1)$ satisface la \Cref{def431}.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Sea $x_0 \in X$ cualquier elemento, y denotaremos por $x_n = \varphi^n (x_0)$. Primero, veamos que la sucesión ${\left( \varphi^n (x_0) \right)}_{n \in \N}$ es una sucesión de Cauchy.
+
+    Como $\varphi$ satisface la \Cref{def431} $\Rightarrow$
+
+    $$\forall \: n \in \N \Rightarrow d(x_{n+1},x_n) = d(\varphi^{n+1}(x_0), \varphi^n(x_0) = d(\varphi^n(x_1),\varphi^n(x_0)) \leqslant c^n \cdot d(x_1,x_0)$$
+
+    Esta desigualdad es fácilmente demostrable via inducción sobre $n$. Además, $\forall \: u, w \in X \Rightarrow$
+
+    $$d(u,w) \leqslant d(u, \varphi(u)) + d(\varphi(u),w) \leqslant d(u, \varphi(u)) + d(\varphi(u),\varphi(w)) + d(\varphi(w),w)$$
+    $$\leqslant  d(u, \varphi(u)) + c \cdot d(u,w) + d(\varphi(w),w) $$
+    $$\Rightarrow d(u,w) - c \cdot d(u,w) \leqslant d(u, \varphi(u)) + d(\varphi(w),w)$$
+    $$\Rightarrow (1-c)d(u,w)  \leqslant d(u, \varphi(u)) + d(\varphi(w),w)$$
+
+    Haciendo $u = x_n$, y a $w = x_k$, con $n, k \in \N \Rightarrow$
+
+    $$ d(x_n,x_k)  \leqslant \frac{ d(x_n, \varphi(x_n)) + d(\varphi(x_k),x_k)}{1-c} = \frac{ d(x_n, x_{n+1}) + d(x_{k+1},x_k)}{1-c} $$
+
+    Aplicando la desigualdad $d(\varphi^n(x_1),\varphi^n(x_0)) \leqslant c^n \cdot d(x_1,x_0)$
+
+    $$\leqslant \frac{ {c}^{n} d(x_1, x_0) + {c}^{k} d(x_1,x_0)}{1-c} = \left( \frac{c^n + c^k}{1-c} \right) \cdot d(x_0,x_1)$$
+
+    $\Rightarrow \: \forall \: n , k \in \N$ s.t.q. 
+
+    $$d(x_n,x_k)  \leqslant \left( \frac{c^n + c^k}{1-c} \right) \cdot d(x_0,x_1)$$
+
+    Para ver que la sucesión ${\left( x_n \right)}_{n \in \N} = {\left( \varphi^n (x_0) \right)}_{n \in \N}$ es de Cauchy, supongamos que $\varepsilon > 0$ es cualquiera. Debido a que $c \in (0,1) \Rightarrow \: \exists \: N \in \N$ tal que
+
+    $$\forall \: n \geqslant N \Rightarrow \frac{c^n}{1-c} \cdot d(x_0,x_1) < \frac{\varepsilon}{2} $$
+    Esto como $\frac{c^n}{1-c}$ converge a 0. $\Rightarrow$
+
+    $$\forall \: m, k  \geqslant N \Rightarrow d(x_m, x_k) \leqslant  \left( \frac{c^n + c^k}{1-c} \right) \cdot d(x_0,x_1) $$
+    $$= \frac{c^m}{1-c} \cdot d(x_0,x_1) + \frac{c^k}{1-c} \cdot d(x_0,x_1) < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon$$
+
+    $\therefore$ la sucesión ${\left( x_n \right)}_{n \in \N}$ es una sucesión de Cauchy.
+
+    Por otra parte, como ($X,d$) es un espacio métrico completo $\exists \: z \in X$ tal que la sucesión ${\left( x_n \right)}_{n \in \N}$ converge a $z$
+
+    Veamos que $z$ es un punto fijo de $\varphi$. Como $\varphi$ es Lipschitz continua, por corolario de \Cref{def22}, es continua, y s.t.q. la sucesión ${\left( \varphi (x_n) \right)}_{n \in \N} = {\left( {x}_{n+1} \right)}_{n \in \N} $ converge a $\varphi(z)$. Como,  por el \Cref{theom232}, el punto al que converge es único $\Rightarrow \varphi(z) = z$
+
+    Veamos ahora que $z$ es único. Si $z_1, z_2 \in X$ son puntos fijos de $\varphi \Rightarrow$
+
+    $$d(z_1, z_2) = d(\varphi(z_1), \varphi(z_2)) \leqslant c \cdot d(z_1, z_2)$$
+
+    Como $c \in (0,1)$ s.t.q. $c \cdot d(z_1, z_2) \leqslant d(z_1, z_2)$
+
+    Si $d(z_1, z_2) > 0 \Rightarrow c \cdot d(z_1, z_2)  < d(z_1, z_2)$, ya que $c < 1$. Pero notemos que esto no ocurre, lo que implica que $d(z_1, z_2) = 0 \Rightarrow z_1 = z_2$
+
+    $\therefore z$ es único
+
+    Finalmente, si hacemos $k \to \infty$ en la siguiente desigualdad, s.t.q.
+
+    $$d(x_n,x_k) = \lim_{k \to \infty} d(x_n,x_k) \leqslant \lim_{k \to \infty} \left( \frac{c^n + c^k}{1-c} \right) \cdot d(x_0,x_1) = \frac{c^n}{1-c}  \cdot d(x_0,x_1) $$
+
+    $\therefore$ es cierto el \Cref{theombanach}
+\end{proof}
+
+\begin{corollary}
+    Sean ($X,d$) un espacio métrico completo y $\varphi : X \to X$ una función continua, para la cual $\exists \: k \in \N$ tal que $\varphi^k : X \to X$ es una contracción, donde $\varphi^k = \varphi \circ ... \circ \varphi$ $k$-veces, $\Rightarrow \varphi$ tiene un único punto fijo
+\end{corollary}
+
+\begin{orangeproof}
+    Debido a que $\varphi^k$ es una contracción, y que ($X,d$) es un espacio métrico completo, por el \Cref{theombanach} $: \exists$ un único punto fijo $z \in X$ de $\varphi^k$, es decir, $\varphi^k(z) \varphi(\varphi(...(\varphi(z))...)) = z$
+
+    Luego $\varphi(\varphi^k(z)) = \varphi(z)$, así $\varphi^k(\varphi(z)) = \varphi(z)$
+
+    Esto porque $\varphi \circ \varphi^k = \varphi^k \circ  \varphi = \varphi^{k+1}$
+
+    $\therefore \varphi(z)$ también es punto fijo de $\varphi^k$
+
+    $\Rightarrow \varphi(z) = z$
+
+    $\therefore z$ es punto fijo de $\varphi$
+
+    Ahora, veamos que $z$ es único. Supongamos que $y \in X$ es también un punto fijo de $\varphi$, es decir, $\varphi(y) = y$. Luego $\varphi(\varphi(y) )  = \varphi(y) = y \Rightarrow \varphi(\varphi(\varphi(y)) )  = \varphi(\varphi(y)) = \varphi(y) = y$. Después de $k$ pasos de hacer esto s.t.q. $\varphi^k(y) = y$.
+
+    Por el \Cref{theombanach}, sabemos que $z$ es el único punto fijo de $\varphi^k \Rightarrow z = y$
+\end{orangeproof}
+
+\section{Teorema de Heine-Börel Reloaded}
+
+\begin{remark}
+    ¿Habrá algún teorema parecido al Heine-Börel (\Cref{theomheineborel}) para espacios métricos cualesquiera? Este teorema se cumple en $\R^n$, que es completo y de Banach. Se va a fortalecer la nocíon de \textit{acotado}, que nos daba el teorema, e introduciremos la noción de totalmente acotado.
+\end{remark}
+
+\begin{definition}[Totalmente Acotado]
+    Sea ($X,d$) un espacio métrico. Diremos que un subconjunto $K \subseteq X$ es totalmente acotado en ($X,d$) $\iff$ cumple con lo siguiente
+
+    $$\forall \: \varepsilon > 0 \: \exists \: F = \{ x_1, ..., x_n \} \subseteq X$$
+
+    Donde $F$ es finito y no vacío
+
+    $$\Rightarrow K \subseteq \bigcup_{x \in F} B(x, \varepsilon) = B(x_1, \varepsilon) \cup ... \cup B(x_n, \varepsilon)$$
+\end{definition}
+
+\begin{theorem} \label{theom442}
+    Si $K$ es totalmente acotado $\Rightarrow K$ es acotado.
+\end{theorem}
+
+\begin{proof}
+    Como $K$ es totalmente acotado, para $\varepsilon = 1 \Rightarrow \: \exists \: x_1, ..., x_n \in X$ tales que
+
+    $$ K \subseteq B(x_1, 1) \cup ... \cup B(x_n, 1) $$
+
+    Resulta que $K \subseteq B(x,r)$ donde $r = \max \{ d(x_1,x_2) + 1, ..., d(x_1, x_n) + 1 \}$
+\end{proof}
+
+\begin{theorem} \label{theom441}
+    Sea ($X,d$) un espacio métrico y $K \subseteq X$. Si $K$ es secuencialmente compacto $\Rightarrow K$ es totalmente acotado.
+\end{theorem}
+
+\begin{proof}
+    Supongamos, para generar una contradicción, que $K$ no es totalmente acotado $\Rightarrow \: \exists \: \varepsilon > 0$ tal que $\forall \: F = \{ x_1, ..., x_n \} \subseteq X$ finito y no vacío $\Rightarrow K \nsubseteq \bigcup_{x \in F} B(x, \varepsilon) $
+
+    Como $\varnothing \subseteq B(x, \varepsilon) \Rightarrow$ si $K$ es vacío es totalmente acotado. Como estamos supondiendo que $K$ no es totalmente acotado $\Rightarrow K \neq \varnothing$
+
+    Sea $x_1 \in K$. Por la negación de totalmente acotado $K \nsubseteq B(x_1, \varepsilon)$. Luego, $\exists \: x_2 \in K \setminus B(x_1, \varepsilon)$. Note que como $x_2 \notin B(x_1, \varepsilon)$ está fuera de la bola, $d(x_1, d_2) \geqslant \varepsilon$
+
+    Supongamos que $m \geqslant 2$ y que tenemos construidos $x_1, x_2, ..., x_m$ elementos de $K$ tales que
+    
+    \begin{align*}
+        x_1 \in K && \text{ y } && \forall \: j \in \{ 2, ..., n \} \Rightarrow x_j \in K \setminus \left[ B(x_1, \varepsilon) \cup ... \cup B(x_{j-1}, \varepsilon) \right]
+    \end{align*}
+
+    Como $K$ no es totalmente acotado 
+
+    $$K \nsubseteq B(x_1, \varepsilon) \cup ... \cup B(x_m, \varepsilon)$$
+
+    $\Rightarrow \: \exists \: x_{m+1} \in K \setminus \left[ B(x_1, \varepsilon) \cup ... \cup B(x_{m}, \varepsilon) \right]$
+
+    Por el Teorema de recursión, s.t.q. hemos construido una sucesión ${\left(x_n\right)}_{n \in \N}$ en $K$. Note que
+
+    $$\forall \: k, m \in N \Rightarrow \text{ si } k \neq m \Rightarrow d(x_k, x_m) \geqslant \varepsilon$$
+
+    En particular, si ${\left(x_{n_m}\right)}_{m \in \N}$ es cualquier subsuseción de ${\left(x_n\right)}_{n \in \N}$ s.t.q.
+    
+    $$\forall \: k, m \in N \Rightarrow \text{ si } k \neq m \Rightarrow d(x_{n_k}, x_{n_m}) \geqslant \varepsilon$$
+
+    Así, ${\left(x_{n_m}\right)}_{m \in \N}$ no es de Cauchy, por lo que no es convergente. Pero se trata de una sucesión de elementos de $K$, que supusimos secuencialmente compacto, por lo que hay una contradicción.
+
+    $\therefore K$ es totalmente acotado.
+\end{proof}
+
+\begin{corollary}
+    Sea ($X,d$) un espacio métrico. Si $K \subseteq X$ es compacto, es toalmente acotado. Esto porque por el \Cref{def421} todo compacto es secuencialmente compacto, y por el \Cref{theom441} todo secuencialmente compacto es totalmente acotado.
+\end{corollary}
+
+\begin{theorem}[Bolzano- Weiestrass] \label{theombw}
+    Las siguientes condiciones son equivalentes para cualquier espacio métrico ($X,d$)
+
+    \begin{enumerate}
+        \item $X$ es compacto
+        \item Todo subconjunto infinito de $X$ tiene un punto de acumulación
+        \item Todo subconjunto infinito numerable de $X$ tiene un punto de acumulación
+        \item $X$ es secuencialmente compacto
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    1. $\Rightarrow$ 2. 
+
+    Fue demostrado en el \Cref{theom334}
+
+    2. $\Rightarrow$ 3.
+
+    Evidente
+
+    3. $\Rightarrow$ 4. 
+
+    Sea $f : \N \to X$ una sucesión. Si $A = \{ f(n) \mid n \in \N \}$ es finito $\Rightarrow A = \{ y_1, ..., y_n \}$. Ya probamos en el Caso 1 del \Cref{lemma412} que $\exists $ una subsucesión $ {\left( x_{n_m}\right)}_{m \in \N}$ de ${\left( x_n\right)}_{n \in \N}$ que es constante de valor $y_{\widebar{j}}$, y así $ {\left( x_{n_m}\right)}_{m \in \N}$ converge. 
+    
+    Si $A$ es infinito, en el Caso 2 del \Cref{lemma412}, también probamos que $\exists $ una subsucesión $ {\left( x_{n_m}\right)}_{m \in \N}$ de ${\left( x_n\right)}_{n \in \N}$ que es convergente.
+
+    4. $\Rightarrow$ 1. 
+
+    Sea $\U = \{ \A_\alpha \mid \alpha \in J \}$ una colección arbitraria de abiertos tales que $X = \bigcup_{\alpha \in J} \A_\alpha$. Veamos que $\exists \: \alpha_1, ..., \alpha_n \in J$ con $X = \bigcup_{i=1}^{n} \A_{\alpha_i}$
+
+    Para ello, veamos que $\exists \: \varepsilon > 0$ tal que $\forall \: x \in X \: \exists \: \alpha_x \in J \Rightarrow B(x, \varepsilon) \subseteq \A_{\alpha_x}$
+
+    Supongamos que tal $\varepsilon$ no existe
+
+    $$\Rightarrow \: \forall \: \varepsilon > 0 \: \exists \: x_\varepsilon \in X \: \forall \: \alpha \in J \Rightarrow B(x, \varepsilon) \nsubseteq \A_\alpha$$
+
+    En particular
+
+    $$\forall \: n \in \Z^+ \: \exists \: x_n \in X \: \forall \: \alpha \in J \Rightarrow B\left(x, \frac{1}{n} \right) \nsubseteq \A_\alpha$$
+
+    Tenemos así, definida una sucesión ${\left(x_n\right)}_{n \in \N}$. Como supusimos que $X$ es secuencialmente compacto $\Rightarrow$ para cada sucesión en $X$, podemos extraer una subsucesión que converge, y en particular, $\exists \: {\left( x_{n_m}\right)}_{m \in \N}$ una subsucesión de ${\left(x_n\right)}_{n \in \N}$ que converge a un elemento $x \in X$
+
+    $\Rightarrow \: \exists \: \beta \in J$ tal que $x \in \A_\beta$. Pero $\A_\beta \in \U$ es abierto, por lo que, $\exists \: r > 0$ tal que $B(x,r) \subseteq \A_\beta$
+
+    Como $\lim\limits_{n \to \infty} x_{n_m} = x$, para $\frac{r}{2} > 0 \: \exists \: N \in \N$ tal que
+
+    $$\forall \: m \geqslant N \Rightarrow x_{n_m} \in B \left( x, \frac{r}{2} \right)$$
+
+    Fijemos $M \in \N$, con $M \geqslant \frac{2}{r}$, y también $M > N \Rightarrow$
+
+    $$B \left( x_{n_m}, \frac{1}{n_m} \right) \subseteq B(x,r)$$
+
+    En efecto, veamos que es cierto. Sea $z \in B \left( x_{n_m}, \frac{1}{n_m} \right)$ un elemento cualquiera $\Rightarrow$
+
+    $$d(z,x) \leqslant d(z, x_{n_m}) + d(x_{n_m}, x) < \frac{1}{n_m} + \frac{r}{2} < r$$
+
+    Esto como $n_m \geqslant m$y $n_m \geqslant M \Rightarrow \frac{1}{n_m} \leqslant \frac{1}{M}$, y $\frac{1}{M} < \frac{r}{2}$, ya tomamos a $M \geqslant \frac{2}{r}$ $\Rightarrow \frac{1}{n_m} + \frac{r}{2} < \frac{r}{2} + \frac{r}{2} < r$
+
+    Así $z \in B(z,r) \Rightarrow B \left( x_{n_m}, \frac{1}{n_m} \right) \subseteq B(x,r)$
+
+    Como $B(x,r) \subseteq \A_\beta \Rightarrow$
+
+    $$ B \left( x_{n_m}, \frac{1}{n_m} \right) \subseteq B(x,r) \subseteq \A_\beta $$
+
+    Pero eso es una contradicción, ya que tomamos $B\left(x, \frac{1}{n} \right) \nsubseteq \A_\alpha$
+
+    $\therefore \: \exists \: \varepsilon > 0$ tal que 
+
+    $$\forall \: x \in X \: \exists \: \alpha_x \in J \Rightarrow B(x, \varepsilon) \subseteq \A_{\alpha_x}$$
+
+    Como $X$ es secuencialmente compacto, por \Cref{theom441}, es totalmente acotado $\Rightarrow$ para la $\varepsilon > 0$ dada por la afirmacióna anterior $\exists \: x_1, ..., x_n \in X$ tales que
+
+    $$X \subseteq B(x_1, \varepsilon) \cup ... \cup B(x_n, \varepsilon) \subseteq X = X$$
+
+    Por la propiedad que hemos querido demostrar de $\varepsilon > 0$, s.t.q. $\forall \: i \in \{ 1, .., n \}$
+
+    $$X = B(x_1, \varepsilon) \cup ... \cup B(x_n, \varepsilon) \subseteq \A_{\alpha_{x_1}} \cup ... \cup \A_{\alpha_{x_n}} \subseteq \U$$
+
+    $\therefore X$ es compacto, ya que hemos agarrado una subcolección finita de una cubierta arbitraria que lo cubre. 
+\end{proof}
+
+\begin{corollary}
+    Sea ($X,d$) un espacio métrico y $K \subseteq X \Rightarrow K$ es compacto $\iff$ es secuencialmente compacto.
+\end{corollary}
+
+\begin{theorem}[Heine-Börel Reloaded] \label{theomhbr}
+    Sea ($X,d$) un espacio métrico completo $\Rightarrow \: \forall \: \varnothing \neq K \subseteq X$ s.t.q. $K$ es compacto $\iff K$ es cerrado y totalmente acotado.
+\end{theorem}
+
+\begin{proof}
+    $\Rightarrow$ Ya se ha demostrado por varios teoremas.
+
+    $\Leftarrow$ Veamos que $K$ es secuencialmente compacto, y que $K$ es completo. Supongamos ${\left(x_n\right)}_{n \in \N}$ una sucesión arbitraria de elementos de $K$. Sea $A = \{ x_n \mid n \in \} $. Para $A$ tenemos los siguientes dos casos.
+
+    \begin{enumerate}
+        \item $A$ es finito
+
+        Vease el Caso 1. de \Cref{lemma412}
+        
+        \item $A$ es infinito
+
+        Como $K$ es totalmente acotado $\exists \: F_1 \subseteq X$ finito tal que $K \subseteq \bigcup_{x \in F_1} (x, 1)$
+
+        Como $A \subseteq X \Rightarrow$
+
+        $$A \cap K = A \cap \bigcup_{x \in F_1} (x, 1) = \bigcup_{x \in F_1} A \cap (x, 1) $$
+
+        Como $A$ es infinito $\exists \: y_1 \in F_1$ tal que $A \cap B(y_1, 1)$ es infinito. 
+        
+        Hay una cantidad infinita de iPhones que lanzamos a tiendas, por lo que hay una tienda, el paraíso de los jovenes, en la que hay una infinidad de iPhones.
+
+        Sabemos que $A_1 = B(y_1, 1) \cap A \subseteq K$. Como $K$ es totalmente acotado $\Rightarrow A_1$ es totalmente acotado $\Rightarrow$ para $\varepsilon = \frac{1}{2} \: \exists \: F_2$ tal que
+
+        $$A_1 \subseteq \bigcup_{x \in F_2} B\left( x, \frac{1}{2} \right)$$
+
+        Como $A_1$ es infinito $\exists \: y_2 \in F_2$ tal que $A_2 = A_1 \cap  B\left( y_2, \frac{1}{2} \right)$ es infinito. 
+
+        El siguiente paso de recursión es suponer que tenemos construidos conjuuntos infinitos $A \supseteq A_1 \supseteq A_2 \supseteq ... \supseteq A_n \supseteq ...$, y elementos $y_1, ..., y_n, ... \in X$ tales que 
+
+        $$ A_1 =  A \cap B(y_1, 1)   $$
+        $$ A_2 = A_1 \cap  B\left( y_2, \frac{1}{2} \right) $$
+        $$\vdots \: \: \: \: \: \:\vdots \: \: \: \: \: \:\vdots \: \: \: \: \: \:\vdots \: \: \: \: \: \:\vdots \: \: \: \: \: \:\vdots$$
+        $$ A_n = A_{n-1} \cap  B\left( y_n, \frac{1}{n} \right) $$
+
+        Teniendo ya esta sucesión, veamos que $\exists \: $ una subsucesión $ {\left( x_{n_m}\right)}_{m \in \N}$ de $ {\left( x_{n}\right)}_{n \in \N}$ tal que
+
+        $$\forall \: m \in \N \Rightarrow x_{n_m} \in B(y_1, 1) \cap B\left( y_2, \frac{1}{2} \right) \cap  ... \cap B\left( y_m, \frac{1}{m} \right)$$
+
+        Vamos a construirla via recursión. Para $m =1$, como $A_1$ es infinito, s.t.q. $A_1 \neq \varnothing$. Podemos fijar $x_{n_1} \in A_1$. Note que $x_{n_1} \in A_1 \subseteq B(y_1, 1)$. 
+        
+        Por otro lado, como $A_2$ es infinito s.t.q
+
+        $$A_2 \nsubseteq \{ x_1, x_2, ..., x_{n_1} \}$$
+
+        Es por ello que $\exists \: n_2 > n_1$ tal que 
+
+        $$x_{n_2} \in A_1 \setminus \{ x_1, x_2, ..., x_{n_1} \} $$
+
+        Note que $x_{n_2} \in A_2 = A_1 \cap  B\left( y_2, \frac{1}{2} \right) \subseteq A_1 \subseteq B(y,1)$
+
+        Así $x_{n_1}  \in B(y_1, 1)$, ya que $x_{n_2} \in B(y_1, 1 ) \cap B \left( y_2, \frac{1}{2} \right)$
+
+        Supongamos ahora que $m \geqslant 2$ y que tenemos construios $x_{n_1}  , x_{n_2}, ..., x_{n_m}$ con la propiedad deseada. Además $n_1 < n_2 < ... < n_m$
+
+        Debido a que $A_{m+1}$ es infinito
+
+        $$A_{m+1} \nsubseteq \{ x_1, x_2, ..., x_{n_m} \}$$
+
+        Es por ello que $\exists \: n_{m+1} > n_m$ tal que 
+
+        $$x_{n_{m+1}} \in A_{m+1} \setminus \{ x_1, x_2, ..., x_{n_m} \} $$
+
+        Note que $x_{n_{m+1}} \in  A_{m+1} = A_m \cap B\left( y_{m+1}, \frac{1}{m+1} \right)$. Así $x_{n_{m+1}} \in  B\left( y_{m+1}, \frac{1}{m+1} \right)$. Además, como 
+
+        $$A_{m+1} \subseteq A_m \subseteq A_{m-1} \subseteq ... \subseteq A_1 \subseteq A$$
+
+        s.t.q. $x_{n_{m+1}} \in A_i \: \forall \: i \in \{1, ..., m \}$. Como $A_{i} = A_{i-1} \cap B\left( y_{i1}, \frac{1}{i} \right)$ s.t.q.
+
+        $$ x_{n_{m+1}}  \in B(y_1, 1) \cap ... \cap  B\left( y_m, \frac{1}{m} \right) \cap B\left( y_{m+1}, \frac{1}{m+1} \right)$$
+
+        Por el teorema de recursión, se tiene construida la subscucesión $ {\left( x_{n_m}\right)}_{m \in \N}$
+
+        Para ver que converge, basta ver que es de Cauchy, ya que $K \subseteq X$ es cerrado y ($X,d$) es completo $\Rightarrow$ por \Cref{theom427} $K$ es completo.
+
+        Veamos entonces que $ {\left( x_{n_m}\right)}_{m \in \N}$ es de Cauchy.
+
+        Sea $\varepsilon > 0$ arbitrario. Sea $N \in \N$ tal que $\frac{2}{\varepsilon} < N$. Resulta que $\forall \: k, m \geqslant N \Rightarrow d(x_{n_k}, x_{n_m}) < \varepsilon$
+
+        En efecto, sean $k, m \geqslant N \Rightarrow n_m , n_k \geqslant N$
+
+        Por construcción de la sucesión, $x_{n_k}, x_{n_m} \in B\left( y_{N}, \frac{1}{N} \right)$
+
+        $$\Rightarrow  d(x_{n_k}, x_{n_m}) \leqslant d(x_{n_k}, y_N) + d(y_N, x_{n_m}) < \frac{1}{N} + \frac{1}{N} = \frac{2}{N} < \varepsilon$$
+
+        $ \therefore {\left( x_{n_m}\right)}_{m \in \N}$ es de Cauchy.
+    \end{enumerate}
+
+    Note que como $K$ es cerrado en ($X,d$), y ($X,d$) es completo, $\Rightarrow$ por el \Cref{theom427} $K$ es completo. Por la \Cref{def418}, como $ {\left( x_{n_m}\right)}_{m \in \N}$ es de Cauchy en $K \Rightarrow {\left( x_{n_m}\right)}_{m \in \N}$ converge a algún elemento en $K$, lo cual satisface la \Cref{def421} $\Rightarrow K$ es secuencialmente compacto, y por el \Cref{theombw}, $K$ es compacto.
+\end{proof}

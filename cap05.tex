@@ -1,0 +1,1176 @@
+\chapter{Espacios de Funciones}
+
+\section{Espacios $\cfc(X,Y)$ y ${\cfc}^{\ast}(X,Y)$}
+
+\begin{definition}[Conjunto de Funciones Continuas] \label{defog}
+    Dados dos espacios métricos ($X,d$) y ($Y,\rho$), definifimos al conjunto de las funciones continuas de $X$ en $Y$ como
+
+    $$\cfc(X,Y) = \{ f : X \to Y \mid f \text{ es continua } \}$$
+\end{definition}
+
+\begin{notation}
+    Cuando ($Y,\rho$) $=$ ($\R, d_2$) donde $d_2$ es la métrica inducida por la norma $\norm{\cdot}_2$ es usual escribir $\cfc(X)$ en lugar de $\cfc(X,\R)$
+\end{notation}
+
+\begin{remark}
+    Para definir al conjunto ${\cfc}^{\ast}(X,Y)$ es necesario dar la noción de función acotada.
+\end{remark}
+
+\begin{definition} [Función Acotada]
+    Sean ($X,d$) y ($Y,\rho$) dos espacios métricos. Diremos que una función $F : X \to Y$ es acotada si $\exists \: y_0 \in Y$ y $M > 0$ tales que
+
+    $$\forall \: x \in X \Rightarrow \rho(f(x),y_0) < M$$
+
+    es decir, que el conjunto $f[X]$ es acotado
+\end{definition}
+
+\begin{eg}
+    Cualquier función constante es una función acotada.
+\end{eg}
+
+\begin{eg}
+    Consideremos a la función $f : \R \to \R$ definida por medio de la regla de correspondencia
+
+    $$f(x) = \frac{x}{1+x^2}$$
+
+    donde $\R$ tiene la métrica usual $\abs{\cdot}$
+\end{eg}
+
+\begin{proofexplanation}
+    $f$ es una función acotada porque $\forall \: x \in \R$ sucede que
+
+    $$\abs{f(x)-0} = \abs{\frac{x}{1+x^2}} \leqslant \frac{1}{2}$$
+
+    y así $f[\R] \subseteq B(0,1)$
+
+    $\therefore f$ es acotada
+\end{proofexplanation}
+
+\begin{eg}
+    Toda función continua $f : X \to Y$ con $X$ un espacio métrico compacto es una función acotada.
+\end{eg}
+
+\begin{proofexplanation}
+    Como $f$ es una función continua y $X$ es compacto $\Rightarrow f[X]$ es compacto en el espacio $Y$. Así que $f[X]$ es cerrado y acotado en $Y$, y en particular, es un conjunto acotado.
+\end{proofexplanation}
+
+\begin{definition}[Espacios de Funciones Continuas y Acotadas]
+    Sean dos espacios métricos ($X,d$) y ($Y,\rho$), definifimos al conjunto ${\cfc}^{\ast}(X,Y)$ como el conjunto
+
+    $${\cfc}^{\ast}(X,Y)  = \{ f : X \to Y \mid f \text{ es continua y acotada } \}$$
+
+    El conjunto ${\cfc}^{\ast}(X,Y)$ es llamado conjunto de funciones continuas y acotadas de $X$ en $Y$
+\end{definition}
+
+\begin{corollary}
+    Es muy claro que ${\cfc}^{\ast}(X,Y) \subseteq \cfc{\ast}(X,Y)$
+\end{corollary}
+
+\begin{lemma} \label{lemma511}
+    Sean dos espacios métricos ($X,d$) y ($Y,\rho$) arbitrarios, si $f,g \in \cfc{\ast}(X,Y) \Rightarrow \: \exists \: \sup \{ \rho(f(x),g(x)) \mid x \in X \} \in \R$
+\end{lemma}
+
+\begin{proof}
+    Supongamos $x \in X$ arbitrario. Como $f,g$ son funciones acotadas $\exists \: y_1, y_2$ y $M_1, M_2 > 0$ tales que $\forall \: z \in X$ s.t.q.
+
+    \begin{align*}
+         \rho(f(z),y_1) < M && \text{ y } && \rho(g(z),y_2)
+    \end{align*}
+
+    En particular, para $z = x$ se cumple lo siguiente
+
+    \begin{align*}
+         \rho(f(x),y_1) < M && \text{ y } && \rho(g(x),y_2)
+    \end{align*}
+    $$\Rightarrow \rho(f(x),g(x)) \leqslant \rho(f(x),y_1) + \rho(y_1,g(x))$$
+    $$\leqslant \rho(f(x),y_1) + \rho(y_1,y_2) + \rho(y_2,g(x)) \leqslant \rho(y_1,y_2) + M_1 + M_2$$
+
+    Definamos a $M_3 = \rho(y_1,y_2) + M_1 + M_2 \Rightarrow$ el conjunto $\{ \rho(f(x),g(x)) \mid x \in X \}$ es no vacío y está acotado superiormente por $M_3 \in \R$, ya que una métrica es una función $f : X \to \R$
+
+    $\therefore \: \exists \: \sup \{ \rho(f(x),g(x)) \mid x \in X \} \in \R$
+\end{proof}
+
+\begin{theorem}
+    Sean ($X,d$) y ($Y,\rho$) dos espacios métricos arbitrarios. La función $d_u : {\cfc}^{\ast}(X,Y) \times {\cfc}^{\ast}(X,Y) \to \R$ definida por
+
+    $$d_u(f,g) = \sup \{ \rho(f(x),g(x) \mid x \in X \}$$
+
+    es una métrica en ${\cfc}^{\ast}(X,Y)$
+\end{theorem}
+
+\begin{proof}
+    Sean $f,g \in {\cfc}^{\ast}(X,Y)$ elementos cualesquiera. 
+
+    Notemos que $\forall \: x \in X$ s.t.q.
+
+    $$\rho(f(x),g(x) \geqslant 0 \Rightarrow \sup \{ \rho(f(x),g(x) \mid x \in X \} = d_u(f,g) \geqslant 0$$
+
+    Por lo que $d_u$ es una función no-negativa. Además, notemos que
+    
+    $$d_u(f,g) = \sup \{ \rho(f(x),g(x) \mid x \in X \} = 0 \iff \rho(f(x),g(x) = 0 \iff \: \forall \: x \in X \Rightarrow f(x) = g(x) \iff f = g$$
+
+    Por otra parte, como $\rho$ es simétrica
+
+    $$d_u(f,g) = \sup \{ \rho(f(x),g(x) \mid x \in X \} = \sup \{ \rho(g(x),f(x) \mid x \in X \} = d_u(g,f) $$
+
+    Finalmente, supongamos $h \in  {\cfc}^{\ast}(X,Y) \Rightarrow$
+
+    $$d_u(f,g) = \sup \{ \rho(f(x),g(x) \mid x \in X \} $$
+    $$ \leqslant \sup \{ \rho(f(x),h(x) \mid x \in X \} + \sup \{ \rho(h(x),g(x) \mid x \in X \} = d_u(f,h)+ d_u(h,g)$$
+
+    $\therefore d_u$ es una métrica en $ {\cfc}^{\ast}(X,Y)$
+\end{proof}
+
+\begin{theorem} \label{theom57}
+    Sean ($X,d$) y ($Y,\rho$) dos espacios métricos arbitrarios, ${\left(f_n\right)}_{n \in \N}$ una sucesión en $ {\cfc}^{\ast}(X,Y)$, y $f \in {\cfc}^{\ast}(X,Y)$. Las siguientes condiciones son equivalentes.
+
+    \begin{enumerate}
+        \item La sucesión ${\left(f_n\right)}_{n \in \N}$ converge a $f$ en ($ {\cfc}^{\ast}(X,Y), d_u$)
+        \item La siguiente proposición es verdadera
+        $$\forall \: \varepsilon > 0 \: \exists \: N \in \N \: \forall \: n \geqslant N \: \forall \: x \in X \Rightarrow \rho(f_n(x),f(x)) < \varepsilon$$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    $1. \Rightarrow 2.$
+
+    Sea $\varepsilon > 0$ arbitrario. 
+
+    Como $\lim\limits_{n \to \infty} f_n = f$ en ($ {\cfc}^{\ast}(X,Y), d_u$) $\Rightarrow \: \exists \: N \in \N$ tal que
+
+    $$\forall \: n \geqslant N \Rightarrow d_u(f_n,f) < \varepsilon $$
+    $$\Rightarrow \:  \forall \: n \geqslant N \Rightarrow \sup \{ \rho(f(x),g(x) \mid x \in X \} < \varepsilon$$
+    $$\Rightarrow \:  \forall \: n \geqslant N \Rightarrow  \rho(f(x),g(x) < \varepsilon$$
+
+    Esto porque $\rho(f(x),g(x) \leqslant \sup \{ \rho(f(x),g(x) \mid x \in X \}$, por lo que si el supremo es menor que $\varepsilon$, todos son menores que $\varepsilon$
+
+    $2. \Rightarrow 1.$
+
+    Sea $\varepsilon > 0$ arbitrario. Por el inciso 2. $\exists \: n \in \N$ tal que
+
+    $$\forall \: n \geqslant N \: \forall \: x \in X \Rightarrow \rho(f_n(x),f(x)) < \frac{\varepsilon}{2}$$
+    $$\Rightarrow \:  \forall \: n \geqslant N \: \forall \: x \in X \Rightarrow \sup \{ \rho(f_n(x),f(x)) \mid x \in X \} = d_u(f_n,f) \leqslant \frac{\varepsilon}{2} < \varepsilon$$
+
+    $\therefore \:  \forall \: n \geqslant N \Rightarrow d_u(f_n,f) < \varepsilon$
+
+    Así $\lim\limits_{n \to \infty} f_n = f$ en ($ {\cfc}^{\ast}(X,Y), d_u$)
+\end{proof}
+
+\begin{definition} \label{defcu}
+    Sean $X$ un conjunto no vacío y ($Y,\rho$) un espacio métrico, diremos que una sucesión de funciones
+
+    \begin{align*}
+      \langle f_n : X \to Y \mid n \in \N \rangle  && \text{ o } && {\left(f_n : X \to Y \right)}_{n \in \N}&& 
+    \end{align*}
+
+    converge uniformemente a una función $f : X \to Y \iff$
+
+    $$\forall \: \varepsilon > 0 \: \exists \: N \in \N \: \forall \: n \geqslant N \: \forall \: x \in X \Rightarrow \rho(f_n(x),f(x)) < \varepsilon$$
+\end{definition}
+
+\begin{notation}
+    En ese caso escribimos $f_n \rightrightarrows f$, donde $f$ es el límite uniforme de la sucesión.
+\end{notation}
+
+\begin{eg}
+    La sucesión de funciones $ {\left(f_n \right)}_{n \in \N}$, donde $f : \R \to \R$ está dada por 
+
+    $$f_n(x) = \frac{1}{n} \sin (nx+n) \: \: \: \: \:\:\:\:\: \forall n \in \N$$
+
+    converge uniformemente a la función constante $\widebar{0}$
+\end{eg}
+
+\begin{proofexplanation}
+     Sea $\varepsilon > 0$ arbitrario. Como $\abs{\sin(x)} \leqslant 1 \Rightarrow$
+
+     $$\abs{f(x)} = \abs{\frac{1}{n} \sin (nx+n)}  = \frac{1}{n} \abs{\sin (nx+n)} \leqslant \frac{1}{n} $$
+
+     Así que, eligiendo alguna $N \in \N$ tal que $\frac{1}{\varepsilon} < N \Rightarrow$ si $m \geqslant N$ y $x \in X$ es cualquiera, s.t.q.
+
+     $$\abs{f_m(x)-0} = \frac{1}{m} \abs{\sin (mx+m)} \leqslant \frac{1}{m} \leqslant \frac{1}{N} < \varepsilon$$
+
+     $\therefore f_n \rightrightarrows \widebar{0}$
+\end{proofexplanation}
+
+\begin{definition}[Convergencia Puntual] \label{defcp1}
+    Sea $X$ un conjunto no vacío cualquiera y ($Y,\rho$) un espacio métrico. Diremos que una sucesión de funciones 
+
+    \begin{align*}
+      \langle f_n : X \to Y \mid n \in \N \rangle  && \text{ o } && {\left(f_n : X \to Y \right)}_{n \in \N}&& 
+    \end{align*}
+
+    converge puntualmente a la función $f : X \to Y \iff \: \forall \: x \in X$ s.t.q.
+
+    $$\lim_{n \to \infty} f_n(x) = f(x)$$
+    en el espacio ($Y,\rho$)
+\end{definition}
+
+\begin{notation}
+    En este caso diremos que $f$ es el límite puntual de la sucesión de funciones ${\left(f_n \right)}_{n \in \N}$ y se denota como $f_n \rightarrow f$
+\end{notation}
+
+\begin{remark}
+    La noción de convergencia puntual nos ayuda a ver con más facilidad si una sucesión de funciones converge uniformemente, esto por el \Cref{lema512} 
+\end{remark}
+
+\begin{lemma} \label{lema512}
+    Sea $X$ un conjunto no vacío y ($Y,\rho$) un espacio métrico. Si $ \langle f_n : X \to Y \mid n \in \N \rangle$ converge uniformemente a $f : X \to Y \Rightarrow  \langle f_n : X \to Y \mid n \in \N \rangle$ converge puntualmente a $f$
+
+    Es decir $f_n \rightrightarrows f \Rightarrow f_n \rightarrow f$
+\end{lemma}
+
+\begin{proof}
+    Supongamos $z \in X$ cualquiera y $\varepsilon > 0$
+
+    Como $f_n \rightrightarrows f$, para $\varepsilon$
+
+    $$ \exists \: N \in \N \: \forall \: n \geqslant N \: \forall \: x \in X \Rightarrow \rho(f_n(x),f(x)) < \varepsilon$$
+
+    En particular $\forall \: n \geqslant N$ y el elemento $z$ ocurre lo siguiente
+
+    $$\rho(f_n(z),f(z)) < \varepsilon$$
+
+    $\therefore \lim\limits_{n \to \infty} f_n(z) = f(z)$ por la definición de límite
+
+    Como $z$ fue arbitrario s.t.q. $f_n \rightarrow f$
+\end{proof}
+
+\begin{eg} \label{eg511}
+    La sucesión de funciones ${\left(f_n\right)}_{n \in \N}$ donde $f_n : [0,1] \to \R$ definida por la regla de correspondencia 
+
+    $$f(x) = x^n \: \forall \: n \in \N$$
+
+    converge puntualmente a la función $f : [0,1] \to \R$ dada por
+
+    $$ f(x) = \begin{cases}
+              0 & \text{si }  0 \leqslant x < 1\\
+              1 & \text{si } x = 1
+     \end{cases}$$
+\end{eg}
+
+\begin{proofexplanation}
+    Sea $x_0 \in [0,1]$ f.p.a. Para $x_0$ se tienen los siguientes casos
+
+    \begin{enumerate}
+        \item $x_0 = 0$
+
+        $$\Rightarrow f_n(x_0) = f_n(0) = 0^n = 0 \: \forall \: n \in \N$$
+
+        Es claro ver
+
+        $$f(x_0) = f(0) = 0 \Rightarrow \lim_{n \to \infty} f_n(x_0) = f(x_0)$$
+
+        \item $x_0 = 1$
+
+        En este caso,  ${\left(f_n(x_0)\right)}_{n \in \N}$ es la sucesión constante de valor 1
+
+        $$f(x_0) = f(1) = 1 \Rightarrow \lim_{n \to \infty} f_n(x_0) = f(x_0)$$
+        \item $x_0 \in (0,1)$
+
+        $\Rightarrow x_0 < 1$ y esto implica que $\frac{1}{x_0} > 1$, así que $h = \frac{1}{x_0} -1 > 0$ es tal que $1 + h = \frac{1}{x_0}$, y así, s.t.q.$x_0 = \frac{1}{h+1}$
+
+        Luego, $\forall \: n \in \N \Rightarrow {x_0}^{n} = \frac{1}{{(1+h)}^{n}}$. Por el Teorema del Binomio de Newton s.t.q.
+
+        $${(1+h)}^{n} = \sum_{k=1}^{\infty}  \binom{n}{k} {1}^{k} {h}^{n-k} \: \: \: \: \: \: \: \: \forall \: n \in \N$$
+
+        $\Rightarrow \: \forall \: n \in \N$ se cumple que 
+
+        $${(1+h)}^{n} \geqslant  \sum_{n=1}^{\infty}  \binom{n}{n} {1}^{n} {h}^{n-n} +  \binom{n}{n-1} {1}^{n-1} {h}^{n-(n-1)} = 1 + nh \geqslant nh$$
+
+        $\Rightarrow \: \forall \: n \geqslant 2$ se cumple que
+
+        $${x_0}^{n} = \frac{1}{{(1+h)}^{n}} \leqslant \frac{1}{nh} \Rightarrow  \lim_{n \to \infty} f_n(x_0) = f(x_0)$$
+    \end{enumerate}
+
+    $\therefore f_n \to f$
+\end{proofexplanation}
+
+\begin{lemma} \label{lemma513}
+    Sea $X$ un conjunto no vacío, ($Y , \rho$) un espacio métrico, $\langle f_n : X \to Y \mid n \in \N \rangle$ una sucesión de funciones, y $f : X \to Y$ una función. 
+    
+    Supongamos que $f_n \rightrightarrows f \Rightarrow$
+
+    \begin{enumerate}
+        \item Si todas las funciones $f_n : X \to Y$ son acotadas $\Rightarrow f : X \to Y$ también es acotada.
+        \item Si ($X,d$) es un espacio métrico, y cada $f_n : X \to Y \in \cfc(X,Y) \Rightarrow f \in \cfc(X,Y)$
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+\begin{enumerate}
+    \item Aplicando la \Cref{defcu}, con $\varepsilon = 1 \: \exists \: N \in \N$ tal que 
+
+    $$\forall \: n \geqslant N \: \forall \: x \in X \Rightarrow \rho(f_n(x),f(x)) < \varepsilon = 1$$
+
+    En particular
+
+    $$\forall \: x \in X \Rightarrow \rho(f_N(x),f(x)) <  1$$
+
+    Como $f_N : X \to Y$ es acotada $\Rightarrow \: \exists \: y \in Y$ y $r > 0$ tales que
+
+    $$ f_N(x) \in f_N[X] \subseteq B(y,r)$$
+
+    Defina $R = r +1$. Resulta que
+
+    $$f[X] \subseteq B(y,R)$$
+
+    En efecto, supongamos $f(x) \in f[X]$ es arbitrario $\Rightarrow$
+
+    $$\rho(f(x), y) \leqslant \rho(f(x),f_N(x)) + \rho(f_N(x),y) < 1 + r = R$$
+
+    $\therefore f$ es acotado
+
+    \item Supongamos que $x_0 \in X$ es arbitrario. 
+
+    Sea $\varepsilon > 0$. Como $f_n \rightrightarrows f \Rightarrow$, utilizando la \Cref{defcu} para $\frac{\varepsilon}{8} \: \exists \: n \in \N$ tal que 
+
+    $$\forall \: n \geqslant N \: \forall \: x \in X \Rightarrow \rho(f_n(x),f(x)) < \frac{\varepsilon}{8}$$
+
+    En particular 
+
+    $$\forall \: x \in X \Rightarrow \rho(f_N(x),f(x)) <  \frac{\varepsilon}{8}$$
+
+    Debido a que $f_N : X \to Y$ es continua en $x_0$, para $\frac{\varepsilon}{8} \: \exists \: \delta > 0$ tal que
+
+    $$\forall \: x \in X \Rightarrow d(x,x_0) < \delta \Rightarrow \rho(f_N(x), f_N(x_0)) < \frac{\varepsilon}{8}$$ 
+
+    Veamos que $\forall \: x \in X \Rightarrow d(x,x_0) < \delta \Rightarrow \rho(f(x),f(x_0)) < \varepsilon$
+
+    En efecto, sea $x \in X$ arbitrario tal que $d(x,x_0) < \delta \Rightarrow$
+
+    $$\rho(f(x),f(x_0)) \leqslant \rho(f(x),f_N(x)) + \rho(f_N(x), f(x_0))$$
+    $$\leqslant \rho(f(x),f_N(x)) + \rho(f(x_0),f_N(x_0)) + \rho(f_N(x_0)+f_N(x)) < \frac{\varepsilon}{8} + \frac{\varepsilon}{8} + \frac{\varepsilon}{8} = \frac{3 \cdot \varepsilon}{8} < \varepsilon$$
+
+    $\therefore f$ es continua en $x_0$
+\end{enumerate}
+\end{proof}
+
+\begin{remark}
+    Volviendo al \Cref{eg511}, cuando $f_n(x) = x^n$ sabemos que $f_n \to f$ donde 
+
+    $$ f(x) = \begin{cases}
+              0 & \text{si }  0 \leqslant x < 1\\
+              1 & \text{si } x = 1
+     \end{cases}$$
+
+     Pero po el \Cref{lemma513}, sabemos que $f_n \not \rightrightarrows f $ porque $f$ no es continua y $f_n$ si lo es.
+\end{remark}
+
+\begin{theorem}
+    Sean ($X,d$) y ($Y,\rho$) espacios métricos. Si ($Y,\rho$) es completo $\Rightarrow$ (${\cfc}^{\ast}(X,Y), d_u$) también es completo.
+\end{theorem}
+
+\begin{proof}
+    Supongamos que  ${\left(f_n : X \to Y\right)}_{n \in \N}$ es una sucesión de Cauchy en (${\cfc}^{\ast}(X,Y), d_u$)
+
+    Veamos que $\forall \: x \in X \Rightarrow {\left(f_n (x)\right)}_{n \in \N}$ es de Cauchy en ($Y,\rho$)
+
+    Supongamos que $x_0 \in X$ es un elemento cualquiera. Sea $\varepsilon > 0$ arbitrario. Como  ${\left(f_n\right)}_{n \in \N}$ es de Cauchy en ${\cfc}^{\ast}(X,Y) \: \exists \: N \in \N$ tal que
+
+    $$\forall \: n, m \geqslant N \Rightarrow d_u(f_n,f_m) < \varepsilon$$
+
+    Pero $d_u(f_n,f_m) = \sup \{ \rho(f_n(x),f_m(x)) \mid x \in X\}$
+
+    Así que $\rho(f_n(x_0),f_m(x_0)) \leqslant d_u(f_n,f_m)$ porque $d_u$ es el supremo
+
+    $$\Rightarrow \: \forall \: n,  \geqslant N \Rightarrow \rho(f_n(x_0),f_m(x_0)) \leqslant  d_u(f_n,f_m) < \varepsilon$$
+
+    $\therefore {\left(f_n (x_0) \right)}_{n \in \N}$ es de Cauchy en ($Y,\rho$)
+
+    Debido que $\forall \: x \in X $ ${\left(f_n (x)\right)}_{n \in \N}$ es de Cauchy y a que ($Y, \rho$) es completo $\exists \: y_x \in Y$ tal que
+
+    $$\lim_{n \to \infty} f_n(x) = y_x = f(x) \in (Y, \rho)$$
+
+    Esto si definimos $f : X \to Y$ por medio de $f(x) = y_x$
+
+    Veamos que $f \in {\cfc}^{\ast}(X,Y)$. Por el \Cref{lemma513} basta ver que $f_n \rightrightarrows f$, ya que ${\left(f_n \right)}_{n \in \N} \in {\cfc}^{\ast}(X,Y)$
+
+    En efecto, sea $\varepsilon > 0$. Como ${\left(f_n \right)}_{n \in \N}$ es de Cauchy en (${\cfc}^{\ast}(X,Y), d_u$) $\exists \: N \in \N$ tal que
+
+    $$\forall \: n, m \geqslant N \Rightarrow d_u(f_n, f_m) < \frac{\varepsilon}{8}$$
+    $$\Rightarrow \: \forall \: n, m \geqslant N \Rightarrow \rho(f_n(x),f_m(x)) < \frac{\varepsilon}{8}$$
+
+    Esto porque $d_u $ es el supremo. Resulta que 
+
+    $$\forall \: n \geqslant N \: \forall \: x \in X \Rightarrow \rho(f_n(x),f(x)) < \varepsilon$$
+
+    En efecto, sean $n \geqslant N$ y $x_0 \in X$ arbitrarios
+
+    Como $\lim\limits_{n \to \infty} f_m(x_0) 0 y_{x_0} = f(x_0)$, para $\frac{\varepsilon}{8} \: \exists \: M \in \N$ tal que 
+
+    $$\forall \: m \geqslant M \Rightarrow \rho(f_m(x_0), f(x_0)) < \frac{\varepsilon}{8}$$
+
+    Sea $m \in \N$ con $m > N$ y $m > M$
+
+    $$ \rho(f_n(x_0),f(x_0)) \leqslant \rho(f_n(x_0),f_m(x_0)) + \rho(f_m(x_0),f(x_0)) < \frac{\varepsilon}{8} + \frac{\varepsilon}{8} < \varepsilon$$
+
+    $\therefore f_n \rightrightarrows f$
+
+    Aplicando el \Cref{lemma513} $\Rightarrow f \in  {\cfc}^{\ast}(X,Y)$. Como ${\left(f_n \right)}_{n \in \N}$ es de Cauchy en ${\cfc}^{\ast}(X,Y)$ y $f \in {\cfc}^{\ast}(X,Y)$, y $f_n \rightrightarrows f$, por el \Cref{theom57} $\lim\limits_{n \to \infty} f_n = f$ en (${\cfc}^{\ast}(X,Y), d_u$)
+
+    $\therefore$ (${\cfc}^{\ast}(X,Y), d_u$) es completo
+\end{proof}
+
+\begin{corollary}
+    Si ($Y, {\norm{\cdot}}_{Y}$) es un espacio de Banach real $\Rightarrow$ (${\cfc}^{\ast}(X,Y),{\norm{\cdot}}_{u} $) también es un espacio de Banach, donde 
+    $${\norm{f}}_{u} = \sup \{ f(x) \mid x \in X \}$$
+\end{corollary}
+
+\section{Teorema de Arzelá-Ascoli}
+
+\begin{definition} [Equicontinuidad]
+    Sean ($X,d$) y ($Y, \rho$) dos espacios métricos. Diremos que $\FF \subseteq \cfc(X,Y)$ es equicontinua en $y \in X \iff$
+
+    $$\forall \: \varepsilon > 0 \: \exists \: \delta > 0 \: \forall \: x \in X \Rightarrow d(x,y) < \delta \Rightarrow \: \forall \: f \in \FF \Rightarrow \rho(f(x),f(y)) < \varepsilon$$
+
+    Diremos que $\FF \subseteq \cfc(X,Y)$ es equicontinua en todo $X \iff \FF$ es equicontinua $\forall \: x \in X$
+\end{definition}
+
+\begin{eg}
+    Si $\FF = \{ \mathrm{F}_1, \mathrm{F}_2, ..., f_n \}$ donde $f_i : X \to Y$ es una función continua en $X \: \forall \: i \in \{1, ..., n \} \Rightarrow \FF$ es equicontinua en cada $y \in X$
+\end{eg}
+
+\begin{proofexplanation}
+    Sea $\varepsilon > 0$. Como cada función $f_i$ es continua en $ y \in X \: \exists \: \delta_1, \delta_2, ..., \delta_n > 0$ tales que
+
+    $$\forall \: i \in \{ 1, ..., n \} \: \forall \: x \in X \Rightarrow d(x,y) < \delta_i \Rightarrow \rho(f_i(x),f_i(y)) < \varepsilon$$
+
+    Defina $\delta = \min \{ \delta_1, \delta_2, ..., \delta_n \} \Rightarrow$
+
+    $$\forall \: x \in X \Rightarrow d(x,y) < \delta \leqslant \delta_i \Rightarrow \: \forall \: i \in \{ 1, ..., n \} \Rightarrow rho(f_i(x),f_i(y)) < \varepsilon$$
+
+    Así 
+
+    $$\forall \: x \in X \Rightarrow d(x,y) < \delta \Rightarrow \: \forall \: f \in \FF \Rightarrow \rho(f(x),f(y)) < \varepsilon$$
+
+    $\therefore \FF$ es equicontinua en $y \in X$. Como $y$ fue arbitraria, $\FF$ es equicontinua en todo $Y$
+\end{proofexplanation}
+
+\begin{theorem} [Valor Medio] \label{theomvm}
+    $f: [a,b] \to \R$ es continua en $[a,b]$ y derivable en $(0,1) \Rightarrow \: \exists \: y \in (a,b)$ tal que ${f}^{\prime}(y) = \frac{f(b)-f(a)}{b-a}$
+\end{theorem}
+
+\begin{eg}
+    Sea $\FF = \{ f_n : [0,1] \to \R \mid n \in \N \}$. Resulta qeu $\FF$ es equicontinua en cada $x_0 \in (0,1)$ donde 
+
+    $$f_n(x) = \frac{{x}^{n+1}}{n+1}$$
+\end{eg}
+
+
+\begin{proofexplanation}
+    Sea $x_0 \in (0,1)$. Para $y \in [0,1]$ con $y \neq x_0$, por el \Cref{theomvm} aplicado a $f_n \: \exists \: z_n$ entre $y$ y $x_0$ ($y < z_n < x_0$ si $y < x_0$ o $x_0 < z_n < y$ si $x_0 < y$) tal que
+
+    $$z^n = {f}_{n}^{\prime}(z_n) = \frac{f_n(y)-f_n(x_0)}{y-x_0}$$
+
+    Observe que $\forall \: x \in [0,1] \Rightarrow \abs{x^n} \leqslant 1$. Así
+
+    $$\abs{ {f}_{n}^{\prime}(z_n)} = \abs{z^n} \leqslant 1 \Rightarrow \abs{\frac{f_n(y)-f_n(x_0)}{y-x_0}} \leqslant 1$$
+
+    Por ello
+
+    $$\abs{f_n(y) - f_n(x_0)} \leqslant \abs{y-x_0} \: \forall \: n \in \N$$
+
+    Sea $\varepsilon > 0$ arbitrario. Defina $\delta = \varepsilon$. Claramente es positiva, y además
+
+    $$\forall \: y \in [0,1] \Rightarrow d(y,x_0) = \abs{y-x_0} < \delta \Rightarrow \: \forall \: n \in \N \Rightarrow  \abs{f_n(y) - f_n(x_0)} < \varepsilon$$
+
+    $\therefore \FF  \{ f_n : [0,1] \to \R \mid n \in \N \}$ es equicontinua en $x_0$
+\end{proofexplanation}
+
+\begin{theorem} \label{theom518}
+    Sean ($X,d$) y ($Y, \rho$) dos espacios métricos. Si $\FF \subseteq ({\cfc}^{\ast}(X,Y),{\norm{\cdot}}_{u})$ es totalmente acotado $\Rightarrow \FF$ es equicontinua.
+\end{theorem}
+
+\begin{proof}
+    Sea $x \in X$ arbitrario. Sea $\varepsilon > 0$ arbitrario. Debido a que $\FF$ es totalmente acotado $\exists \: \mathrm{F}_1, ..., f_n \in {\cfc}^{\ast}(X,Y)$ tales que
+
+    $$\FF \subseteq B \left( \mathrm{F}_1, \frac{\varepsilon}{4}\right) \cup ... \cup \left( f_n, \frac{\varepsilon}{4}\right)$$
+
+    Como cada $f_i$ es continua en $x_0$, para $\frac{\varepsilon}{4} > 0 \: \exists \: \delta_i > 0$ tal que
+
+    $$\forall \: x \in X \Rightarrow d(x,x_0) < \delta_i \Rightarrow \rho(f_i(x),f_i(x_0)) < \frac{\varepsilon}{4}$$
+
+    Definamos $\delta = \min \{ \delta_1, ..., \delta_n \} \: \forall \: i \in \{ 1, ..., n \}$
+
+    Veamos que
+    
+    $$\forall \: x \in X \Rightarrow d(x,x_0) < \delta \Rightarrow \: \forall \: f \in \FF \Rightarrow \rho(f(x),f(x_0)) < \varepsilon$$
+
+    En efecto, sea $x \in X$ arbitrario con $f(x,x_0) < \delta$
+
+    Supongamos que $f \in \FF$ es cualquiera $\Rightarrow \: \exists \: i \in \{1, ..., n \}$ tal que $f \in B \left( f_i, \frac{\varepsilon}{4}\right)$. Así,
+
+    $$\forall \: z \in X \Rightarrow \rho(f(z),f_i(z)) \leqslant d_u(f,f_i) < \frac{\varepsilon}{4}$$
+    $$\Rightarrow \rho(f(x),f(x_0)) \leqslant \rho(f(x),f_i(x))+\rho(f_i(x),f(x_0))$$
+    $$\leqslant \rho(f(x),f_i(x))+\rho(f_i(x),f_i(x_0)) + \rho(f_i(x_0),f(x_0)) <  \frac{\varepsilon}{4} +  \frac{\varepsilon}{4} +  \frac{\varepsilon}{4} =  \frac{3 \cdot \varepsilon}{4} < \varepsilon$$
+
+    $\therefore \FF$ es equicontinua en $x_0$
+\end{proof}
+
+\begin{corollary}
+    Sean ($X,d$) y ($Y,\rho$) dos espacios métricos. Si $\FF \subseteq {\cfc}^{\ast}(X,Y)$ es un subconjunto compacto $\Rightarrow \FF$ es equicontinua.
+\end{corollary}
+
+\begin{orangeproof}
+    Por el \Cref{theomhbr}, todo compacto es totalmente acotado, y por \Cref{theom518} si un subconjunto  $\FF \subseteq {\cfc}^{\ast}(X,Y)$ es totalmente acotado es equicontinuo.
+\end{orangeproof}
+
+\begin{definition} [Puntualmente Acotado]
+    Sean $X$ un conjunto no vacío y ($Y,\rho$) un espacio métrico. Sea $\FF$ una colección de funciones de $X$ en $X$. Diremos que $\FF$ es puntualmente acotado si $\forall \: x \in X$ el conjunto $\{ f(x) \mid f \in \FF \}$ es un subconjunto acotado de ($Y,\rho$)
+\end{definition}
+
+\begin{lemma} \label{lemma521}
+    Sean ($X,d$) y ($Y,\rho$) dos espacios métricos. Si $\FF \subseteq {\cfc}^{\ast}(X,Y)$ es un subconjunto acotado $\Rightarrow \FF$ es una familia de funciones puntualmente acotada.
+\end{lemma}
+
+\begin{proof}
+    Como $\FF \subseteq ({\cfc}^{\ast}(X,Y),{\norm{\cdot}}_{u}) \: \exists \: g \in {\cfc}^{\ast}(X,Y)$ y un $r > 0$ tales que $\FF B(g,r) \Rightarrow$
+
+    $$\forall \: f \in \FF \Rightarrow d_u(f,g) < r$$
+
+    Así
+
+    $$\forall \: x \in X \: \forall \: f \in \FF \Rightarrow \rho(f(x),g(x)) \leq d_u(f,g) < r$$
+
+    Sea $x_0 \in X$ arbitrario. Veamos que $\{ f(x_0) \mid f \in \FF \} \subseteq B(g(x_0), r+1)$ es un subconjunto acotado. 
+
+    Supongamos que $f \in \FF$ es cualquiera $\Rightarrow$
+
+    $$\rho(f(x_0),g(x_0)) < r+ 1$$
+
+    $\therefore f(x_0) \in B(g(x_0), r+1)$
+
+    $\therefore \FF$ es puntualmente acotado como $\{ f(x) \mid f \in \FF \}$ es acotado en ($Y, \rho$)
+\end{proof}
+
+\begin{lemma} \label{lemma522}
+     Sean ($X,d$) y ($Y,\rho$) dos espacios métricos. Si $X$ es compacto y $\FF \subseteq {\cfc}^{\ast}(X,Y)$ es equicontinua y puntualmente acotada $\Rightarrow \FF$ es un subconjunto acotado de $({\cfc}^{\ast}(X,Y),{\norm{\cdot}}_{u})$
+\end{lemma}
+
+\begin{proof}
+    Veamos que $\exists \: g \in {\cfc}^{\ast}(X,Y)$ y $r > 0$ tal que $\FF \subseteq B(g,r)$ en $({\cfc}^{\ast}(X,Y),{\norm{\cdot}}_{u})$
+
+    Sea $x \in X$ arbitrario. Como $\FF$ es equicontinua en $x \Rightarrow$ para $\varepsilon = 1 \: \exists \: \delta_x > 0$ tal que
+
+    $$\forall \: z \in X \Rightarrow d(z,x) < \delta_x \Rightarrow \: \forall \: f \in \FF \Rightarrow \rho(f(z),f(x)) < \varepsilon = 1$$
+
+    $\Rightarrow$ la colección $\U = \{ B(x,\delta_x) \mid x \in X \}$ es una cubierta abierta de $X$, es decir
+
+    $$X = \bigcup_{x \in X} B(x,\delta_x)$$
+
+    Como $X$ es compacto $\exists \: x_1, ..., x_n \in X$ una cantidad finita de elementos de $X$ tales que
+
+    $$X = B(x_1, \delta_{x_1}) \cup ... \cup B(x_n, \delta_{x_n})$$
+
+    Debido a que $\FF$ es puntualmente acotado $\exists \: y_1, ..., y_n \in Y$ y $r_1, ..., r_n > 0$ tales que
+
+    $$\forall \: i \in \{1, ..., n \} \Rightarrow \{f(x_i) \mid f \in \FF \} \subseteq B(y_i, r_i)$$
+
+    Defina a $g : X \to Y$ por medio de $g(x) = y_1$ con $x \in X$
+
+    Claramente $g \in {\cfc}^{\ast}(X,Y)$, ya que $g(x)$ es una función constante y por lo tanto acotada.
+
+    Defina también $R = 1 + r_1 + ... + r_n + \rho(y_1,y_2) + ... + \rho(y_1, y_n)$
+
+    Resulta que $\FF \subseteq B(y, 10,000 \cdot R)$
+
+    En efecto, sea $f \in \FF$ y $x \in X$ cualquiera. 
+
+    Como $X = B(x_1, \delta_{x_1}) \cup ... \cup B(x_n, \delta_{x_n}) \: \exists \: i \in \{1, ..., n \}$ tal que $x \in B(x_i, \delta_{x_i}) \Rightarrow d(x,x_i) < \delta_{x_i}$. Así
+    
+    $$\forall \: h \in \FF \Rightarrow \rho(h(x),h(x_i)) < 1$$
+
+    En particular $\rho(f(x),f(x_i)) < 1$. Luego
+
+    $$\rho(f(x),g(x)) = \rho(f(x),y_1) \leqslant \rho(f(x),f(x_i)) + \rho(f(x_i),y_1)$$
+    $$\leqslant \rho(f(x),f(x_i))  + \rho(f(x_i),y_i) +  + \rho(y_i,y_1) < 1 + r_i + \rho(y_i,y_1) \leqslant R \leqslant 10,000 \cdot R$$
+
+    $\therefore \FF \subseteq B(y, 10,000 \cdot R) \Rightarrow \FF$ es acotada.
+\end{proof}
+
+\begin{lemma} \label{lemma523}
+    Sea ($X,d$) métrico completo y $\FF \subseteq {\cfc}^{\ast}(X,\R^n)$ un subconjunto acotado $\Rightarrow \: \exists \: K \subseteq \R^n$ compacto tal que
+
+    $$\forall \: f \in \FF \Rightarrow f[X] \subseteq K$$
+\end{lemma}
+
+\begin{proof}
+     Como $\FF$ está acotado en $({\cfc}^{\ast}(X,\R^n), d_{u})$ $\exists \: y \in {\cfc}^{\ast}(X,\R^n)$ y $r > 0$ tal que $\FF \subseteq B(g,r)$
+
+     $$\forall \: f \in \FF \Rightarrow d_u(f,g) < r$$
+
+     Debido a que $g : X \to \R^n$ es continua y $X$ es compacto $g[X] = \{ g(x) \mid x \in X \}$ es un subconjunto compacto de $\R^n$
+
+     Por el \Cref{theomhb} $\Rightarrow g[X]$ es acotado, así, $\exists \: \vec{y} \in \R^n$ y $R>0$ tal que
+
+     $$g[X] \subseteq B(\vec{y},R) \in \R^n$$
+
+     Definamos $r_2 = r + R + \norm{\vec{y}}_2$. Resulta que  $B(\vec{0},r_2)$ es un subconjunto compacto de $\R^n$. Veamos que 
+
+     $$\forall \: f \in \FF \Rightarrow f[X] \subseteq K$$
+
+     En efecto, suponga $f \in \FF$ es un elemento cualquiera. Sea $x \in X$ arbitrario. Observer que $g[X] \subseteq B(\vec{0}, R + \norm{\vec{y}})$
+
+     $$\Rightarrow \norm{f(x)-0}_2 \leqslant \norm{f(x)-g(x)}_2 + \norm{g(x)}_2 $$
+     $$\leqslant d_u(f,g) + \norm{g(x)}_2 < r + R + \norm{\vec{y}}_2 = r_2 $$
+
+     Así $f(x) \in B(\vec{0},r_2) \subseteq \widebar{B}(\vec{0},r_2) = K$
+
+     $\therefore f[X] \subseteq K$
+\end{proof}
+
+\begin{theorem} [Arzelá-Ascoli]
+    Sea ($X,d$) un espacio métrico completo $\Rightarrow \: \forall \: \FF \subseteq {\cfc}^{\ast}(X,\R^n) \FF$ es un subconjunto compacto de $({\cfc}^{\ast}(X,\R^n), d_{u}) \iff \FF$ es cerrado, equicontinuo, y puntualmente acotado.
+\end{theorem}
+
+\begin{proof}
+    $\Rightarrow$ Por el \Cref{theomhbr}, todo compacto es totalmente acotado y cerrado. Además, por \Cref{theom518} todo $\FF$ totalmente acotado es equicontinuo, y por el \Cref{lemma521} como $\FF$ es acotado es puntualmente acotado.
+
+    $\Leftarrow$ Primero, note que ${\cfc}^{\ast}(X,\R^n)$ es completo, porque ($\R^n, \norm{\cdot}_2$) es completo. Por el \Cref{theomhbr}, para probar que $\FF$ es compacto, basta probar que $\FF$ es totalmente acotado y cerrado. 
+
+    En efecto, sea $\varepsilon > 0$ arbitrario. Por el \Cref{lemma523} $\exists \: K \subseteq \R^n$ compacto tal que $\forall \: f \in \FF \Rightarrow f[X] \subseteq K$
+
+    Como $K$ es compacto, y a que la siguiente colección de bolas
+
+    $$\mathscr{C} = \left\{ B(\vec{y}, \frac{\varepsilon}{10,000} \mid \vec{y} \in \R^n \right\}$$
+
+    es una cubierta abierta de $K \: \exists \: {\vec{y}}_{1}, ..., {\vec{y}}_{m} \in \R^n$ tales que
+
+    $$K \subseteq B \left( {\vec{y}}_{1}, \frac{\varepsilon}{10,000} \right) \cup ... \cup B \left( {\vec{y}}_{m}, \frac{\varepsilon}{10,000} \right)$$
+
+    Como $\FF$ es equicontinua $\forall \: x \in X \Rightarrow$ para $\frac{\varepsilon}{10,000} \: \exists \: \delta_x > 0$ tal que
+
+    $$\forall \: z \in X \Rightarrow d(z,x) < \delta_x \Rightarrow\: \forall \: f \in \FF \Rightarrow \norm{f(x)-f(z)} < \frac{\varepsilon}{10,000}$$
+
+    Como $X$ es compacto y $\U = \{ B(x,\delta_x \mid x \in X \}$ es una cubierta abierta para $X \: \exists \: x_1, ..., x_k \in X$ tales que
+
+    $$X = B(x_1, \delta_{x_1}) \cup ... \cup B(x_k, \delta_{x_k}) $$
+
+    Definamos $\Phi = \{ \alpha : \{ 1, ..., k \} \to \{1, ..., m\} \mid \: \exists \: f \in \FF \}$
+
+    $$\Rightarrow\: \forall \: i \in \{1, ..., k\} \Rightarrow f(x_i) \in B\left({\vec{y}}_{\alpha(i)}, \frac{\varepsilon}{10,000} \right)$$
+
+    Como la cardinalidad $\abs{\Phi} \leqslant m^k \Rightarrow \Phi$ es finito
+
+    $\forall \: \alpha \in \Phi$, fijemos una única función $f_\alpha \in \FF$ tal que
+
+    $$\forall \: \{1, ..., k \} \Rightarrow f_\alpha(x_i) \in B\left({\vec{y}}_{\alpha(i)}, \frac{\varepsilon}{10,000} \right)$$
+
+    Note que $\{ f_\alpha \mid \alpha \in \Phi \} \subseteq \FF \subseteq {\cfc}^{\ast}(X,\R^n)$ es finito porque $\Phi$ es finito.
+
+    Resulta que
+    $$\FF \subseteq \bigcup_{\alpha \in \Phi} B(f_\alpha, \varepsilon)$$
+
+    Esto mostraría que $\FF$ es totalmente acotado. 
+
+    En efecto, sea $f \in \FF$ cualqioer elemento, y sea $i \in \{ 1, ..., k \}$ arbitrario. Como ocurre que
+
+    $$f(x_i) \in f[X] \subseteq K \subseteq B\left({\vec{y}}_{1}, \frac{\varepsilon}{10,000} \right) \cup ... \cup B\left({\vec{y}}_{m}, \frac{\varepsilon}{10,000} \right)$$
+
+    es posible elegir un único $j(i) \in \{1, ..., m \}$ tal que
+
+    $$f(x_i) \in B\left({\vec{y}}_{j(i)}, \frac{\varepsilon}{10,000} \right)$$
+
+    Defina $\alpha : \{ 1, ..., k \} \to \{1, ..., m\}$ mediante la regla de asociación $\alpha(i) = j(i)$. Note que $\alpha \in \Phi$. Consideremos a la función $f_\alpha$ asociada a$ \alpha$. Veamos que
+
+    $$f \in B(f_\alpha, \varepsilon) \iff d_u(f,f_\alpha) < \varepsilon$$
+
+    Sea $x \in X$ arbitrario $\Rightarrow \: \exists \: i \in \{1, ..., k \}$ tal que $x \in B(x_i, \delta_{x_i})$. Así $d(x,x_i) < \delta_{x_i}$
+
+    $$\Rightarrow {\norm{f(x)-f_\alpha(x)}}_{2} \leqslant {\norm{f(x)-f(x_i)}}_{2} + {\norm{f(x_i)-f_\alpha(x)}}_{2}$$
+    $$\leqslant {\norm{f(x)-f(x_i)}}_{2} + {\norm{f(x_i)-{\vec{y}}_{\alpha(i)}}}_{2} + {\norm{{\vec{y}}_{\alpha(i)}-f_\alpha(x)}}_{2} $$
+    $$\leqslant {\norm{f(x)-f(x_i)}}_{2} + {\norm{f(x_i)-{\vec{y}}_{\alpha(i)}}}_{2} + {\norm{{\vec{y}}_{\alpha(i)}-f_\alpha(x_i)}}_{2} + {\norm{f_\alpha(x_i)-f_\alpha(x)}}_{2}$$
+    $$< \frac{\varepsilon}{10,000} + \frac{\varepsilon}{10,000} + \frac{\varepsilon}{10,000} + \frac{\varepsilon}{10,000} = \frac{4\cdot \varepsilon}{10,000} < \varepsilon$$
+
+    Así $f \in B(f_\alpha, \varepsilon) \Rightarrow \FF \subseteq \bigcup_{\alpha \in \Phi} B(f_\alpha, \varepsilon)$
+
+    $\therefore \FF$ es compacto porque es totalmente acotado y cerrado
+\end{proof}
+
+\begin{corollary}
+    Supongamos que $\A \subseteq \R^n$ y que $\FF = \{ f_n : \A \to \R^n \}$ es una familia de funciones continuas que es equicontinua y puntualmente acotado $\Rightarrow \: \exists$ una función continua $F : \A \to \R^n$ y una subsucesión ${\left(f_{n_t}\right)}_{n \in \N}$ de la sucesión ${\left(f_n\right)}_{n \in \N}$ tal que $\forall \: K \subseteq \A$ compacto
+
+    $$f_{n_t} \restriction_K \rightrightarrows f \restriction_K$$
+\end{corollary}
+
+\begin{definition} [Cerradura]
+    Sea ($X,d$) un espacio métrico. $\forall \: A \subseteq X$ definimos a la cerradura de $A$ en ($X,d$) como el conjunto 
+
+    $$\mathrm{cl}(A) = A \cup \der(A)$$
+\end{definition}
+
+\begin{definition} [Relativamente Compacto]
+    Diremos que $A$ es relativamente compacto en ($X,d$) $\iff \mathrm{cl}(A)$ es un subconjunto compacto.
+\end{definition}
+
+\begin{theorem} [Arzelá-Ascoli II]
+    Sean ($X,d$) un espacio métrico compacto y ($Y, \rho$) un espacio métrico completo $\Rightarrow \FF \subseteq {\cfc}^{\ast}(X,Y) \FF$ es relativamente compacto en (${\cfc}^{\ast}(X,Y), d_u$) $\iff \FF$ es equicontinua y $\forall \: x \in X \Rightarrow \{f(x) \mid f \in \FF \}$ es relativamente compacto en ($Y, \rho$) 
+\end{theorem}
+
+\section{Teorema de Stone-Weierstraß}
+
+\begin{definition} [Polinomios de Bernstein]
+    Sean $n \in \N \cup \{ 0 \}$ y $t \in \R$. Definimos al $n$-ésimo polinomio básico de Bernstein como el polinomio
+
+    $${\theta}_{n,k}(t) = \binom{n}{k} {t}^{k}{(1-t)}^{n-k}$$
+
+    donde $\binom{n}{k} = \frac{n !}{k ! (n-k) !}$
+\end{definition}
+
+\begin{theorem} \label{theom529}
+    Sean $n \in \N \cup \{ 0 \}$ y $t \in \R$
+
+    \begin{enumerate}
+        \item $1 = \sum\limits_{k=0}^{n} \: {\theta}_{n,k} (t)$
+        \item $nt = \sum\limits_{k=0}^{n} k \: {\theta}_{n,k} (t)$
+        \item $(n^2-n)t = \sum\limits_{k=0}^{n} (k^2-k)\: {\theta}_{n,k} (t)$
+        \item $\frac{t-t^2}{n} = \sum\limits_{k=0}^{n} {\left( t - \frac{k}{n} \right)}^{2}\: {\theta}_{n,k} (t)$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item  Sean $n \in \N \cup \{ 0 \}$ y $t \in \R$
+
+        Para $n= 0$, como $0^0 = 1$, tenemos el resultado.
+
+        Si $n \in \N \Rightarrow$ por el teorema de Newton
+
+        $$1 = 1^n = {(t+(1-t))}^{n} = \sum\limits_{k=0}^{n} \binom{n}{k} {t}^{k}{(1-t)}^{n-k} = \sum\limits_{k=0}^{n} \: {\theta}_{n,k} (t)$$
+
+        \item   Sean $n \in \N \cup \{ 0 \}$ y $t \in \R$
+
+        Si $n = 0 \Rightarrow nt = 0 = \sum\limits_{k=0}^{n=0} k \: {\theta}_{n,k} (t)$
+
+        Si $n  \geqslant 1  \Rightarrow n - 1 \in \N \cup \{0\}$. Así, por el inciso 1. aplicado a $n-1$, s.t.q.
+
+        $$1 = \sum\limits_{k=0}^{n-1} {\theta}_{n-1,k} (t) = \sum\limits_{k=0}^{n-1}  \binom{n-1}{k} {t}^{k}{(1-t)}^{n-1-k} =  \sum\limits_{k=0}^{n-1}  \binom{n-1}{k} {t}^{k}{(1-t)}^{n-(k+1)}$$
+
+        Multiplicando por $t$
+
+        $$t = \sum\limits_{k=0}^{n-1}  \binom{n-1}{k} {t}^{k+1}{(1-t)}^{n-(k+1)}$$
+
+        Observe que 
+
+        $$\binom{n-1}{k} = \frac{(n-1)!}{k!(n-1-k)!} = \frac{(n-1)!}{k!(n-k+1)!} \cdot \frac{n!}{n} \cdot \frac{k+1}{k+1} = \frac{n!}{(k+1)!(n-(k+1))!} \cdot \frac{k+1}{n}$$
+
+        Así 
+
+        $$t = \sum\limits_{k=0}^{n-1}  \binom{n-1}{k} {t}^{k+1}{(1-t)}^{n-(k+1)} = \sum\limits_{k=0}^{n-1}  \binom{n}{k+1} \cdot \frac{k+1}{n} {t}^{k+1}{(1-t)}^{n-(k+1)}$$
+
+        Defina $j = k+1$. Note que si $k = 0,1,2,..,n-1 \Rightarrow j = 1, 2, ..., n$. Luego,
+
+        $$t = \sum\limits_{j=1}^{n}  \binom{n}{j} \cdot \frac{j}{n} {t}^{j}{(1-t)}^{n-j}$$
+
+        Observe que para $j = 0 \Rightarrow \frac{j}{n} = 0 \Rightarrow \binom{n}{j} = \frac{j}{n}{t}^{j}{(1-t)}^{n-j} = 0$. Así
+
+        $$t=\sum\limits_{j=0}^{n}  \binom{n}{j} \cdot \frac{j}{n} {t}^{j}{(1-t)}^{n-j} $$
+        $$\Rightarrow nt=\sum\limits_{j=0}^{n}  \binom{n}{j} j {t}^{j}{(1-t)}^{n-j}$$
+
+        Lo que demuestra al inciso 2.
+
+        \item Sean $n \in \N \cup \{ 0 \}$ y $t \in \R$
+
+        Si $n = 0 \Rightarrow (n^2-n)t = 0 = \sum\limits_{k=0}^{n=0} (k^2-k)\: {\theta}_{n,k} (t)$
+
+        Si $n = 1 \Rightarrow (n^2-n)t = 0 = \sum\limits_{k=0}^{1} (k^2-k)\: {\theta}_{n,k} (t)$
+
+        Si $n  \geqslant 2  \Rightarrow n - 2 \in \N \cup \{0\}$. Así, por el inciso 1. aplicado a $n-2$, s.t.q.
+
+        $$1 = \sum\limits_{k=0}^{n-2}  \binom{n-2}{k} {t}^{k}{(1-t)}^{n-2-k} $$
+
+        Observe que 
+
+        $$\binom{n-2}{k} = \frac{(n-2)!}{k!(n-2-k)!} \cdot \frac{(n-1)n}{(n-1)n} \cdot \frac{(k+1)(k+2)}{(k+1)(k+2)} = \binom{n}{k+2} \cdot \frac{(k+1)(k+2)}{(n-1)n}$$
+
+        Luego
+
+        $$1 = \sum\limits_{k=0}^{n-2}  \binom{n}{k+2}  \frac{(k+1)(k+2)}{(n-1)n} {t}^{k}{(1-t)}^{n-2-k}$$
+
+        Multiplicando por $t^2$
+
+        $$t^2 = \sum\limits_{k=0}^{n-2}  \binom{n}{k+2}  \frac{(k+1)(k+2)}{(n-1)n} {t}^{k+2}{(1-t)}^{n-2-k}$$
+
+        Definiendo $j = k+ 2 \Rightarrow$
+
+        $$n(n-1) t^2 = \sum\limits_{j=2}^{n-2}  \binom{n}{j}  (j-1) {t}^{j}{(1-t)}^{n-j}$$
+
+        Note que si $j = 0,1 \Rightarrow \binom{n}{j} (j-1) {t}^{j}{(1-t)}^{n-j} = 0$
+
+        $$\Rightarrow (n^2-n)t = \sum\limits_{j=0}^{n} \binom{n}{j} j(j-n) {t}^{j}{(1-t)}^{n-j} $$
+
+        \item Como ${\left(t - \frac{k}{n} \right)}^{2} = t^2-\frac{2tk}{n} + \frac{k^2}{n^2}$ multiplicamos la expresión del inciso 1 por $t^2$, y a la expresión del inciso 2. por $(-2)\frac{t}{n}$ y obtenemos lo siguiente
+
+        \begin{align*}
+           t^2 = \sum\limits_{k=0}^{n} t^2 \: {\theta}_{n,k} (t) && \text{y} && -2t^2 = \sum\limits_{k=0}^{n} (-2) \frac{kt}{n}\: {\theta}_{n,k} (t)
+        \end{align*}
+
+        Luego sumamos las expresiones 2, y 3. y multiplicamos por $\frac{1}{n^2}$
+
+        $$\frac{nt+(n^2-n)t^2}{n^2} = \sum\limits_{k=0}^{n} \frac{k}{n^2} \: {\theta}_{n,k} (t) + \sum\limits_{k=0}^{n} \frac{(k^2-k)}{n^2} \: {\theta}_{n,k} (t)$$
+
+        $\Rightarrow$ podemos reescribir la ecuación anterior como
+
+        $$\frac{t}{n}+t^2-\frac{t^2}{n} = \sum\limits_{k=0}^{n}  \left( \frac{k+(k^2-k)}{n^2}\right) \: {\theta}_{n,k} (t) =  \sum\limits_{k=0}^{n}  \frac{k^2}{n^2} \: {\theta}_{n,k} (t) $$
+
+        Sumando todas estas expresiones s.t.q.
+
+        $$t^2-2t^2+\frac{t}{n}+t^2-\frac{t^2}{n} = \sum\limits_{k=0}^{n} t^2 \: {\theta}_{n,k} (t)+ \sum\limits_{k=0}^{n} (-2) \frac{kt}{n}\: {\theta}_{n,k} (t) + \sum\limits_{k=0}^{n}  \frac{k^2}{n^2} \: {\theta}_{n,k} (t)$$
+
+        Es decir, 
+
+        $$\frac{t}{n} - \frac{t^2}{n} = \frac{t-t^2}{n} =  \sum\limits_{k=0}^{n} \left( t^2 - \frac{2kt}{n} + \frac{k^2}{n^2}\right) \: {\theta}_{n,k} (t) = \sum\limits_{k=0}^{n} {\left( t - \frac{k}{n} \right)}^{2} \: {\theta}_{n,k} (t)$$
+    \end{enumerate}
+    $\therefore$ es cierto el \Cref{theom529}
+\end{proof}
+
+\begin{definition} [Polinomios de Bernstein II]
+    Sea $f : [a,b] \to \R$ una función continua . Dado $n \in \N$ definimos al $n$-ésimo polinomio de Bernstein de $f$ como
+
+    $$\mathrm{B}_n(f)(t) = \sum\limits_{k=0}^{n} \binom{n}{k} {(t-a)}^{k}{(b-t)}^{n-k} f\left(a+\frac{k}{n}(b-a) \right)$$
+
+    donde $t \in [a,b]$
+
+    Note que si $f:[0,1] \to \R$ es continua
+
+    $$\mathrm{B}_n(f)(t) = \sum\limits_{k=0}^{n} \binom{n}{k} {(t-0)}^{k}{(1-t)}^{n-k} f\left(0+\frac{k}{n}(1-0) \right) = \sum\limits_{k=0}^{n} f\left( \frac{k}{n} \right) \: {\theta}_{n,k} (t)$$
+
+    $\forall \: t \in [0,1]$
+\end{definition}
+
+\begin{theorem} [Aproximación de Weierstraß I] \label{theom531}
+    Si $f: [0,1] \to \R$ es continua $\Rightarrow$ la sucesión de polinomios ${\left(\mathrm{B}_n(f)\right)}_{n \in \N}$ converge uniformemente a $f$ en $[0,1]$, o equivalentemente $\lim\limits_{n \to \infty} \mathrm{B}_n(f) = f$ en el espacio métrico $({\cfc}^{\ast}([0,1],\R), {\norm{\cdot}}_{u}) = (\cfc([0,1],\R), {\norm{\cdot}}_{u})$
+\end{theorem}
+
+\begin{proof}
+    Si $f$ es la función constante 0
+
+    $\Rightarrow \mathrm{B}_n(f)(t) = 0 \: \forall \: n \in \N$ y $t \in [0,1]$. Es claro que $\lim\limits_{n \to \infty}\mathrm{B}_n(f) = f $ en $({\cfc}^{\ast}([0,1],\R), {\norm{\cdot}}_{u})$
+
+    Si $f$ no es la función constante 0
+
+    $\Rightarrow {\norm{f}}_{u} = {\norm{f}}_{\infty} \geqslant 0$
+
+    Sea $\varepsilon > 0$. Queremos ver que $\exists \: n \in \N$ tal que $\forall \: n \geqslant N$ y $\forall \: t \in [0,1] \Rightarrow \abs{{B}_n(f)(t)-f(t)} < \varepsilon$
+
+    Como $[0,1]$ es compacto $f$ es uniformemente continua, esto por el \Cref{theom3531}, así, para $\frac{\varepsilon}{10} > 0 \: \exists \: \delta > 0$ tal que
+
+    $$\forall \: x, y \in [0,1] \Rightarrow \abs{x-y} < \delta \Rightarrow \abs{f(x)-f(y)} < \frac{\varepsilon}{10}$$
+
+    Como $\N$ no está acotado superiormente en $\R \:\exists \: N \in \N$ tal que
+    \begin{align*}
+        N > \frac{1}{\delta^4} && \text{y} && N > \frac{{\norm{f}}^{2}_{\infty}}{\varepsilon^2}
+    \end{align*}
+
+    Veamos que
+
+    $$\forall \: n \geqslant N \: \forall \: t \in [0,1] \Rightarrow \abs{f(t)-\mathrm{B}_n(f)(t)} < \frac{7\varepsilon}{10} < \varepsilon$$
+
+    Sea $n \geqslant N$ y $t \in [0,1]$ arbitrarios $\Rightarrow$
+    \begin{align*}
+        n > \frac{1}{\delta^4} && \text{y} && n > \frac{{\norm{f}}^{2}_{\infty}}{\varepsilon^2}
+    \end{align*}
+    \begin{align*}
+      \Rightarrow  \frac{1}{n} < \delta^4 \Rightarrow \frac{1}{\sqrt[4]{n}} < \delta && \text{y} && \frac{1}{\sqrt{n}} < \frac{\varepsilon}{{\norm{f}}^{2}_{\infty}}
+    \end{align*}
+    $$\Rightarrow  \abs{f(t)-\mathrm{B}_n(f)(t)} = \abs{f(t) \cdot 1 -  \sum\limits_{k=0}^{n} f\left( \frac{k}{n} \right) \: {\theta}_{n,k} (t)}$$
+    $$= \abs{f(t) \left( \sum\limits_{k=0}^{n}  \: {\theta}_{n,k} (t)\right) - \sum\limits_{k=0}^{n} f\left( \frac{k}{n} \right) \: {\theta}_{n,k} (t)}$$
+    $$= \abs{\sum\limits_{k=0}^{n} \left( f(t)-f \left( \frac{k}{n} \right) \right)  \: {\theta}_{n,k} (t)} \leqslant \sum\limits_{k=0}^{n} \abs{f(t)-f \left( \frac{k}{n} \right) } \abs{\: {\theta}_{n,k} (t)}$$
+
+    Como $\: {\theta}_{n,k} (t) \geqslant 0 \Rightarrow$
+
+    $$\abs{f(t)-\mathrm{B}_n(f)(t)} \leqslant \sum\limits_{k=0}^{n} \abs{f(t)-f \left( \frac{k}{n} \right) } \: {\theta}_{n,k} (t)$$
+
+    Por otra parte, si definimos 
+    \begin{align*}
+        \mathrm{F}_1= \left\{ k \in \{0, .., n \} \mid \abs{t-\frac{k}{n}} < \frac{1}{\sqrt[4]{n}} \right\} && \text{y} && \mathrm{F}_2= \left\{ k \in \{0, .., n \} \mid \abs{t-\frac{k}{n}} \geqslant \frac{1}{\sqrt[4]{n}} \right\}
+    \end{align*}
+    $\Rightarrow$ sucede que
+    \begin{align*}
+       \{0, .., n \} = \mathrm{F}_1 \cup \mathrm{F}_2 && \text{y} && \mathrm{F}_1 \cap \mathrm{F}_2 = \varnothing
+    \end{align*}
+    Por lo que podemos separar
+
+    $$\abs{f(t)-\mathrm{B}_n(f)(t)} \leqslant \sum\limits_{k\in \mathrm{F}_1} \abs{f(t)-f \left( \frac{k}{n} \right) } \: {\theta}_{n,k} (t)  + \sum\limits_{k\in \mathrm{F}_2} \abs{f(t)-f \left( \frac{k}{n} \right) } \: {\theta}_{n,k} (t) = \Xi + \Upsilon$$
+
+    Vamos a acotar a las sumas $\Xi$ y $\Upsilon$
+
+    Observe que, para $\Xi$, si $k \in \mathrm{F}_1 \Rightarrow $ 
+    
+    $$\abs{t-\frac{k}{n}} < \frac{1}{\sqrt[4]{n}} < \delta$$ 
+    
+    y aplicando que $[0,1]$ es compacto y $f$ es uniformemente continua s.t.q. 
+    
+    $$\abs{f(t)-f\left( \frac{k}{n} \right)} < \frac{\varepsilon}{10}$$
+    $$\Rightarrow \sum\limits_{k\in \mathrm{F}_1} \abs{f(t)-f \left( \frac{k}{n} \right) } \: {\theta}_{n,k} (t)  < \sum\limits_{k\in \mathrm{F}_1} \frac{\varepsilon}{10} \: {\theta}_{n,k} (t) \leqslant \sum\limits_{k=0}^{n} \frac{\varepsilon}{10} \: {\theta}_{n,k} (t) =  \frac{\varepsilon}{10} \sum\limits_{k=0}^{n} \: {\theta}_{n,k} (t) =  \frac{\varepsilon}{10}$$
+
+    Ahora, para $\Upsilon$, como $\forall \: k \in \mathrm{F}_2 \Rightarrow$
+    $$\abs{t-\frac{k}{n}} \geqslant \frac{1}{\sqrt[4]{n}} > 0 \Rightarrow 0 < \frac{1}{{\left( t- \frac{k}{n} \right)}^{2}} \leqslant \sqrt{n}$$
+
+    Por lo que acotamos
+
+    $$\sum\limits_{k\in \mathrm{F}_2} \abs{f(t)-f \left( \frac{k}{n} \right) } \: {\theta}_{n,k} (t) = \sum\limits_{k\in \mathrm{F}_2} \abs{f(t)-f \left( \frac{k}{n} \right) } \frac{{\left( t- \frac{k}{n} \right)}^{2}}{{\left( t- \frac{k}{n} \right)}^{2}}  \: {\theta}_{n,k} (t) $$
+    $$\leqslant \sum\limits_{k\in \mathrm{F}_2} \left( \abs{f(t)-f \left( \frac{k}{n} \right) } {\left( t- \frac{k}{n} \right)}^{2} \cdot \sqrt{n}  \: {\theta}_{n,k} (t) \right) $$
+
+    Además, como 
+
+    $$\abs{f(t)-f \left( \frac{k}{n} \right) } \leqslant \abs{f(t)-f} \abs{\left( \frac{k}{n} \right)} \leqslant {\norm{f}}_{\infty} + {\norm{f}}_{\infty} = 2{\norm{f}}_{\infty}$$
+
+    Por lo que
+
+    $$\sum\limits_{k\in \mathrm{F}_2}  \abs{f(t)-f \left( \frac{k}{n} \right) } \: {\theta}_{n,k} (t) \leqslant \sum\limits_{k\in \mathrm{F}_2} 2{\norm{f}}_{\infty} {\left( t- \frac{k}{n} \right)}^{2} \cdot \sqrt{n}  \: {\theta}_{n,k} (t) $$
+    $$\leqslant \sum\limits_{k=0}^{n} \left( 2{\norm{f}}_{\infty} {\left( t- \frac{k}{n} \right)}^{2} \cdot \sqrt{n}  \: {\theta}_{n,k} (t) \right) = 2{\norm{f}}_{\infty} \sqrt{n}  \sum\limits_{k=0}^{n} {\left( t- \frac{k}{n} \right)}^{2}  \: {\theta}_{n,k} (t)$$
+    $$=  2{\norm{f}}_{\infty} \sqrt{n}  \frac{(t-t^2)}{n}$$
+
+    Pero para $t \in [0,1]$ s.t.q. $0 \leqslant {\left( t - \frac{1}{2} \right)}^{2} = t^2-t + \frac{1}{4} \Rightarrow t^2-t \leqslant \frac{1}{4}$
+
+    $$\Rightarrow \sum\limits_{k\in \mathrm{F}_2}  \abs{f(t)-f \left( \frac{k}{n} \right) } \: {\theta}_{n,k} (t) \leqslant 2{\norm{f}}_{\infty} \frac{\sqrt{n}}{n} (t-t^2) \leqslant 2{\norm{f}}_{\infty}  \frac{\sqrt{n}}{n} \cdot \frac{1}{4}$$
+
+    Como $n \geqslant N > \frac{{\norm{f}}^{2}_{\infty}}{\varepsilon^2} \Rightarrow \varepsilon^2 > \frac{{\norm{f}}^{2}_{\infty}}{n} \Rightarrow \frac{2{\norm{f}}^{2}_{\infty}}{\sqrt{n}} \cdot \frac{1}{4} < \frac{\varepsilon}{2}$
+
+    $$\Rightarrow \sum\limits_{k\in \mathrm{F}_2}  \abs{f(t)-f \left( \frac{k}{n} \right) } \: {\theta}_{n,k} (t) \leqslant 2{\norm{f}}_{\infty}  \frac{\sqrt{n}}{n} \cdot \frac{1}{4} < \frac{\varepsilon}{2}$$
+
+    $\therefore \abs{f(t)-\mathrm{B}_n(f)(t)} = \Xi + \Upsilon < \frac{\varepsilon}{10} + \frac{\varepsilon}{2} = \frac{7 \cdot \varepsilon}{10} < \varepsilon$
+
+    $\therefore \mathrm{B}_n(f) \rightrightarrows f$
+\end{proof}
+
+\begin{theorem} [Aproximación de Weierstraß II] \label{theom532}
+    Sean $a, b \in \R$ con $a < b$. Si $f :[a,b] \to \R$ es una función continua $\Rightarrow \: \exists \:$ una sucesión de polinomios ${\left(P_n\right)}_{n \in \N}$ tal que $P_n \rightrightarrows f$ en $[a,b]$
+\end{theorem}
+
+\begin{proof}
+    La función $\varphi : [0,1] \to [a,b]$ definida por $\varphi(x) = a + x(b-a)$ es una función biyectiva y continua, y su inversa es la función ${\varphi}^{-1} : [a,b] \to [0,1]$ dada por:
+
+    $${\varphi}^{-1} (y) = \frac{y-a}{b-a}$$
+
+    Defina $g = f \circ \varphi : [0,1] \to \R$, y como la composición de funciones continuas es continua, $g$ es una dunción continua. Observe que si $f$ es una función constante $\Rightarrow$ podemos definir $P_n = f \: \forall \: n \in \N$. Claramente, cada $P_n$ es un polinomio de grado cero, y también es claro que $P_n \rightrightarrows f$. Así, supongamos que $f$ no es una función constante.
+
+
+    Por el \Cref{theom531}, la sucesión ${\left(\mathrm{B}_n(g)\right)}_{n \in \N}$ converge uniformemente a la función $g$ en $[0,1]$. Defina, para $n \in \N$
+
+    $$P_n = \mathrm{B}_n(g) \circ {\varphi}^{-1}$$
+
+    Veamos que cada $P_n$ es un polinomio, y que $P_n \rightrightarrows f$ en $[a,b]$. En primer lugar, sea $n \in \N$ cualquiera
+
+    $$P_n(t) = (\mathrm{B}_n(g) \circ {\varphi}^{-1})(t) = \mathrm{B}_n(g) ({\varphi}^{-1}(t)) = \mathrm{B}_n(g)  \left( \frac{t-a}{b-a}\right)$$
+    $$= \sum_{k=0}^{n} \binom{n}{k} {\left( \frac{t-a}{b-a}\right)}^{k}{\left( 1-\frac{t-a}{b-a}\right)}^{n-k} g\left( \frac{k}{n} \right) $$
+    $$= \sum_{k=0}^{n} \binom{n}{k} \frac{{(t-a)}^{k}}{{(b-a)}^{k}} \cdot \frac{{(b-a-(t-a))}^{n-k}}{{(b-a)}^{n-k}} f\left(\varphi \left( \frac{k}{n} \right) \right)$$
+    $$\frac{1}{{(b-a)}^{n}} \sum_{k=0}^{n} \binom{n}{k} {(t-a)}^{k}{(b-t)}^{n-k} f \left( a + \left(\frac{k}{n} \right)(b-a) \right) = \frac{1}{{(b-a)}^{n}} \mathrm{B}_n(f)(t) $$
+
+    Como $\mathrm{B}_n(f)(t)$ es un polinomio, multiplicado por el real $\frac{1}{{(b-a)}^{n}} \Rightarrow P_n$ sigue siendo un polinomio.
+
+    Ahora, veamos que $P_n \rightrightarrows f$
+
+    Sea $\varepsilon > 0$ arbitrario. Por el \Cref{theom531} $\mathrm{B}_n(g) \rightrightarrows g$ en $[0,1]$ y $\exists \: N \in \N$ tal que
+
+    $$\forall \: n \geqslant N \: \forall \: x \in [0,1] \Rightarrow \abs{\mathrm{B}_n(g)(x)-g(x)} < \frac{\varepsilon}{2}$$
+
+    Como $g^{-1} : [a,b] \to [0,1]$ es biyectiva $\Rightarrow \: \forall \: x \in [0,1] \: \exists$ una única $t \in [a,b]$ tal que ${\varphi}^{-1} (t) = x$
+
+    $$\Rightarrow \forall \: n \geqslant N \: \forall \: t \in [a,b] \Rightarrow \abs{\mathrm{B}_n(g)({\varphi}^{-1} (t)) -g({\varphi}^{-1} (t) )} < \frac{\varepsilon}{2}$$
+    $$\Rightarrow \forall \: n \geqslant N \: \forall \: t \in [a,b] \Rightarrow \abs{(\mathrm{B}_n(g) \circ {\varphi}^{-1}) (t) -(f \circ g)({\varphi}^{-1} (t) )} < \frac{\varepsilon}{2}$$
+    $$\Rightarrow \forall \: n \geqslant N \: \forall \: t \in [a,b] \Rightarrow \abs{P_n(t) - f(t)} < \frac{\varepsilon}{2} < \varepsilon$$
+
+    $\therefore P_n \rightrightarrows f$ en $[a,b]$
+\end{proof}
+
+\begin{remark}
+    Sabemos que la convergencia preserva continua. Es decir, si $f_n$ es continua
+
+    $$f_n : X \to Y \Rightarrow f_n \rightrightarrows f : X \to Y$$
+
+    ¿Ocurre lo mismo con la derivabilidad e integrabilidad de funciones? Veamos que para la derivabilidad, no es cierto esto último.
+ \end{remark}
+
+ \begin{eg}
+     Consideremos a la función $f : [-1, 1] \to \R$ dada por $f(x) = \abs{x}$. La función $f$ es continua en $[-1, 1]$, y no derivable en $x_0 = 0$. Pero por el \Cref{theom532} $\exists$ una sucesión de polinomios ${\left(P_n\right)}_{n \in \N}$ donde 
+
+     $$P_n(t) = \sum_{k=0}^{n} \binom{n}{k} {(t+1)}^{k}{(t-1)}^{n-k} f \left( -1 + \left(\frac{k}{n} \right)(1-(-1)) \right)$$
+
+     tales que $P_n \rightrightarrows f$ en $[-1, 1] $, y por la secundaria, se save que todo polinomio es derivable en $\R$
+ \end{eg}
+
+\begin{definition} [Uniformemente Cauchy] \label{def532}
+    Las sucesiones $\langle f_n : X \to Y \mid n \in \N \rangle $ que tienen la propiedad
+
+    $$\forall \: \varepsilon > 0 \: \exists \: N \in \N \: \forall \: n, m \geqslant N \: \forall \: x \in X \Rightarrow \rho(f_n(x),f_m(x)) < \varepsilon$$
+
+    son llamadas sucesiones de funciones uniformemente Cauchy
+\end{definition}
+
+ \begin{theorem} \label{theom533}
+     Sean ($X,d$) y ($Y,\rho$) dos espacios métricos, donde ($Y,\rho$) es completo. Si $\langle f_n : X \to Y \mid n \in \N \rangle $ es una sucesión de funciones tal que
+
+     $$\forall \: \varepsilon > 0 \: \exists \: N \in \N \: \forall \: n, m \geqslant N \: \forall \: x \in X \Rightarrow \rho(f_n(x),f_m(x)) < \varepsilon$$
+
+     es uniformemente Cauchy $\Rightarrow \: \exists \: f : X \to Y$ tal que $f_n \rightrightarrows f$ en $X$
+ \end{theorem}
+
+\begin{proof}
+    Sea $x \in X$ cualquier elemento. Resulta que la sucesión ${\left(f_n(x) \right)}_{n \in \N}$ es de Cauchy en ($Y,\rho$)
+
+    En efecto, sea $\varepsilon > 0 $ arbitraria. Por satisfacer la \Cref{def532}, $\exists \: N \in \N$ tal que 
+
+    $$\forall \: n, m \geqslant N \: \forall \: z \in X \Rightarrow \rho(f_n(z),f_m(z)) < \varepsilon$$
+
+    En particular como $x \in X$
+
+    $$\forall \: n, m \geqslant N  \Rightarrow \rho(f_n(x),f_m(x)) < \varepsilon$$
+
+    Así ${\left(f_n(x) \right)}_{n \in \N}$ es de Cauchy en ($Y,\rho$). Como ($Y,\rho$) es un espacio métrico, $\exists \: y_x \in Y$ tal que $\lim\limits_{n \to \infty} f_n(x) = y_x$ en ($Y,\rho$)
+
+    Definamos $f : X \to Y$ por medio de $f(x) = y_x \Rightarrow$ veamos que $f_n \rightrightarrows f$ en $X$
+
+    Sea $\varepsilon > 0$ arbitrario. Aplicando la \Cref{def532}, $\exists \: N \in \N$ tal que 
+
+    $$\forall \: n, m \geqslant N \: \forall \: x \in X \Rightarrow \rho(f_n(x),f_m(x)) < \frac{\varepsilon}{4}$$
+
+    Veamos que 
+
+    $$\forall \: n \geqslant  N \: \forall \: x \in X \Rightarrow \rho(f_n(x),f(x)) < \varepsilon$$
+
+    Sean $n \geqslant N$ y $x \in X$ cualesquiera elementos
+
+    Como $\lim\limits_{n \to \infty} f_n(x) = f(x)$ para $\frac{\varepsilon}{4} > 0 \: \exists \: M \in \N$ tal que
+
+    $$\forall \: m \geqslant  M \: \forall \: x \in X \Rightarrow \rho(f_m(x),f(x)) < \frac{\varepsilon}{4}$$
+
+    Sea $m \in \N$ tal que $m > N$ y $m > M \Rightarrow$
+
+    $$\rho(f_n(x),f(x)) \leqslant \rho(f_n(x),f_m(x)) + \rho(f_m(x),f(x)) < \frac{\varepsilon}{4} + \frac{\varepsilon}{4} = \frac{1 \cdot \varepsilon}{4} < \varepsilon$$
+
+    $\therefore f_n \rightrightarrows f$ en $X$
+\end{proof}
+
+\begin{lemma} \label{lemma533}
+    Si  $f_n \rightrightarrows f$ en $X \Rightarrow \langle f_n : X \to Y \mid n \in \N \rangle$ es uniformemente de Cauchy 
+\end{lemma}
+
+\begin{theorem}
+    Si $a < b $ y $\langle f_n : (a,b) \to \R \mid n \in \N \rangle$ es una sucesión de funciones tal que
+    \begin{enumerate}
+        \item Cada $f_n$ es derivable en $(a,b)$
+        \item $\exists \: x_0 \in (a,b)$ tal que $\lim\limits_{n \to \infty} f_n(x_0) \: \exists \: \in \R$
+        \item $\exists$ una función $g : (a,b) \to \R$ tal que ${f}^{\prime}_{n} \rightrightarrows g$
+    \end{enumerate}
+
+    $\Rightarrow \: \exists \: f: (a,b) \to \R$ tal que $f_n \rightrightarrows f$, $f$ es derivable en $(a,b)$, y ${f}^{\prime} = g$
+\end{theorem}
+
+\begin{proof}
+    Veamos que la sucesión ${\left(f_n\right)}_{n \in \N}$ es uniformemente de Cauchy en $(a,b)$
+
+    Sea $\varepsilon > 0$ arbitrario. Como ${f}^{\prime}_{n} \rightrightarrows g$, por el \Cref{lemma533}, la sucesión ${\left({f}^{\prime}_{n}\right)}_{n \in \N}$ es uniformemente de Cauchy en $(a,b) \Rightarrow \: \exists \: N \in \N$ tal que
+
+    $$\forall \: n,m \geqslant N \: \forall \: x \in (a,b) \Rightarrow \abs{{f}^{\prime}_{n}(x)-{f}^{\prime}_{m}(x)} < \frac{\varepsilon}{4(b-a)}$$
+
+    Por otro lado, debido a que $\lim\limits_{n \to \infty} \: \exists \: \in \R$, la sucesión  ${\left(f_n(x_0) \right)}_{n \in \N}$ es de Cauchy en $\R \Rightarrow$ para $\frac{\varepsilon}{4} \: \exists \: M \in \N$ tal que
+
+    $$\forall \: n, m \geqslant M \Rightarrow \abs{f_n(x_0) - f_m(x_0)} < \frac{\varepsilon}{4}$$
+
+    Sea $K = \max \{ N, M \}$. Resulta que
+
+    $$\forall \: n, m \geqslant K \: \forall \: x \in (a,b) \Rightarrow \abs{f_n(x)-f_m(x)} < \varepsilon$$
+
+    En efecto, sean $n, m\geqslant K$ y $x \in (a,b)$ cualesquiera elementos. 
+
+    Si $x = x_0 \Rightarrow$ como $n, m \geqslant K \Rightarrow n, m \geqslant M \Rightarrow$
+
+    $$\abs{f_n(x) - f_m(x)} = \abs{f_n(x_0) - f_m(x_0)} < \frac{\varepsilon}{4} < \varepsilon$$
+
+    Si $x \neq x_0 \Rightarrow$ el intervalo cerrado $\mathrm{I}$ de extremos $x$ y $x_0$ está contenido en $(a,b) \Rightarrow \mathrm{I} \subseteq (a,b)$. Como $f_n$ y $f_m$ son derivables en $(a,b) \Rightarrow f_n - f_m$ es derivable en $(a,b)$, y por tanto, es derivable en el intervalo $\mathrm{I}$. Aplicando el \Cref{theomvm} a $f_n - f_m$, s.t.q. $\exists \: c $ entre $x$ y $x_0$ tal que
+
+    $${f}^{\prime}_{n}(c)-{f}^{\prime}_{m}(c) = \frac{(f_n(x)-f_m(x))-(f_n(x_0)-f_m(x_0))}{x-x_0}$$
+
+    $$\Rightarrow \abs{f_n(x) - f_m(x)} = \abs{(x-x_0)({f}^{\prime}_{n}(c)-{f}^{\prime}_{m}(c))- (f_n(x_0)-f_m(x_0))}$$
+    $$\leqslant \abs{{f}^{\prime}_{n}(c)-{f}^{\prime}_{m}(c)} (b-a) + \abs{f_n(x_0)-f_m(x_0)} < \frac{\varepsilon}{4(b-a)} \cdot (b-a) + \frac{\varepsilon}{4} < \varepsilon$$
+
+    $\therefore$ por lo anterior, $\exists \: f : (a,b) \to \R$ tal que $f_n \rightrightarrows f$ en $(a,b)$
+
+    Ahora, veamos que $f$ es derivable en $(a,b)$ y que ${f}^{\prime} = g$
+
+    Sea $z \in (a,b)$ cualquiera. Definamos $\forall \: n \in \N$ a la función ${\varphi}_{n} : (a,b) \to \R$ con la regla de correspondencia
+    
+    $$ {\varphi}_{n}(x) = \begin{cases}
+            \frac{f_n(x)-f_n(z)}{x-z} & \text{si }  z \neq z\\
+              \lim\limits_{n \to \infty} \frac{f_n(x)-f_n(z)}{x-z}= {f}^{\prime}_{n}(z) & \text{si } x = z
+     \end{cases}$$
+
+     Veamos ahora, que $\exists \: \varphi : (a,b) \to \R$ tal que ${\varphi}_{n} \rightrightarrows \varphi$, para ello, por el \Cref{theom533}, basta probar que $\langle f_n : X \to Y \mid n \in \N \rangle $ es uniformemente de Cauchy.
+
+     Sea $\varepsilon > 0$. Como ${\left({f}^{\prime}_{n}\right)}_{n \in \N}$ es uniformemente de Cauchy, $\exists \: N \in \N$ tal que
+
+     $$\forall \: n,m \geqslant N \: \forall \: x \in (a,b) \Rightarrow \abs{{f}^{\prime}_{n}(x)-{f}^{\prime}_{m}(x)} < \varepsilon$$
+
+     Veamos que
+
+     $$\forall \: n,m \geqslant N \: \forall \: x \in (a,b) \Rightarrow \abs{{f}_{n}(x)-{f}_{m}(x)} < \varepsilon$$
+
+     En efecto, sean $n,m \geqslant N$ y $x \in (a,b)$ cualquiera.
+
+     Si $x = z \Rightarrow$ como ${\left({f}^{\prime}_{n}\right)}_{n \in \N}$ es uniformemente de Cauchy $\Rightarrow$
+
+     $$\abs{{\varphi}_{n}(x)-{\varphi}_{m}(x)} = \abs{{\varphi}_{n}(z)-{\varphi}_{m}(z)} = \abs{{f}^{\prime}_{n}(x)-{f}^{\prime}_{m}(x)} < \varepsilon$$
+
+     Si $x \neq z$, por ello, s.t.q. $x, z \in (a,b) \Rightarrow$ con el intervalo cerrado $\mathrm{I}$, de extremos $x$ y $z \Rightarrow \mathrm{I} \subseteq (a,b)$. Debido a que $f_n$ y $f_m$ son deribables en $(a,b) \Rightarrow f_n - f_m$ es continua en $\mathrm{I}$ y derivable en el abierto de extremos $x$ y $z$. Por el \Cref{theomvm}, $\exists \: c$ entre $x$ y $z$ tal que
+
+     $$ {f}^{\prime}_{n}(c)-{f}^{\prime}_{m}(c) = (f_n-f_m)(c) = \frac{(f_n-f_m)(x)-(f_n-f_m)(z)}{x-z} $$
+     $$=  \frac{f_n(x)-f_m(x)}{x-z}- \frac{f_n(z)-f_m(z)}{x-z} = {\varphi}_{n}(x) - {\varphi}_{m}(x)$$
+
+     Aplicando una vez más, que ${\left({f}^{\prime}_{n}\right)}_{n \in \N}$ es uniformemente de Cauchy, para $c$ s.t.q.
+
+     $$\abs{{\varphi}_{n}(x) - {\varphi}_{m}(x)} =  \abs{{f}^{\prime}_{n}(c)-{f}^{\prime}_{m}(c)} < \varepsilon$$
+
+     $\therefore \langle f_n : X \to Y \mid n \in \N \rangle$ es uniformemente Cauchy.
+
+     Por \Cref{theom533}, $\exists \: \varphi : (a,b) \to \R$ tal que $\varphi_n \rightrightarrows \varphi$ en $(a,b)$. Notemos ahora lo siguiente.
+
+     \begin{enumerate}
+         \item Cada $\varphi_n$ es continua en $z$
+         
+         $$\Rightarrow \lim_{x \to z} {\varphi}_{n}(x) = \lim_{x \to z} \frac{f_n(x)-f_m(x)}{x-z} = {f}^{\prime}_{n}(z) =  {\varphi}_{n}(z)$$
+
+         $\therefore \varphi_n$ es continua en $z$
+         \item Como $\varphi_n \rightrightarrows \varphi$, y cads $\varphi_n$ es continua en $z \Rightarrow \varphi$ es continua en $z$
+
+         \item $\varphi_n \to \varphi$ converge puntualmente, esto porque converge uniformemente, y así, también ocurre que $f_n \to f$ y que $f_n \to g$
+     \end{enumerate}
+
+     Para ver que $f$ es derivable en $z$ y que ${f}^{\prime}(z) = g(z)$, encontramos el valor de $\varphi(x)$
+
+     Si $x = z$, por la \Cref{defcp1} $\Rightarrow$
+
+     $$\varphi(z) = \lim_{n \to \infty} {\varphi}_{n}(z) = \lim_{n \to \infty}{f}^{\prime}(z) = g(z) $$
+
+     Esto porque $f_n \to g$
+
+     Si $x \neq z$, como $f_n \to f \Rightarrow$
+
+
+     $$\varphi(x) = \lim_{n \to \infty} {\varphi}_{n}(x) = \lim_{x \to z} \frac{f_n(x)-f_m(x)}{x-z} = \frac{f(x)-fm(x)}{x-z}$$
+
+     Para finalizar, notemos que como $x \neq z$
+
+     $$\lim_{x \to z} \frac{f_n(x)-f_m(x)}{x-z} = \lim_{x \to z} \varphi(x) = \varphi(z) = g(z)$$
+
+     $\therefore f$ es derivable en $z$ y además ${f}^{\prime}(z) = g(z)$. Así, $f$ es derivable en $(a,b)$ y ${f}^{\prime} = g$
+     
+\end{proof} 
+
+\begin{definition}
+    Sea $A \subseteq X \Rightarrow$ diremos que $A$ es denso en $X$ si $\clos(A) = X$, es decir, si $\forall \: x \in X \: \exists$ una sucesión ${(a_n)}_{n \in \N}$ en $A$ tal que $a_k \to x$ en $X$
+\end{definition}
+
+\begin{theorem}
+    Sea $K$ un espacio métrico compacto y $\mathcal{A} \subseteq \cfc(X)$, de la \Cref{defog}, que cumple las siguientes propiedades
+
+    \begin{enumerate}
+        \item $\forall \: \varphi, \psi \in \mathcal{A} $ y $\forall \: \lambda, \mu \in \R \Rightarrow \lambda \varphi + \mu \psi \in \mathcal{A}$
+        \item $\forall \: \varphi, \psi \in \mathcal{A} \Rightarrow \varphi \psi \in \mathcal{A}$
+        \item $1 \in \mathcal{A}$
+        \item Si $x \neq y \in K \Rightarrow \: \exists \: \varphi \in \mathcal{A}$ tal que $\varphi(x) \neq \varphi(y)$
+    \end{enumerate}
+
+    $\Rightarrow \mathcal{A}$ es denso en $\cfc(X)$, es decir, dada una función continua $f : X \to \R \Rightarrow \: \exists \: $ una sucesión $(\varphi_k)$ de funciones en $\mathcal{A}$ tal que $\varphi_k \rightrightarrows f$ en $K$ 
+\end{theorem}

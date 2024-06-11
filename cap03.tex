@@ -1,0 +1,676 @@
+\chapter{Compacidad}
+
+\section{Conjuntos Compactos}
+
+\begin{definition}[Cubiertas]
+    Sea $X$ un espacio métrico y $K \subseteq X$. Una familia $\U$ de subconjuntos de $X$ ($\U \subseteq \mathcal{P}(X)$) es cubierta de $K$ si
+
+    $$K \subseteq \cup \: \U$$
+    donde
+    $$\left( \cup \: \U = \bigcup\limits_{\A \in \U} \A = \cup  \: \{ \A \mid \A \in \U \} \right)$$
+
+    Si adicionalmente todos los elementos de $\U$ son abiertos, decimos que $\U$ es una cubierta abierta de $K$
+\end{definition}
+
+\begin{definition}[Conjunto Compacto]
+    Un subconjunto $K$ de un espacio métrico es compacto si toda cubierta abierta $\U$ de $K$ contiene una subcubierta finita $V$ de $K$.
+
+    Es decir, si $\forall$ familia de abiertos $\U$ tal que $K \subseteq \cup \: \U \Rightarrow \: \exists \: v \subseteq \U$ finito ($\abs{V} < \aleph_0$) tal que $K \subseteq \cup \: V$
+\end{definition}
+
+\begin{theorem}
+    Todo conjunto finito es compacto.
+\end{theorem}
+
+\begin{proof}
+    Si $K = \{ x_1, ..., x_n \}$ y $\U$ es cualquier cubierta de $K \Rightarrow$ por ser cubierta, s.t.q. $\forall$ índice $i = \{ 1, ..., n \} \: \exists \: U_i \in \U$ tal que $x_i \in U_i \Rightarrow V = \{ u_i \mid 1 \leqslant i \leqslant n \} \subseteq \U$
+    
+    Note que $V$ es finito y $K \subseteq \cup V$
+
+    $\therefore K$ es compacto
+\end{proof}
+
+\begin{eg}
+    Supongamos que ${\left( x_n \right)}_{n \in \N}$ es una sucesión en un espacio métrico $X$ que converge a un punto $x \in X$. El conjunto $K = \{ x_n \mid n \in \N \} \cup \{ x\}$ es compacto en $X$.
+\end{eg}
+
+\begin{proofexplanation}
+    Supongamos que $\U$ es cualquier cubierta abirta de $K$. Para el elemento $x$, $\exists \: V \in \U$ tal que $x \in V$. Como $V$ es abierto $\exists \: \varepsilon > 0$ tal que $B(x,\varepsilon) \subseteq V$. Debido a que $\lim\limits_{n \to \infty} x_n = x$, $\exists \: N \in \N$ tal que $\forall \: m > N$ se cumple que $d(x_m,x) < \varepsilon$, es decir, que $\forall \: m > N$ s.t.q. $x_m \in B(x,\varepsilon) \subseteq V$. Además, $\forall \: i = \{ 1, ..., n \}$, fijamos un elemento $u_i \in \U$ tal que $x_i \in u_i \Rightarrow W = \{ u_i \mid 1 \leqslant i \leqslant n \} \cup \{ V \}$ es finito, $W \subseteq \U$ y se cumple que $K \subseteq \cup W =  \bigcup_{i=1}^{N} u_i \cup V$
+\end{proofexplanation}
+
+\begin{eg}
+    En $(\R, \abs{\cdot})$ cualquier intervalo cerrado $[a,b]$ con $a < b$ es compacto.
+\end{eg}
+
+\begin{proofexplanation}
+    Supongamos que $a,b \in \R$ con $a < b$ arbitrarios y que $\U$ es cualquier cubierta abierta del intervalo $[a,b]$. Consideremos e siguiente conjunto:
+    $$A = \{ x \in [a,b] \mid [a,x] \text{ puede ser cubierta con una cantidad finita de elementos de } \U \}$$
+
+    Veamos que $A \neq \varnothing$
+
+    Como $\U$ es cubierta $\exists \: u_0 \in \U$ tal que $a \in u_0$. Luego, como $u_0$ es abierto $\exists \: r > 0$ tal que $B(a,r) = (a-r,a+r) \subseteq \U$. Podemos elegir un elemento $z$ tal que $z \in (a, a + r) \cap [a,b] \Rightarrow z \in A$ porque $[a,x] \subseteq u_0$. De hecho, $a < z < b$.
+
+    Observe ahora que $A$ está acotado superiormente por $b$. Por el axioma del supremo $\exists \: \alpha = \sup (A) \Rightarrow \alpha \leqslant b$.
+
+    Veamos que $\alpha = b$. Supongamos que, para generar una contradicción, que $a < b \Rightarrow a <  \alpha < b$. Como $\U$ es cubierta abierta $\exists \: W \in \U$ tal que $\alpha \in W$. Debido a que $W$ es abierto $\exists \: \delta > 0$ tal que $(a-\delta, a + \delta ) \subseteq W$. S.P.G. note que $(a-\delta,a+\delta) \subseteq [a,b]$. Como $a-\delta < \alpha = \sup (A) \Rightarrow a - \delta$ no es cota superior de $A$, es decir, $\exists \: x \in A$ tal que $\alpha - \delta < x \Rightarrow [a,x]$ es cubierto por una cantidad finita de elementos de $\U$, y supongamos que estos son $u_1, ..., u_n$
+
+    $$\Rightarrow [a, \alpha + \delta] \subseteq u_1 \cup ... \cup u_n$$
+
+    Pero esto implica que $\alpha + \delta \in A$ y $\alpha + \delta > \alpha$, lo que contradice que $\alpha = \sup (A)$
+
+    $\therefore \alpha = b$
+\end{proofexplanation}
+
+\begin{theorem} \label{theomhb}
+    Sean ($X,d$) un espacio métrico y $Y \subseteq K \subseteq X$ subconjuntos tales que $K$ es compacto y $Y$ es cerrado en $X \Rightarrow Y$ también es compacto. 
+\end{theorem}
+
+\begin{proof}
+    Suponga que $\U = \{ \A_\alpha \mid \alpha \in J \}$ es una cubierta abierta de $Y$ con subconjuntos abiertos de $X$. 
+
+    Como $Y$ es cerrado $X \setminus Y$ es un conjunto abierto $\Rightarrow \mathscr{C} = \{ \A_\alpha \mid \alpha \in J \} \cup \{ X \setminus Y \}$ es una colección de subconjuntos abiertos de $X$ tal que
+
+    $$K \subseteq \left( \bigcup_{\alpha \in J} \A_\alpha \right) \cup (X \setminus Y) = \cup \:\mathscr{C}$$
+
+    Debido a que $K$ es compacto $\exists \: C_1, ..., C_n \in \mathscr{C}$ tales que
+
+    $$K \subseteq \bigcup_{i=1}^{n} C_i$$
+
+    Defina $V = \{ C_i \mid i \in \{ 1, ..., n \} \text{ y } C_i \neq X \setminus Y \}$
+
+    Resulta que $V$ es una subcolección finita de $\U$ tal que
+
+    $$Y \subseteq \cup \: V$$
+
+    $\therefore Y$ es compacto.
+\end{proof}
+
+\begin{definition}[Conjunto Acotado]
+    Sea ($X,d$) un espacio métrico cualquiera. Diremos que $A \subseteq X$ es acotado en ($X,d$) $\iff \: \exists \: x_0 \in X$ y $r > 0$ tal que $A \subseteq B(x_0,r)$ 
+\end{definition}
+
+\begin{corollary}
+    Toda bola abierta y cerrada son ejemplos de conjuntos acotados en cualquier espacio métrico.
+\end{corollary}
+
+\begin{theorem}
+    Sea ($X,d$) un espacio métrico. Si $K \subseteq X$ es un subconjunto compacto de ($X,d$) $\Rightarrow K$ es tanto cerrado como acotado. 
+\end{theorem}
+
+\begin{proof}
+    Veamos que $K$ es acotado. Sea $x_0 \in X$ cualquier elemento. Sabemos que 
+    
+    $$X = \bigcup_{n=1}^{\infty} B(x_0,n)$$
+    
+    Entonces $\{ B(x_0,n) \mid n \in \Z^+ \}$ es una cubierta abierta de $K$. Debido a que $K$ es compacto, $\exists \: n_1, ..., n_m \in \Z^+$ tales que
+
+    $$K \subseteq \bigcup_{j=1}^{m} B\left(x_0,n_j\right)$$
+
+    Por su compacidad, hemos extraido una subcubierta finita de la cubierta propuesta. Sea $r = n_1, ..., n_m + 1$. Claramente $r > 0 \: \forall \: j \in \{ 1, ..., m \} \Rightarrow$
+
+    $$B(x_0,n_j) \subseteq B(x_0,r)$$
+
+    Si todos los uniendos están en $B(x_0,r) \Rightarrow$
+
+    $$K \subseteq \bigcup_{j=1}^{m}B(x_0,n_j) \subseteq B(x_0,r) \Rightarrow K \subseteq B(x_0,r)$$
+
+    $\therefore K$ es acotado.
+
+    Ahora, veamos que $K$ es cerrado en $X$
+
+    Supongamos $x \in X \setminus K$ f.p.a. Como $x \in X \setminus K \: \forall \: k \in K$ s.t.q. $x \neq k$. Entonces $d(x,k) > 0 \: \forall \: k \in K$.
+
+    Definamos a $r_k = \frac{d(x,k)}{100^{100}}  \: \forall \: k \in K$
+
+    Consideremos a la colección 
+
+    $$\U = \{ B(k, r_k) \mid k \in K \}$$
+
+    Es fácil notar que $\U$ es una cubierta abierta de $K$. 
+    
+    Debido a que $K$ es compacto $\exists \: k_1, ..., k_n \in K$ tal que
+
+    $$K \subseteq \bigcup_{j=1}^{n} B(k_j , r_{k_j} \}$$
+
+    Definamos a $r = \min \{ r_{k_1}, ..., r_{k_n} \} > 0$. Además, $x \in B(x,r) \subseteq X \setminus K$.
+
+    Recuerde que $B(x,r_{k_i}) \cap B(k_i,r_{k_i}) = \varnothing \: \forall \: i \in \{ 1, ..., n \}$, y como $B(x,r) \subseteq B(x, r_{k_i}) \: \forall \: i \in \{ 1, ..., n \}$
+
+    $$\Rightarrow B/x,r) \cap B(k_i,r_{k_i}) = \varnothing  \: \forall \: i \in \{ 1, ..., n \}$$
+
+    Luego
+
+    $$K \subseteq \bigcup_{i=1}^{n}B(k_i,r_{k_i}) \cap B(x,r) = \varnothing \Rightarrow K \cap B(x,r) = \varnothing \Rightarrow B(x,r) \subseteq X \setminus K$$
+
+    $\therefore$ como $X \setminus K$ es abierto $\Rightarrow K$ es cerrado
+\end{proof}
+
+\begin{remark}
+    No es cierto, en general, que todo subconjunto cerrado y acotdo de un espacio métrico es compacto. Por ejemplo, en $\R$, considere a la métrica discreta $d$. En este espcio métrico el conjunto $\widebar{B}(0,20) = \R$ es un conjunto cerrado y acotado. Sin embargo, no es compacto, ya que la cubierta del mismo
+
+    $$\U = \{ B\left(x, \frac{1}{2} \right) \mid x \in \R \}$$
+
+    no tiene subcubiertas finitas. Recuerde, por la observación que le sigue al \Cref{theom226} que las bolas aquí son el espacio métrico si el radio es mayor a uno, como lo es el caso aquí. 
+\end{remark}
+
+\begin{theorem} \label{theom334}
+    Sea ($X,d$) un espacio métrico compacto. Si $A$ es un subconjunto infinito de $X \Rightarrow A$ tiene por lo menos un punto de acumulación en $X$
+\end{theorem}
+
+\begin{proof}
+    Recordemos la \Cref{def229}. Supongamos, para generar una contradicción, que $A$ es un conjunto infinito que no tiene puntos de acumulación en $X \Rightarrow \: \forall \: x \in X \: \exists \: r_x > 0$ tal que $B(x,r_x) \cap A$ es finito. Si no existiera $r_x >0$ tal que $B(x,r_x) \cap A$ es finito $\Rightarrow \: \forall \: r > 0$ s.t.q. $B(x,r) \cap A$ es infinito $\Rightarrow (B(x,r) \setminus \{ x \}) \cap A \neq \varnothing$ es infinito, y así $x \in \der(A)$.
+
+    Consideramos a la cubierta abierta $\U = \{ B(x,r_x) \mid x \in X \}$ de $X$. Como $X$ es compacto $\exists \: x_1, ..., x_n \in X$ tales que
+
+    $$X = \bigcup_{i=1}^{n}B(x_i,r_{x_i}) \Rightarrow A = A \cap X = A \cap \left( \bigcup_{i=1}^{n}B(x_i,r_{x_i}) \right) = \bigcup_{i=1}^{n} \left(B(x_i,r_{x_i}) \cap A \right)$$
+
+    y como $A \cap B(x_i,r_{x_i})$ es finito $\forall \: i \in \{ 1 ..., n \}$ s.t.q. $A =\bigcup_{i=1}^{n} A \cap  (B(x_i,r_{x_i})$ es un conjunto finito, lo cual contradice la hipótesis de $A$.
+
+    $\therefore A$ tiene al menos un punto de acumulación.
+\end{proof}
+
+\begin{corollary}
+    Si $K$ es un subconjunto compacto de un espacio métrico ($X,d$) $\Rightarrow$ todo subconjunto infinito $A \subseteq K$ tiene por lo menos un punto de acumulación.
+\end{corollary}
+
+\begin{orangeproof}
+    Como ($X,d$) es un espacio métrico y $K \subseteq X \Rightarrow d \restriction_K : K \times K \to [0,\infty)$ definida por la regla de correspondencia $d \restriction_K (x,y) = d(x,y) \: \forall \: (x,y) \in K \times K$ es una métrica en $K$. Luego, s.t.q. ($K,d \restriction_K)$ es un espacio compacto. 
+
+    Por el \Cref{theom334}, si $A \subseteq K$ es infinito $\Rightarrow A$ tiene al menos un punto de acumulación respecto a $K$ en $K$. Es decir, $\exists \: x \in K$ tal que $x \in \der(A)$ en ($K,d\restriction_K$).
+
+    Notemos que si $x \in K$ es punto de acumulación de $A$ respecto de $K$, es decir, con la métrica $d \restriction_K \Rightarrow x$ es punto de acumulación de $A$ respecto de $X$, es decir, con la métrica $d$.
+\end{orangeproof}
+
+\begin{eg}
+    Demos un ejemplo de un espacio normado real, en el que no es cierto el Teorema de Heine-Börel, que definiremos más adelante, para un espacio normado cualquiera.
+
+    Sea el espacio normado real ($\ell_2, \norm{\cdot}_2$)
+
+    \begin{align*}
+       \ell_2 := \left\{ {(x_n)}_{n \in \N} \mid \sum_{n=1}^{\infty} {\abs{x_n}}^{2} < \infty \right\} && \text{ y } && \norm{{(x_n)}_{n \in \N}}_2 = \sqrt{\sum_{n=1}^{\infty} {x}_{n}^{2}}
+    \end{align*}
+
+    Consideremos también al subconjunto 
+
+    $$K = \widebar{B}(0,1) = \left\{ {(x_n)}_{n \in \N} \in \ell_2 \mid \norm{{(x_n)}_{n \in \N}-0}_2 < 1 \right\} $$
+
+    es decir, $K$ es la bola cerrada de centro $0 = {(0_n)}_{n \in \N}$, donde $0_n = 0 \: \forall \: n \in \N$,  y de radio 1. Ya probamos que $K$ es cerrado, y es acotado porque $K = \widebar{B}(0,1) \subseteq B(0,100^{100})$
+
+    Veamos que $K$ no es un subconjunto compacto de $\ell_2$
+\end{eg}
+
+\begin{proofexplanation}
+    Defina $e_n : \N \to \R \: \forall \: n \in \N$ como la función
+
+    $$ e_n(i) = \begin{cases}
+              1 & \text{si }  i = n\\
+              0 & \text{si } i \neq n
+     \end{cases}$$
+
+     Observe que $e_n \in \ell_2 \: \forall \: n \in \N$
+
+     $$ \sum_{n=1}^{\infty} e_n{(i)}^{2} = \lim_{m \to \infty} \sum_{i=1}^{m} e_n{(i)}^{2} = \sup \left\{ \sum_{i=1}^{m} e_n{(i)}^{2} \mid m \in \N \right\}  $$
+
+     Note que $\sum_{i=1}^{m} e_n{(i)}^{2} = 1$ si $ m \geqslant m$. Así
+
+     $$\sum_{i=1}^{\infty} e_n{(i)}^{2} = \sup \left\{ 0, 1 \right\} = 1$$
+
+     Note también que si $n \neq m \Rightarrow$
+
+     $$d_2(e_n,e_m) = \norm{e_n-e_m}_2 = \sqrt{2}$$
+
+     Esto sucede porque
+
+     $$\sum_{i=1}^{\infty} {\abs{e_n(i)-e_m(i)}}^{2} = \sup \left\{ \sum_{i=1}^{k} {\abs{e_n(i)-e_m(i)}}^{2} \mid k \in \N \right\} = 2 $$
+
+     Definamos $A = \{ e_n \mid n \in \N \}$. Por lo anterior
+
+     $$A \subseteq \widebar{B}(0,1)$$
+
+     y $A$ es infinito, puesto que $f : \N \to A$, es decir toma $n \to e_n$ es una función inyectiva ($n \neq m \Rightarrow f(n) = e_n \neq e_m = f(m)$)
+
+     Finalmente, note que $A$ no tiene puntos de acumulación en $\ell_2$. Efectivamente, sea $x \in \ell_2$ arbitrario. Defina $r = \frac{\sqrt{2}}{30}$. Resuta que $B(x,r) \cap A$ tiene a lo más un elemento de $A$, puesto que, si existieran $e_n$ y $e_m \in B(x,r)$ con $n \neq m \Rightarrow \sqrt{2} = \norm{e_n-e_m}_2 \leqslant \norm{e_n-x}_2 + \norm{x-e_m}_2 < r + r = \frac{2 \cdot \sqrt{2}}{30} = \frac{\sqrt{2}}{15}$
+
+     Por lo tanto, $x$ no es punto de acumulación de $A$. Así, hemos probado que $K = \widebar{B}(0,1)$ no puede ser compacto.
+
+     $\therefore$ el Teorema de Heine - Börel no se cumple en cualquier espacio normado.
+\end{proofexplanation}
+
+\begin{corollary}
+    El Teorema de Heine-Börel se cumple solo en espacios vectoriales reales de dimensión finita.
+\end{corollary}
+
+
+\begin{theorem} \label{theom335}
+    Sea $f : X \to Y$ una función continua de un espacio métrico ($X,d$) a otro espacio métrico ($Y,\rho$). Si $K \subseteq X$ es un subconjunto compacto $\Rightarrow f [K] = \{ f(x) \mid x \in K \}$ es un subconjunto compacto de $Y$
+\end{theorem}
+
+\begin{proof}
+    Sea $\mathscr{C} = \{ v_j \mid j \in J \}$ es una cubierta abierta (de abiertos de $Y$) de $f[K]$
+
+    Como $f$ es continua $\U = \{ f^\leftarrow[V_j] \mid j \in J \}$ es una colección de abiertos de ($X,d$). Más aún:
+
+    $$K \subseteq \bigcup_{j\in  J} f^\leftarrow[V_j] $$
+
+    Si $x \in K$ es arbitrario $\Rightarrow f(x) \in f[k]$, como $\mathscr{C}$ es cubierta abierta de $f[K] \Rightarrow \: \exists \: j \in J$ tal que $f(x) \in V_j \Rightarrow x \in f^\leftarrow[V_j] $
+
+    Debido a que $K$ es compacto $\exists \: j_1, ..., j_n \in J$ tales que
+
+    $$K \subseteq \bigcup_{i=1}^{m} f^\leftarrow[V_j] $$
+
+    una subcubierta finita. Resulta que $f[K] \subseteq \bigcup_{i=1}^{n}V_{j_i}$. En efecto, sea $y \in f[K]$ arbitrario. Luego, $\exists \: z \in K$ tal que $f(z) = y$. Como $z \in K$ y $K \subseteq f^\leftarrow[V_j] \Rightarrow \: \exists \: i = \{1, ..., m \}$ tal que $z \in f^\leftarrow[V_j] 
+ \Rightarrow y = f(z) \in v_{j_i}  \Rightarrow z \in \bigcup_{i=1}^{n}V_{j_i}$
+
+ $\therefore f[K]$ es compacto.
+\end{proof}
+
+\begin{corollary}
+    Si $f : X \to \R$ es una función continua y ($X,d$) es un espacio métrico compacto $\Rightarrow f$ es una función acotada. 
+\end{corollary}
+
+\begin{orangeproof}
+    Por \Cref{theom335} $f[X]$ es un subconjunto compacto de $\R \Rightarrow f[X]$ es cerrado y acotado. Por ser acotado $\exists \: x_0 \in \R$ y $r > 0$ tales que
+
+    $$f[X] \subseteq (x_0-r, x_0 + r)$$
+
+    Y notemos que
+
+    $$\abs{f(x)} = \abs{f(x)-0} = \abs{f(x)-x_0+x_0} = \abs{f(x)-x_0} + \abs{x_0} < r + \abs{x_0} $$
+
+    Así, $f$ es una función acotada.
+\end{orangeproof}
+
+\section{Existencia de Máximo y Mínimo}
+
+\begin{definition}[Mínimo]
+    Sea ($X,d$) un espacio métrico y $f : X \to \R$ una función. Decimos que $f$ alcanza su mínimo en $X$ si  $\exists \: x_0 \in X$ tal que
+
+    $$f(x_0) \leqslant f(x)$$
+
+    
+    El punto $x_0$ se denota como mínimo de $f$ en $X$
+\end{definition}
+
+\begin{definition}[Máximo]
+    Sea ($X,d$) un espacio métrico y $f : X \to \R$ una función. Decimos que $f$ alcanza su máximo en $X$ si  $\exists \: x_1 \in X$ tal que
+
+    $$f(x) \leqslant f(x_1)$$
+
+    
+    El punto $x_1$ se denota como máximo de $f$ en $X$
+\end{definition}
+
+\begin{theorem}
+    Si $f : X \to \R$ es una función continua en un espacio métrico compacto $\Rightarrow f$ es acotada, y también, $f$ alcanza su máximo y mínimo, es decir $\exists \: x_0, x_1 \in  X$ tales que $f(x_0) \leqslant f(x) \leqslant f(x_1)$
+\end{theorem}
+
+\begin{proof}
+    Por el corolario anterior, $f$ es una función acotada, es decir, $\exists \: M > 0$ tal que
+
+    $$\forall \: x \in X \Rightarrow \abs{f(x)} < M = - M < f(x) < M$$
+
+    Note ahora que el conjunto $f[X] = \{ f(x) \mid x \in X \}$ es no vacío, y es tanto acotado superiormente como inferiormente en $\R$. Por ejemplo, $M$ es cota superior de $f[X]$, mientras que $-M$ es cota inferior. Consecuentemente $\exists \: \alpha = \inf \{ f[X] \}$ y $\beta = \sup \{ f[X \}$
+
+    Veamos que $\exists \: x_1, x_1 \in X$ tales que $f(x_1) = \alpha$ y $f(x_1) = \beta$. Basta probar que $\alpha, \beta \in f[X]$
+
+    Primero, note que $\alpha \in f[X]$. Supongamos por el contrario que $\alpha \notin f[X]$. Sea $\varepsilon > 0$ arbitrario. Como $\alpha < \alpha + \varepsilon$ y $\alpha = \inf \{ f[X]\} \Rightarrow \alpha + \varepsilon$ no puede ser cota inferior de $f[X]$
+
+    $\Rightarrow \: \exists \: z \in X$ tal que $f(z) < \alpha + \varepsilon$ y $\alpha < f(z) < \alpha + \varepsilon$. 
+    
+    No es $\alpha \leqslant f(z)$ porque $f(z) \in f[X]$ y $\alpha \notin f[X]$, por suposición por el contrario.
+    
+    Así $\exists \: f(z) \in f[X] \cap ((\alpha - \varepsilon, \alpha + \varepsilon) \setminus \{ \alpha \}) = B(\alpha, \varepsilon) \setminus \{ \alpha \}$. 
+    
+    Esto implica que $\alpha \in \der(f[X])$, lo que contradice que $\alpha \notin f[X]$.
+
+    $\therefore \alpha \in f[X]$. Como $\alpha$ es el ínfimo $\exists \: x_0 \in X$ tal que $f(x_0) = \alpha \Rightarrow f(x_0) = \alpha \leqslant f(x)$
+
+    Ahora, supongamos de forma análoga que $\beta \notin f[X]$. Con el mismo $\varepsilon$, y como $\beta - \varepsilon < \beta$ y $\beta$ es $\sup = \{f(x) \} \Rightarrow \beta - \varepsilon$ no puede ser cota superior de $f[X]$
+
+    $\Rightarrow \: \exists \: z \in X$ tal que $\beta - \varepsilon < f(z)$ y $\beta - \varepsilon < f(z) < \beta$
+
+    No es $f(z) \leqslant \beta$ porque $f(z) \in f[X]$ y $\beta \notin f[X]$ por el supuesto.
+
+    Así $\exists \: f(z) \in f[X] \cap ((\beta - \varepsilon, \beta + \varepsilon) \setminus \{ \beta \}) = B(\beta, \varepsilon) \setminus \{ \beta \}$.
+
+    $\therefore \beta \in f[X]$. Como $\beta$ es el supremo $\exists \: x_1 \in X$ tal que $f(x_1) = \beta \Rightarrow f(x_1) = \beta \geqslant f(x) \Rightarrow f(x) \leqslant f(x_1)$
+\end{proof}
+
+\section{Teorema de Heine-Börel}
+
+\begin{notation}
+    En todo intervalo $[a,b]$, suponemos $a < b$
+\end{notation}
+
+\begin{lemma} \label{lemma331}
+    Si $\{ [a_m,b_m] \mid m \in \N \}$ es una colección de intervalos cerrados de $\R$ tales que 
+
+    $$\forall \: m \in \N \Rightarrow [a_{m+1},b_{m+1}] \subseteq [a_m,b_m] \Rightarrow \bigcap_{m=1}^{\infty} [a_m,b_m] \neq \varnothing$$
+\end{lemma}
+
+\begin{proof}
+    Primero notemos que el conjunto $A = \{ a_m \mid m \in \N \} \neq \varnothing$ y que $b_1$ es cualquier cota superior de $A$. 
+
+    Esto porque $\forall \: i \in \N \Rightarrow a_i \in [a_i, b_i] \subseteq [a_1, b_1] \leqslant b_1$
+
+    Por el axioma del supremos $\exists \: \alpha = \sup \{ a_m \mid m \in \N \}$, y de manera análoga  $\exists \: \beta = \inf \{ b_m \mid m \in \N \}$
+
+    Resulta que $\alpha \leqslant \beta$. Si ocurriera lo contrario, es decir, que $\beta < \alpha \Rightarrow \: \exists \: m \in \N$ tal que $\beta < a_m$, esto porque $\alpha$ es el supremo, que es la mínima cota superior. Debido a que $\beta$ es el ínfimo $\exists \: m_0 \in \N$ tal que $\beta_{m_0} < a_m$. Sea $t = m_0 + m_{+1}$. Resulta que
+
+    $$[a_t,b_t] \subseteq [a_{m_0}, b_{m_0}] \cap [a_m, b_m]$$
+
+    Así $a_m \leqslant a_t \leqslant b_{m_0} < a_m$, lo cual es imposible $\therefore \alpha \leqslant \beta$
+
+    Observe ahora que $\alpha \leqslant x \leqslant \beta \Rightarrow$ 
+
+    $$x \in \bigcap_{m=1}^{\infty} [a_m,b_m]$$
+
+    Esto porque
+
+    $$a_m \leqslant  \alpha = \sup \{ a_m \mid m \in \N \} \leqslant x \leqslant  \beta = \inf \{ b_m \mid m \in \N \} \leqslant b_m$$
+
+    $\therefore \bigcap_{m=1}^{\infty} [a_m,b_m] \neq \varnothing$
+\end{proof}
+
+\begin{lemma}
+    Sea $\mathrm{I} = [a_{m+1}, b_{m+1}] \times ... \times [a_{m_n},b_{m_n}]$
+
+    Si $\forall \: m \in \N $ sucede que 
+
+    $$\mathrm{I}_{m+1} \subseteq \mathrm{I}_{m} \Rightarrow \bigcap_{m=1}^{\infty} \mathrm{I} \neq \varnothing$$
+\end{lemma}
+
+\begin{proof}
+    Sea $i \in \{1, ..., n \}$ un elemento cualquiera. Consideremos a la colección $\{ [a_{m, i},b_{m, i}] \mid m \in \N \}$. Notemos que
+
+    $$\forall \: m \in \N \Rightarrow [a_{{m+1, i}},b_{{m+1, i}}] \subseteq [a_{m, i},b_{m, i}]$$
+
+    En efecto, sea $m \in \N$ arbitrario. Supongamos que $x \in [a_{{m+1, i}},b_{{m+1, i}}]$ es cualquiera. Defina a 
+
+    $$\vec{x} = (a_{{m+1, 1}}, a_{{m+1, 2}}, ..., x, a_{{m+1, i+1}}, a_{{m+1, n}})$$
+
+    Resulta que $\vec{x} \in \mathrm{I}_{m+1} = [a_{{m+1, 1}},b_{{m+1, 1}}] \times ... \times [a_{{m+1, n}},b_{{m+1, n}}]$
+
+    Como $\mathrm{I}_{m+1} \subseteq \mathrm{I}_{m}$ s.t.q. $\vec{x} \in \mathrm{I}_{m}$. Así $x \in [a_{m, i},b_{m, i}]$. 
+
+    Por el lema \Cref{lemma331} $\exists \: z_9 \in \bigcap_{m=1}^{\infty}  [a_{m, i},b_{m, i}]$ 
+
+    Defina $\vec{z} = (z_1, ..., z_n)$. Por construcción
+
+    $$\vec{z} \in \bigcap_{m=1}^{\infty} \mathrm{I}_{m} \Rightarrow \vec{z} \in \mathrm{I}_{m} = [a_{m, 1},b_{m, 1}] \times ... \times [a_{m, n},b_{m, n}]$$
+\end{proof}
+
+\begin{lemma}
+    Si tenemos un $n$-cubo arbitrario $\mathrm{I} = [a_{1},b_{1}] \times ... \times [a_{n},b_{n}] \Rightarrow \: \forall \: z,y \in \mathrm{I}$ s.t.q.
+
+    $$\norm{x-y} \leqslant \delta = \sqrt{\sum_{i=1}^{n}{(b_i-a_i)}^{2}}$$
+\end{lemma}
+
+\begin{lemma} \label{lemma334}
+    Sea $\mathrm{I} = [a_{1},b_{1}] \times ... \times [a_{n},b_{n}]$  un $n$-cubo arbitrario $\Rightarrow \: \forall \: i \in \{1, ..., n \}$ los puntos medios
+
+    $$c_i = \frac{a_i+b_i}{2}$$
+
+    generan $2^n$ cubos $I_1, ..., I_{2^n}$ tales que
+
+    \begin{enumerate}
+        \item $\mathrm{I} = \bigcup\limits_{i=1}^{2^n} \mathrm{I}_{i}$
+        \item $\forall i  \in \{1, ..., n \}$ y $\forall \: x,y \in \mathrm{I}_{i} \Rightarrow \norm{x-y} \leqslant \frac{\delta}{2}$
+    \end{enumerate}
+
+    donde $\delta = \sqrt{\sum\limits_{i=1}^{n}{(b_i-a_i)}^{2}}$
+\end{lemma}
+
+\begin{proof}
+    Demostramos este teorema por innducción sobre $\N$
+
+    Para $n = 1$ s.t.q. $ \mathrm{I} = [a_{1},b_{1}]$ y el punto medio es 
+
+     $$c_1 = \frac{a_1+b_1}{2}$$
+
+     claramente $c_1$ genera a los intervalos cerrados $ \mathrm{I}_{1} = [a_{1},c_{1}]$ y $ \mathrm{I}_{2} = [c_{1},b_{1}]$. Es claro que $\mathrm{I} = \mathrm{I}_1 \cup \mathrm{I}_2$
+
+     Por otro lado
+
+     Si $x,y \in \mathrm{I}_1 = [a_1, c_1] \Rightarrow$
+
+     $$\abs{x-y} \leqslant c_1 - a_1 = \frac{a_1+b_1}{2} - \frac{2 \cdot a_1}{2} = \frac{- a_1}{2} + \frac{b_1}{2} = \frac{b_1-a_1}{2}$$
+
+     Así $\abs{x-y} \leqslant \frac{\delta}{2}$, porque recordemos que $\delta = \sqrt{\sum_{i=1}^{n}{(b_i-a_i)}^{2}} = b_1-a_1$ para $n=1$
+
+     Si $x,y \in \mathrm{I}_2 = [c_1, b_1] \Rightarrow$
+
+     $$\abs{x-y} \leqslant b_1 - c_1 = \frac{2 \cdot b_1}{2} - \frac{a_1+b_1}{2}  = \frac{b_1-a_1}{2} = \frac{\delta}{2}$$
+
+     $\therefore$ el resultado es cierto para $n=1$. Se han generado $2^1 = 2$ cubos.
+
+     Supóngase que el resultado para $n \in \N$
+
+     Supongamos que
+
+     $$\mathrm{I} = [a_1,b_1] \times ... \times [a_n,b_n] \times [a_{n+1},b_{n+1}$$
+
+     Consideremos ahora al $n$-cubo
+
+     $$\mathrm{J} =  [a_1,b_1] \times ... \times [a_n,b_n] $$
+
+     Por hipótesis de inducción, los puntos medios 
+
+     $$c_1 = \frac{a_1+b_1}{2} \: \: \: \: \: \: \forall \: i \in \N$$
+
+     generan $2^n$ subos $\mathrm{J}_1,\mathrm{J}_2,...,\mathrm{J}_{2^n}$ tales que
+
+     \begin{align*}
+         \mathrm{J} = \bigcup_{j=1}^{2^n} \mathrm{J}_{j} && \text{ y } && \forall \: j \: \forall \: x,y \in \mathrm{J}_j \Rightarrow \norm{x-y} \leqslant \frac{\delta}{2}
+     \end{align*}
+
+     Observe que el punto medio 
+
+     $$c_{n+1} = \frac{a_{n+1}+b_{n+1}}{2} $$
+
+     divide a $[a_{n+1},b_{n+1}] = [a_{n+1},c_{n+1}] \cup [c_{n+1},b_{n+1}]$
+
+     Se quita una dimensiòn al $n+1$-cubo para hacer un $n$ cubo, que por inducción genera a $2^n$ $n$-cubos. Dividamos al cubo que queda en dos y vamos a multiplicarlo por los $2^n$ $n$-cubos.
+
+     Definamos 
+
+     $$\mathrm{I}_1 = \mathrm{J}_1 \times [a_{n+1},c_{n+1}]$$
+     $$\vdots \: \: \: \: \: \:\vdots \: \: \: \: \: \:\vdots \: \: \: \: \: \:\vdots \: \: \: \: \: \:\vdots \: \: \: \: \: \:\vdots$$
+     $$\mathrm{I}_{2^n} = \mathrm{J}_{2^n} \times [a_{n+1},c_{n+1}]$$
+
+     Lo que nos da un total de $2^n$ cubos. Definamos también
+
+     $$\mathrm{K}_1 = \mathrm{J}_1 \times [c_{n+1},b_{n+1}]$$
+     $$\vdots \: \: \: \: \: \:\vdots \: \: \: \: \: \:\vdots \: \: \: \: \: \:\vdots \: \: \: \: \: \:\vdots \: \: \: \: \: \:\vdots$$
+     $$\mathrm{K}_{2^n} = \mathrm{J}_{2^n} \times [c_{n+1},b_{n+1}]$$
+
+     Que a su vez son $2^n$ cubos. Tenemos $2^n + 2^n$ cubos, es decir $2^n + 2^n = 2^n (1+1) = 2^n (2) = 2^{n+1}$ tenemos $2^{n+1}$ $n+1$-cubos. Además
+
+     $$\mathrm{I} = [a_1,b_1] \times ... \times [a_n,b_n] \times [a_{n+1},b_{n+1}] = \mathrm{J} \times [a_{n+1},b_{n+1}] = \left( \bigcup_{j=1}^{2^n}  \mathrm{J}_{j} \right) \times [a_{n+1},b_{n+1}]$$
+     $$= \bigcup_{j=1}^{2^n} \left(  \mathrm{J}_{j} \times [a_{n+1},b_{n+1}] \right) = \bigcup_{j=1}^{2^n} \left(  \mathrm{J}_{j} \times [a_{n+1},c_{n+1}] \right) \cup \bigcup_{j=1}^{2^n} \left(  \mathrm{J}_{j} \times [c_{n+1},b_{n+1}] \right)$$
+     $$= \bigcup_{i=1}^{2^n} \mathrm{I}_i \cup \bigcup_{i=1}^{2^n} \mathrm{K}_i \cup $$
+
+     $\therefore \mathrm{I}$ es igual a la unión de $2^{n+1}$ $n+1$-cubos. Además $\forall \: i$ y $\forall \: x,y \in \mathrm{I}_i \Rightarrow \norm{x-y} \leqslant \frac{\delta}{2}$ y $\forall \: i$ y $\forall \: x,y \in \mathrm{K}_i \Rightarrow \norm{x-y} \leqslant \frac{\delta}{2}$
+
+     $\therefore$ el resultado es cierto para $n+1$. Así, por inducción, la propiedad es verdadera $\forall \: n \in \N$
+\end{proof}
+
+\begin{lemma}
+    Todo $n$-cubo cerrado 
+
+    $$\mathrm{I} = [a_1,b_1] \times ... \times [a_{n},b_{n}] $$
+
+    es un subconjunto compacto de $\R^n$
+\end{lemma}
+
+\begin{proof}
+    Supongamos, para generar una contradicción, que $\mathrm{I}$ no es compacto $\Rightarrow \: \exists \:$ una cubierta abierta
+
+    $$\U = \{ \A_\alpha \mid \alpha \in A \}$$
+
+    de modo que ninguna subcolección finita de $\U$ cubre a $\mathrm{I}$. Por \Cref{lemma334}, los puntos medios 
+    
+    $$c_i = \frac{a_i+b_i}{2}$$ 
+    
+    generan a $2^n$ $n$-cubos $\mathrm{I}_1, ..., \mathrm{I}_{2^n}$ tales que
+
+         \begin{align*}
+         \mathrm{I} = \bigcup_{i=1}^{2^n} \mathrm{I}_{i} && \text{ y } && \forall \: i \: \forall \: x,y \in \mathrm{I}_i \Rightarrow \norm{x-y} \leqslant \frac{\delta}{2}
+     \end{align*}
+
+     Por nuestra hipótesis dobre $\U \Rightarrow \: \exists \:$ un $i \in \{ 1, ..., 2^n \}$ tal que $\mathrm{I}_{i}$ no puede ser cubierto por una cantidad finita de elementos de $\U$
+
+     Supongamos $\mathrm{I}_i = [x_1,y_1] \times ... \times [x_n,y_n]$. Note que los puntos medios 
+
+     $$a_i = \frac{x_i+y_i}{2}$$ 
+
+     generan a $2^n$ $n$-cubos $\mathrm{J}_1, ..., \mathrm{J}_{2^n}$ tales que
+
+    \begin{align*}
+         \mathrm{I}_i = \bigcup_{j=1}^{2^n} \mathrm{J}_{j} && \text{ y } && \forall \: j \: \forall \: x,y \in \mathrm{J}_j \Rightarrow \norm{x-y} \leqslant \frac{\delta^\prime}{2} = \frac{1}{2} \cdot \frac{\delta}{2}
+     \end{align*}
+
+     Por nuestra hipótesis dobre $\U \Rightarrow \: \exists \:$ un $j \in \{ 1, ..., 2^n \}$ tal que $\mathrm{J}_{j}$ no puede ser cubierto por una cantidad finita de elementos de $\U$. Denotemos $\mathrm{I}_2 = \mathrm{J}_j$ y $\mathrm{I}_1 = \mathrm{I}_i$
+
+     \begin{align*}
+         \Rightarrow \mathrm{I}_2 \subseteq \mathrm{I}_2 \subseteq \mathrm{I} && \text{ y } && \forall \: i = 1,2  \: \forall \: x,y \in \mathrm{I}_i \Rightarrow \norm{x-y} \leqslant \frac{\delta^\prime}{2} = \frac{\delta}{2î}
+     \end{align*}
+
+     De esta forma, por recursión, $\exists$ una sucesión de $m$-cubos $\mathrm{I}_1, \mathrm{I}_2, ..., \mathrm{I}_n$ tales que
+
+     \begin{align*}
+         \forall \: m \in \N \Rightarrow \mathrm{I}_{m+1} \subseteq \mathrm{I}_{m} \subseteq \mathrm{I} && \text{ y } && \forall \: m \in \N \: \forall \: x,y \in \mathrm{I}_m \Rightarrow \norm{x-y} \leqslant \frac{\delta}{2^m} 
+     \end{align*}
+
+     Por \Cref{lemma331} $\exists \: \vec{x} \in \bigcap_{m = 1}^{\infty} \mathrm{I}_m$. Como $\vec{x} \in \mathrm{I} \Rightarrow \: \exists \: \A_\alpha \in \U$ que es un abierto, tal que $\vec{x} \in \A_\alpha$. Sea $\varepsilon > 0$ tal que $B(\vec{x},\varepsilon) \subseteq \A_\alpha$
+
+     Como 
+     $$\lim_{n \to \infty} \frac{\delta}{2^m} = 0 \Rightarrow \: \exists \: m \in \N \backepsilon 0 < \frac{\delta}{2^{m+1}} < \varepsilon$$
+
+     Pero, por la segunda propiedad de la sucesión de $m$-cubos, s.t.q. 
+
+     $$\mathrm{I}_{m+1} \subseteq B(\vec{x}, \varepsilon) \subseteq \A_\alpha$$
+
+     lo que contradice la construcción de $\mathrm{I}_{m+1}$, porque está contenido en una subcolección finita, que de hecho tiene un solo elemento, $\A_\alpha$
+\end{proof}
+
+\begin{theorem}[Heine - Börel] \label{theomheineborel}
+    Si $A \subseteq \R^n$ es un conjunto cerrado y acotado $\Rightarrow A$ es compacto
+\end{theorem}
+
+\begin{proof}
+    Como $A$ es acotado $\exists \: z = (z_1, ..., z_n) \in \R^n$ y $r>0$ tal que $A \subseteq B(z,r)$
+
+    Note que
+
+    $$A \subseteq B(z,r) \subseteq [z_{1-r},z_{1+r}] \times ... \times [z_{n-r},z_{n+r}] = \mathrm{I} $$
+
+    Por \Cref{theomhb}, como $\mathrm{I}$ es compacto y $A$ es cerrado $\Rightarrow A$ es compacto
+\end{proof}
+
+\section{Continuidad Uniforme}
+
+\begin{definition} [Continuidad Uniforme] \label{defcont}
+    Sean espacios métricos ($X,d$) y ($Y,\rho$). Diremos que una función $f : X \to Y$ es una función uniformemente continua si es cierta la siguiente proposición
+
+    $$\forall \: \varepsilon > 0 \: \exists \: \delta > 0 \: \forall \: x,y \in X \Rightarrow d(x,y) < \delta \Rightarrow \rho(f(x),f(y)) < \varepsilon$$
+\end{definition}
+
+\begin{theorem}
+    Sean espacios métricos ($X,d$) y ($Y,\rho$). Toda función Lipschitz continua $f: X \to Y$ es uniformemente continua.
+\end{theorem}
+
+\begin{proof}
+    Supongamos que $f$ es Lipschitz continua. Sea $\varepsilon > 0$ cualquiera. Definamos a $\delta = \frac{\varepsilon}{c}$. Claramente $\delta > 0$. Si $x,y \in X$ son elementos aribtrarios tales que $d(x,y) < \delta$
+
+    $$\Rightarrow \rho(f(x),f(y)) \leqslant c \cdot d(x,y) < c \cdot \delta = c \cdot \frac{\varepsilon}{c} = \varepsilon$$
+\end{proof}
+
+\begin{corollary}
+    Por corolario de \Cref{def22} toda función Lipschitz continua es continua, por lo qur toda función uniformemente continua es continua.
+\end{corollary}
+
+\begin{orangeproof}
+    Si no tuvieramos este resultado, el resultado sigue siendo sumamente trivial. Supongamos que $x \in X$ es cualquiera, y sea $\varepsilon > 0$. Aplicando la \Cref{defcont} a $\varepsilon \Rightarrow \: \exists \: \delta > 0$ tal que
+
+    $$\forall \: z,y \in X \Rightarrow d(y,z) < \delta \Rightarrow \rho(f(z),f(y)) < \varepsilon$$
+\end{orangeproof}
+
+\begin{remark}
+    Hay funciones continuas que no son uniformemente continuas
+\end{remark}
+
+\begin{eg}
+    Considere a la función cuadrática $f : \R \to \R$ dada por 
+
+    $$f(x) = x^2$$
+
+    Se sabe que $f$ es continua $\forall \: x \in \R$ y es infinitamente derivable.
+
+    Veamos que la negación de continuidad uniforme
+
+    $$\exists \: \varepsilon > 0 \: \forall \: \delta > 0 \: \exists \: x,y \in X \Rightarrow d(x,y) < \delta \: \wedge \: \rho(f(x),f(y)) \geqslant \varepsilon$$
+
+    es verdadera para $f$
+\end{eg}
+
+\begin{proofexplanation}
+    Consideremos a $\varepsilon = \frac{1}{2}$. Sea $\delta > 0$ arbitrario. Fijemos $n \in \Z^+$ de modo que $\frac{1}{n} < \delta$. Defina $r = n + \frac{1}{n}$ y $y = n$. Resulta que 
+
+    $$d(x,y) = \abs{x-y} = \frac{1}{n} < \delta$$
+
+    Además, definamos $\varepsilon = \frac{1}{2}$. Note que
+
+    $$\rho(f(x),f(y)) = \abs{x^2-y^2} = x^2-y^2 = \left( n + \frac{1}{n} \right)^2 - (n)^2$$
+    $$= \left( n + \frac{1}{n} +n \right)\left( n + \frac{1}{n} - n \right) = \frac{1}{n} \left( 2n + \frac{1}{n} \right) = 2 + \frac{1}{n^2} > \frac{1}{2}$$
+
+    $\therefore f$ no es uniformemente continua
+\end{proofexplanation}
+
+\begin{definition}[Nùmero de Lebesgue]
+    Sea ($X,d$) un espacio métrico y $\U = \{ \A_\alpha \mid \alpha \in J \}$ es una cubierta de $X$. Diremos que $a > 0$ es un número de Lebesgue para $\U \iff$
+
+    $$\forall \: x \in X \: \exists \: \alpha\in J \Rightarrow B(x,a) \subseteq \A_\alpha$$
+\end{definition}
+
+\begin{lemma}[Lema de Cubierta de Lebesgue] \label{lemacubleb}
+    Si ($X,d$) es un espacio métrico compacto $\Rightarrow$ toda cubierta abierta de $X$ tiene número de Lebesgue
+\end{lemma}
+
+\begin{proof}
+    Supongamos que $\U = \{ \A_\alpha \mid \alpha \in J \}$ es una cubierta abierta de $X$. Ahora, $\forall \: x \in X$ fijemos un $\varepsilon_x > 0$ y un $U_x \in \U$ tal que $B(x,\varepsilon_x) \subseteq U_x$. Considere a la cubierta $\mathscr{C} = \left\{ B(x, \frac{\varepsilon_x}{2} \mid x \in X \right\}$, Como $X$ es compacto $\exists \: x_1, ..., x_n \in X$ tales que $\U^\prime = \left\{ B(x_i, \frac{\varepsilon_{x_i}}{2} \mid 1 \leqslant i \leqslant n \right\} \subseteq \U$ es una subcubierta finita de $X$
+
+    Definimos $a = \min \left\{ \frac{\varepsilon_{x_i}}{2} \mid 1 \leqslant i \leqslant n \right\} > 0$. Veamos que $a$ es número de Lebesgue de la cubierta $\U$
+
+    Para ello, supongamos que $x \in X$ es cualquier elemento. Como $\U^\prime$ es cibierta de $X$ $\exists$ un índice $i_0 \in \{ 1, ..., n \}$ tal que $x \in \left( x_{i_0} , \frac{\varepsilon_{ x_{i_0}}}{2}\right) \subseteq \\A_{x_{i_0}}$. Resulta que $B(x,a) \subseteq B\left( x_{i_0}, \varepsilon_{ x_{i_0}} \right)$.
+
+    En efecto, supongamos que $y \in B(x,a)$ es cualquier elemento
+
+    $$\Rightarrow d(y,  x_{i_0}) \leqslant d(y,x)+ d(x, x_{i_0}) < a + \frac{\varepsilon_{ x_{i_0}}}{2} \leqslant \frac{\varepsilon_{ x_{i_0}}}{2} + \frac{\varepsilon_{ x_{i_0}}}{2} = \varepsilon_{ x_{i_0}}$$
+
+    $\therefore y \in B\left( x_{i_0}, \varepsilon_{ x_{i_0}} \right)$ Con esto, hemos probado que
+
+    $$b(x,a) \subseteq B\left( x_{i_0}, \varepsilon_{ x_{i_0}} \right) \subseteq \A_{x_{i_0}}$$
+
+    Es decir $\forall \: x \in X \: \exists \: V \in \U $ tal que $B(x,a) \subseteq V$
+
+    $\therefore a$ es número de Lebesgue de $\U$
+\end{proof}
+
+\begin{theorem} \label{theom3531}
+    Si ($X,d$) es un espacio métrico compacto y ($Y,\rho$) es un espacio métrico $\Rightarrow$ toda función continua $f : X \to Y$ es uniformemente continua
+\end{theorem}
+
+\begin{proof}
+    Sea $\varepsilon > 0$. La colección 
+
+    $$\U = \left\{ f^\leftarrow \left[B\left( y, \frac{\varepsilon}{2}\right) \right] \mid y \in Y \right\}$$
+
+    es una cubierta abierta para $Y$, esto por \Cref{theom334}. Como $X$ es compacto, por \Cref{lemacubleb} $\exists \: \delta > 0$ que es número de Lebesgue de la cubierta $\U$
+
+    Si $x_1, x_2 \in X$ son tales que d$(x_1,x_2) < \delta$ s.t.q. $x_2 \in B(x_1,\delta)$ y $\exists \: z \in Y$ tal que  $B(x_!, \delta) \subseteq f^\leftarrow \left[B\left( z, \frac{\varepsilon}{2}\right) \right]$. Note que $B\left( z, \frac{\varepsilon}{2}\right) \in \U$, y que $x_2 \in f^\leftarrow \left[B\left( z, \frac{\varepsilon}{2}\right) \right] \Rightarrow f(x_2) \in B\left( z, \frac{\varepsilon}{2}\right)$. Luego,
+
+    $$\rho(f(x_1),f(x_2)) \leqslant \rho(f(x_1),z) + \rho(z,f(x_2)) < \frac{\varepsilon}{2}+ \frac{\varepsilon}{2} = \varepsilon$$
+
+    $\therefore f$ es uniformemente continua
+\end{proof}
