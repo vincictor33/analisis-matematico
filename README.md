@@ -1,6 +1,6 @@
 ## Descripción
 
-Código en LateXde las notas de clase de Análisis Matemático I del Dr. Fidel Casarrubias Segura de la Facultad de Ciencias de la UNAM. Estas notas están en español y cubren todo el temario oficial de la materia.
+Código en LateX de las notas de clase de Análisis Matemático I del Dr. Fidel Casarrubias Segura de la Facultad de Ciencias de la UNAM. Estas notas están en español y cubren todo el temario oficial de la materia.
 
 ## Contenido
 
